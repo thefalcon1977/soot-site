@@ -1,0 +1,435 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-13 11:39+0330\n"
+"PO-Revision-Date: 2025-02-09 12:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Persian <FA@li.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\corporate\admin\banner.py:20
+#, fuzzy
+#| msgid "User Information"
+msgid "Banner Information"
+msgstr "اطلاعات بنر"
+
+#: .\corporate\admin\banner.py:30 .\corporate\admin\site.py:39
+#, fuzzy
+#| msgid "User Information"
+msgid "Meta Information"
+msgstr "اطلاعات متا"
+
+#: .\corporate\admin\contact.py:35
+msgid "These are the primary details of the contact request."
+msgstr "اینها جزئیات اصلی درخواست تماس هستند."
+
+#: .\corporate\admin\contact.py:40 .\corporate\admin\gallery.py:38
+#: .\corporate\admin\instrument.py:54 .\corporate\admin\profile.py:43
+msgid "Timestamps"
+msgstr "برچسب‌های زمانی"
+
+#: .\corporate\admin\contact.py:43
+msgid "Automatically generated timestamp for the message."
+msgstr "برچسب زمانی به‌طور خودکار برای پیام ایجاد شده است."
+
+#: .\corporate\admin\gallery.py:28
+msgid "Media"
+msgstr "رسانه"
+
+#: .\corporate\admin\instrument.py:33
+msgid "Basic Information"
+msgstr "اطلاعات پایه"
+
+#: .\corporate\admin\instrument.py:37
+msgid "Instrument Details"
+msgstr "جزئیات ساز"
+
+#: .\corporate\admin\instrument.py:47
+msgid "Instructor Assignment"
+msgstr "تخصیص مربی"
+
+#: .\corporate\admin\instrument.py:50
+msgid "Only users in the 'Instructor' group can be assigned."
+msgstr "تنها کاربران گروه 'مربی' می‌توانند تخصیص داده شوند."
+
+#: .\corporate\admin\instrument.py:66 .\corporate\models\instrument.py:41
+#: .\corporate\templates\pages\partials\footer.html:21
+msgid "Instructors"
+msgstr "مربیان"
+
+#: .\corporate\admin\profile.py:29
+msgid "User Information"
+msgstr "اطلاعات کاربر"
+
+#: .\corporate\admin\profile.py:33
+msgid "Profile Details"
+msgstr "جزئیات پروفایل"
+
+#: .\corporate\admin\profile.py:52 .\corporate\forms\contact.py:12
+#: .\corporate\models\contact.py:8
+msgid "Full Name"
+msgstr "نام کامل"
+
+#: .\corporate\admin\site.py:19
+#, fuzzy
+#| msgid "User Information"
+msgid "General Information"
+msgstr "اطلاعات کلی"
+
+#: .\corporate\admin\site.py:30
+#, fuzzy
+#| msgid "User Information"
+msgid "Footer Information"
+msgstr "اطلاعات پابرگ"
+
+#: .\corporate\forms\contact.py:13 .\corporate\models\contact.py:26
+msgid "Subject"
+msgstr "موضوع"
+
+#: .\corporate\forms\contact.py:19 .\corporate\models\contact.py:14
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+#: .\corporate\forms\contact.py:22 .\corporate\models\contact.py:19
+#: .\corporate\models\site.py:23
+msgid "Phone Number"
+msgstr "شماره تلفن"
+
+#: .\corporate\forms\contact.py:25
+msgid "Your Message"
+msgstr "پیام شما"
+
+#: .\corporate\models\banner.py:17
+msgid "Title"
+msgstr "عنوان"
+
+#: .\corporate\models\banner.py:22
+msgid ""
+"Enter the title of the banner. Keep it concise and informative. (Max 30 "
+"characters)"
+msgstr ""
+"عنوان بنر را وارد کنید. آن را مختصر و مفید نگه دارید. (حداکثر ۳۰ نویسه)"
+
+#: .\corporate\models\banner.py:27
+msgid "Picture"
+msgstr "تصویر"
+
+#: .\corporate\models\banner.py:32
+msgid "Upload the banner image. Supported formats include JPG, PNG, etc."
+msgstr ""
+"تصویر بنر را بارگذاری کنید. فرمت‌های پشتیبانی‌شده شامل JPG، PNG و ... هستند."
+
+#: .\corporate\models\banner.py:44
+msgid "Banner"
+msgstr "بنر"
+
+#: .\corporate\models\banner.py:45
+msgid "Banners"
+msgstr "بنرها"
+
+#: .\corporate\models\contact.py:10
+msgid "Please enter your full name."
+msgstr "لطفاً نام کامل خود را وارد کنید."
+
+#: .\corporate\models\contact.py:11
+msgid "The full name of the person submitting the contact form."
+msgstr "نام کامل شخصی که فرم تماس را ارسال می‌کند."
+
+#: .\corporate\models\contact.py:15
+msgid "Please enter a valid email address."
+msgstr "لطفاً یک آدرس ایمیل معتبر وارد کنید."
+
+#: .\corporate\models\contact.py:16
+msgid "The email address of the person submitting the contact form."
+msgstr "آدرس ایمیل شخصی که فرم تماس را ارسال می‌کند."
+
+#: .\corporate\models\contact.py:22
+msgid "Please enter a valid phone number."
+msgstr "لطفاً یک شماره تلفن معتبر وارد کنید."
+
+#: .\corporate\models\contact.py:23
+msgid "The phone number of the person submitting the contact form."
+msgstr "شماره تلفن شخصی که فرم تماس را ارسال می‌کند."
+
+#: .\corporate\models\contact.py:28
+msgid "Please enter the subject of your message."
+msgstr "لطفاً موضوع پیام خود را وارد کنید."
+
+#: .\corporate\models\contact.py:29
+msgid "The subject of the contact request."
+msgstr "موضوع درخواست تماس."
+
+#: .\corporate\models\contact.py:32
+msgid "Message"
+msgstr "پیام"
+
+#: .\corporate\models\contact.py:33
+msgid "Please enter your message."
+msgstr "لطفاً پیام خود را وارد کنید."
+
+#: .\corporate\models\contact.py:34
+msgid "The main body of the contact request."
+msgstr "متن اصلی درخواست تماس."
+
+#: .\corporate\models\contact.py:37
+msgid "Date Created"
+msgstr "تاریخ ایجاد"
+
+#: .\corporate\models\contact.py:39
+msgid "The date and time when the contact form was submitted."
+msgstr "تاریخ و زمان ارسال فرم تماس."
+
+#: .\corporate\models\contact.py:40
+msgid "Timestamp when the contact form was submitted."
+msgstr "برچسب زمانی هنگام ارسال فرم تماس."
+
+#: .\corporate\models\contact.py:44
+msgid "Contact"
+msgstr "تماس"
+
+#: .\corporate\models\contact.py:45
+msgid "Contacts"
+msgstr "تماس‌ها"
+
+#: .\corporate\models\contact.py:49
+msgid "Table storing contact messages submitted via the website."
+msgstr "جدولی که پیام‌های ارسال‌شده از طریق وب‌سایت را ذخیره می‌کند."
+
+#: .\corporate\models\gallery.py:22
+msgid "Image"
+msgstr "تصویر"
+
+#: .\corporate\models\gallery.py:26
+msgid "Upload an image for the gallery."
+msgstr "یک تصویر برای گالری بارگذاری کنید."
+
+#: .\corporate\models\gallery.py:44
+msgid "Gallery"
+msgstr "گالری"
+
+#: .\corporate\models\gallery.py:45 .\corporate\templates\pages\index.html:153
+msgid "Galleries"
+msgstr "گالری‌ها"
+
+#: .\corporate\models\instrument.py:23 .\corporate\models\profile.py:32
+msgid "Description"
+msgstr "توضیحات"
+
+#: .\corporate\models\instrument.py:25
+msgid ""
+"Provide a detailed description of the musical instrument, including features "
+"and specifications."
+msgstr "یک توضیح کامل از ساز موسیقی، شامل ویژگی‌ها و مشخصات ارائه دهید."
+
+#: .\corporate\models\instrument.py:31
+msgid "Instrument Image"
+msgstr "تصویر ساز"
+
+#: .\corporate\models\instrument.py:33
+msgid "Upload an image of the musical instrument."
+msgstr "یک تصویر از ساز موسیقی بارگذاری کنید."
+
+#: .\corporate\models\instrument.py:43
+msgid "Select users who are instructors and associated with this instrument."
+msgstr "کاربرانی را انتخاب کنید که مربی هستند و با این ساز مرتبط هستند."
+
+#: .\corporate\models\instrument.py:53
+msgid "Instrument"
+msgstr "ساز"
+
+#: .\corporate\models\instrument.py:54
+#: .\corporate\templates\pages\index.html:113
+#: .\corporate\templates\teachers\detail.html:31
+msgid "Instruments"
+msgstr "سازها"
+
+#: .\corporate\models\profile.py:24
+msgid "User"
+msgstr "کاربر"
+
+#: .\corporate\models\profile.py:27
+msgid "The user associated with this profile."
+msgstr "کاربری که با این پروفایل مرتبط است."
+
+#: .\corporate\models\profile.py:35
+msgid "Provide a short biography or other relevant information about the user."
+msgstr "یک بیوگرافی کوتاه یا اطلاعات مرتبط دیگر درباره کاربر ارائه دهید."
+
+#: .\corporate\models\profile.py:41
+msgid "Profile Picture"
+msgstr "عکس پروفایل"
+
+#: .\corporate\models\profile.py:43
+msgid "Upload a profile picture."
+msgstr "یک عکس پروفایل بارگذاری کنید."
+
+#: .\corporate\models\profile.py:52
+msgid "Profile"
+msgstr "پروفایل"
+
+#: .\corporate\models\profile.py:53
+msgid "Profiles"
+msgstr "پروفایل‌ها"
+
+#: .\corporate\models\site.py:24
+#, fuzzy
+#| msgid "Please enter a valid phone number."
+msgid "Enter the contact phone number."
+msgstr "لطفاً یک شماره تلفن معتبر وارد کنید."
+
+#: .\corporate\models\site.py:29
+#: .\corporate\templates\pages\partials\footer.html:34
+msgid "Email"
+msgstr "ایمیل"
+
+#: .\corporate\models\site.py:30
+#, fuzzy
+#| msgid "Please enter a valid email address."
+msgid "Enter the contact email address."
+msgstr "لطفاً یک آدرس ایمیل معتبر وارد کنید."
+
+#: .\corporate\models\site.py:35
+#, fuzzy
+#| msgid "Description"
+msgid "Footer Description"
+msgstr "توضیحات پابرگ"
+
+#: .\corporate\models\site.py:36
+#, fuzzy
+#| msgid ""
+#| "Provide a short biography or other relevant information about the user."
+msgid "Provide a description or additional information for the footer."
+msgstr "یک توضیح یا اطلاعات اضافی برای پابرگ ارائه دهید."
+
+#: .\corporate\models\site.py:42
+msgid "Footer Copyright"
+msgstr "کپی‌رایت پابرگ"
+
+#: .\corporate\models\site.py:43
+msgid "Enter the copyright text to be displayed in the footer."
+msgstr "متن کپی‌رایتی که در پابرگ نمایش داده خواهد شد را وارد کنید."
+
+#: .\corporate\models\site.py:49
+msgid "Brand Name"
+msgstr "نام برند"
+
+#: .\corporate\models\site.py:50
+msgid "Enter the brand or company name."
+msgstr "نام برند یا شرکت را وارد کنید."
+
+#: .\corporate\models\site.py:55
+msgid "Site Logo"
+msgstr "لوگوی سایت"
+
+#: .\corporate\models\site.py:57
+#, fuzzy
+#| msgid "Upload an image of the musical instrument."
+msgid "Upload the logo of the site."
+msgstr "لوگوی سایت را بارگذاری کنید."
+
+#: .\corporate\models\site.py:65
+msgid "Site Content"
+msgstr "محتوای سایت"
+
+#: .\corporate\models\site.py:66
+msgid "Site Contents"
+msgstr "محتواهای سایت"
+
+
+#: .\corporate\templates\blog\detail.html:48
+msgid "Related Posts"
+msgstr "پست‌های مرتبط"
+
+#: .\corporate\templates\blog\list.html:95
+msgid "Search"
+msgstr "جستجو"
+
+#: .\corporate\templates\blog\list.html:102
+#: .\corporate\templates\pages\index.html:33
+msgid "Latest Posts"
+msgstr "آخرین پست‌ها"
+
+#: .\corporate\templates\blog\list.html:129
+msgid "Categories"
+msgstr "دسته‌بندی‌ها"
+
+#: .\corporate\templates\blog\list.html:133
+#: .\corporate\templates\blog\list.html:151
+msgid "Clear Filter"
+msgstr "پاک کردن فیلتر"
+
+#: .\corporate\templates\blog\list.html:146
+msgid "Tags"
+msgstr "برچسب‌ها"
+
+#: .\corporate\templates\pages\contact.html:42
+msgid "Send Message"
+msgstr "ارسال پیام"
+
+#: .\corporate\templates\pages\index.html:73
+msgid "Our Professional Team"
+msgstr "تیم حرفه‌ای ما"
+
+#: .\corporate\templates\pages\partials\footer.html:18
+msgid "Explore"
+msgstr "کاوش"
+
+#: .\corporate\templates\pages\partials\footer.html:20
+msgid "Blog"
+msgstr "بلاگ"
+
+#: .\corporate\templates\pages\partials\footer.html:22
+#: .\corporate\templates\pages\partials\header.html:29
+msgid "instruments"
+msgstr "سازها"
+
+#: .\corporate\templates\pages\partials\footer.html:23
+#: .\corporate\templates\pages\partials\header.html:33
+msgid "gallery"
+msgstr "گالری"
+
+#: .\corporate\templates\pages\partials\footer.html:24
+#, fuzzy
+#| msgid "Contact Us"
+msgid "Contact us"
+msgstr "تماس با ما"
+
+#: .\corporate\templates\pages\partials\footer.html:31
+#, fuzzy
+#| msgid "Email Address"
+msgid "Address"
+msgstr "آدرس"
+
+#: .\corporate\templates\pages\partials\footer.html:33
+msgid "Phone"
+msgstr "تلفن"
+
+#: .\corporate\templates\pages\partials\header.html:19
+msgid "Home"
+msgstr "خانه"
+
+#: .\corporate\templates\pages\partials\header.html:23
+msgid "blog"
+msgstr "بلاگ"
+
+#: .\corporate\templates\pages\partials\header.html:26
+msgid "Contact Us"
+msgstr "تماس با ما"
+
+#: .\corporate\templates\pages\partials\header.html:37
+msgid "instructors"
+msgstr "مربیان"
+
+#: .\corporate\templates\pages\partials\header.html:45
+msgid "logout"
+msgstr "خروج"

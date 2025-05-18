@@ -1,0 +1,29 @@
+{% extends 'shared/_site.html' %}
+{% load thumbnail theme %}
+
+{% block body %}
+<section class="section-padding page">
+
+    <div class="container">
+        <div class="row justify-content-lg-center">
+            {% for instrument in instruments %}
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="course-grid bg-shadow tooltip-style">
+                    <div class="course-header">
+                        {% thumbnail instrument.image "340x323" crop="center" format='WEBP' as im %}
+                            <img src="{{ im.url }}" alt="{{ instrument.alternate_text }}" class="img-fluid">
+                            {% endthumbnail %}
+                    </div>
+
+                    <div class="course-content">
+
+                        <h3 class="course-title mb-20"> <a href="{% url 'pages:instrument-detail' instrument.slug %}">{{ instrument.title }} </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

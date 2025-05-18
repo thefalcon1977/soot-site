@@ -1,0 +1,24 @@
+{% extends 'shared/_site.html' %}
+{% load thumbnail %}
+
+{% block body %}
+<section class="section-padding page" >
+<div class="container">          
+    <div class="row justify-content-lg-center">
+        {% for gallery in galleries %}
+        <div class="col-xl-4 col-lg-4 col-md-6">
+            <div class="course-grid bg-shadow tooltip-style">
+                <div class="course-header">
+                    <div class="course-thumb">
+                            {% thumbnail gallery.image "340x323" crop="center" format='WEBP' as im %}
+                            <img src="{{ im.url }}" alt="{{ gallery.alternate_text }}" class="img-fluid">
+                            {% endthumbnail %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+{% endblock %}

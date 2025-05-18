@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="zxx" dir="rtl">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Edumel- Education Html Template by dreambuzz">
+  <meta name="keywords" content="education,edumel,instructor,lms,online,instructor,dreambuzz,bootstrap,kindergarten,tutor,e learning">
+  <meta name="author" content="dreambuzz">
+
+  <title>Edumel- Education Html Template</title>
+   <!-- Mobile Specific Meta-->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Libs CSS -->
+  {% include 'pages/partials/styles.html' %}
+  {% block extra_styles %}
+  {% endblock %}
+</head>
+
+<body id="top-header">
+  {% include 'pages/partials/header.html' %}
+
+    {% block body %}
+    {% endblock %}
+
+  {% if not view.page_title == 'Chapter' %}
+    {% include 'pages/partials/footer.html' %}
+  {% endif %}
+
+  {% include 'pages/partials/scripts.html' %}
+  {% block extra_scripts %}
+  {% endblock %}
+</body>
+
+<!-- Mirrored from transvelo.github.io/skola-html/5.1/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Oct 2024 08:41:01 GMT -->
+
+</html>

@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'IRANSans';
+    src: url('../fonts/IRANSansXFaNum-Light.woff2') format('woff2'),
+         url('../fonts/IRANSansXFaNum-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+:root {
+  --theme-heading-font: 'IRANSans', sans-serif;
+}

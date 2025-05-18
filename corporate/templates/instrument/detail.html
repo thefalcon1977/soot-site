@@ -1,0 +1,37 @@
+{% extends 'shared/_site.html' %}
+{% load thumbnail %}
+
+{% block body %}
+<section class="tutori-course-single tutori-course-layout-3 page-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-7">
+                <div class="tutori-course-content">
+                    <div class="tab-content tutori-course-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                            aria-labelledby="nav-home-tab">
+                            <div class="single-course-details ">
+                                <h4 class="course-title">{{ instrument }}</h4>
+                                <p>{{ instrument.description|safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-5">
+                <!-- Course Sidebar start -->
+                <div class="course-sidebar course-sidebar-3 mt-5 mt-lg-0">
+                    <div class="course-widget course-details-info ">
+                        <div class="course-thumbnail">
+                            {% thumbnail instrument.image "340x323" crop="center" format='WEBP' as im %}
+                            <img src="{{ im.url }}" alt="{{ instrument.alternate_text }}" class="img-fluid w-100">
+                            {% endthumbnail %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

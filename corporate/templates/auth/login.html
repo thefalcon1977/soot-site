@@ -1,0 +1,74 @@
+{% extends 'shared/_site.html' %}
+{% load widget_tweaks %}
+{% block body %}
+
+<section class="page-wrapper woocommerce single">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-xl-5">
+                <div class="woocommerce-notices-wrapper"></div>
+                <div class="login-form">
+                    <div class="form-header">
+                        <h2 class="font-weight-bold mb-3">ورود</h2>
+                        <p class="woocommerce-register">
+                            تا حالا ثبت نام نکرده اید؟ <a href="/register" class="text-decoration-underline">ثبت نام</a>
+                        </p>
+                    </div>
+
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
+                                    <i class="ki-duotone ki-shield-tick fs-2hx text-{{ message.tags }} me-4">
+                                        <span class="path1"></span><span class="path2"></span>
+                                    </i>
+                                    <div class="d-flex flex-column">
+                                        <h4 class="mb-1 text-{{ message.tags|default:"danger" }}">خطا</h4>
+                                        <span>{{ message }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <form class="woocommerce-form woocommerce-form-login login" method="post">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            {% for field in form %}
+                                <div class="col-xl-12">
+                                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                                        <label for="{{ field.id_for_label }}">{{ field.label }} &nbsp;<span class="required">*</span></label>
+                                        {% render_field field class+="form-control" placeholder=field.label %}
+
+                                        {% if field.help_text %}
+                                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                                        {% endif %}
+
+                                        {% for error in field.errors %}
+                                            <div class="text-danger">{{ error }}</div>
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between py-2">
+                            <p class="form-row">
+                                <label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
+                                    <input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever"> <span>بخاطر بسپار</span>
+                                </label>
+                            </p>
+                        </div>
+                        
+                        <p class="form-row">
+                            <button type="submit" class="woocommerce-button button woocommerce-form-login__submit" name="login" value="Log in">ثبت</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

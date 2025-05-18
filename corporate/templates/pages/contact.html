@@ -1,0 +1,53 @@
+{% extends 'shared/_site.html' %}
+{% load widget_tweaks %}
+
+{% block body %}
+
+<!-- Contact section start -->
+<section class="contact section-padding">
+    <div class="container">
+        <div class="row justify-content-between">
+
+            <!-- Contact Form -->
+            <div class="col-xl-7 col-lg-6">
+                <form class="contact__form form-row" method="post" action="{% url 'pages:contact' %}" id="contactForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="contact_form">
+
+                    <!-- Success/Error Messages -->
+                    {% include 'pages/components/messages.html' %}
+
+                    <div class="row">
+                        {% for field in form %}
+                        <div class="col-lg-6 {% if field.name == 'message' or field.name == 'subject' %}col-lg-12{% endif %}">
+                            <div class="form-group">
+                                <!-- Render field with placeholder and Bootstrap styling -->
+                                {% if field.errors %}
+                                    {{ field|add_class:"form-control is-invalid" }}
+                                    <div class="invalid-feedback">
+                                        {% for error in field.errors %}
+                                            <span>{{ error }}</span><br>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ field|add_class:"form-control" }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <button class="btn btn-main w-100 rounded" type="submit">{% trans "Send Message" %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Contact section End -->
+
+{% endblock %}

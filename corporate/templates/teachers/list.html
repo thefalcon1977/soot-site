@@ -1,0 +1,35 @@
+{% extends 'shared/_site.html' %}
+{% load thumbnail %}
+
+{% block body %}
+
+<section class="section-instructors section-padding">
+    <div class="container">
+        <div class="row">
+            {% for instructor in instructors %}
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="team-item mb-5">
+                    <div class="team-img">
+                        <a href="{% url 'pages:instructor-detail' instructor.pk %}">
+                            {% thumbnail instructor.profile.picture "590x570" crop="center" format='WEBP' as im %}
+                            <img src="{{ im.url }}" class="img-fluid" alt="{{ instructor.get_full_name }}">
+                            {% endthumbnail %}
+                        </a>
+
+                    </div>
+
+                    <div class="team-content">
+                        <div class="team-info">
+                            <h4>
+                                <a href="{% url 'pages:instructor-detail' instructor.pk %}">{{ instructor.get_full_name }}</a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
