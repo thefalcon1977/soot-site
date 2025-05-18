@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "uni-project"
+name = "soot-site"
 version = "0.1.0"
 description = ""
 authors = ["MohmdFo <mohammad.fotouhi80@gmail.com>"]
