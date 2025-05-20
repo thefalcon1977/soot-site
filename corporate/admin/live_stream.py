@@ -11,13 +11,12 @@ class LiveStreamAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'is_active', 'scheduled_at', 'status', 'thumbnail')
     list_filter = ('is_active', 'scheduled_at')
     search_fields = ('title', 'slug', 'description')
-    prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'scheduled_at'
     ordering = ('-is_active', '-scheduled_at', 'title')
     readonly_fields = ('status', 'created_at', 'modified_at')
     fieldsets = (
         (None, {
-            'fields': ('title', 'slug', 'description')
+            'fields': ('title', 'description')
         }),
         (_('Image'), {
             'fields': ('image',)
@@ -38,7 +37,7 @@ class LiveStreamAdmin(admin.ModelAdmin):
         if obj.image:
             from sorl.thumbnail import get_thumbnail
             thumb = get_thumbnail(obj.image, '100x100', crop='center', format='WEBP')
-            return f'<img src="{thumb.url}" alt="{obj.title}" style="max-width: 100px; max-height: 100px;">'
+            return f'<img src="{thumb.url}" alt="{obj.alternate_text or obj.title}" style="max-width: 100px; max-height: 100px;">'
         return 'No Image'
     thumbnail.allow_tags = True
     thumbnail.short_description = _('Thumbnail')
@@ -51,8 +50,16 @@ class LiveStreamAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         """
-        Make slug readonly when editing an existing object to prevent changes.
+        Include slug as readonly when editing an existing object.
         """
         if obj:  # Editing an existing object
             return self.readonly_fields + ('slug',)
         return self.readonly_fields
+
+    def get_prepopulated_fields(self, request, obj=None):
+        """
+        Only prepopulate slug for new objects if it's editable.
+        """
+        if obj:  # Editing an existing object
+            return {}
+        return {'slug': ('title',)} if 'slug' in self.model._meta.get_fields() and self.model._meta.get_field('slug').editable else {}

@@ -17,10 +17,6 @@ urlpatterns = [
     path("blog/", views.PostListView.as_view(), name="blog-post-list"),
     path("blog/<slug:slug>/", views.PostDetailView.as_view(), name="blog-post-detail"),
     
-    # Instruments
-    path("instruments/", views.InstrumentListView.as_view(), name="instruments-list"),
-    path("instruments/<slug:slug>/", views.InstrumentDetailView.as_view(), name="instrument-detail"),
-    
     # Live Streams
     path("live-streams/", views.LiveStreamListView.as_view(), name="live-stream-list"),
     path("live-streams/<slug:slug>/", views.LiveStreamDetailView.as_view(), name="live-stream-detail"),
@@ -30,8 +26,4 @@ urlpatterns = [
     
     # Contact
     path("contact/", views.ContactCreateView.as_view(), name="contact"),
-    
-    # Instructors
-    path("instructors/", views.InstructorList.as_view(), name="instructor-list"),
-    path("instructors/<int:id>/", views.InstructorDetail.as_view(), name="instructor-detail"),
 ]

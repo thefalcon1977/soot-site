@@ -27,20 +27,14 @@
                         <li class="{% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
                             <a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a>
                         </li>
-                        <li class="{% if 'instrument' in request.resolver_match.url_name %}current{% endif %}">
-                            <a href="{% url 'pages:instruments-list' %}">{% trans "Instruments" %}</a>
-                        </li>
                         <li class="{% if request.resolver_match.url_name == 'gallery-list' %}current{% endif %}">
                             <a href="{% url 'pages:gallery-list' %}">{% trans "Gallery" %}</a>
-                        </li>
-                        <li class="{% if 'instructor' in request.resolver_match.url_name %}current{% endif %}">
-                            <a href="{% url 'pages:instructor-list' %}">{% trans "Instructors" %}</a>
                         </li>
                         <li class="{% if 'live-stream' in request.resolver_match.url_name %}current{% endif %}">
                             <a href="{% url 'pages:live-stream-list' %}">
                                 {% trans "Live Streams" %}
                                 {% if live_stream_count > 0 %}
-                                    <span class="badge bg-success ms-1">{{ live_stream_count }}</span>
+                                    <span class="badge bg-danger ms-1">{{ live_stream_count }}</span>
                                 {% endif %}
                             </a>
                         </li>
