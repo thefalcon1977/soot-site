@@ -1,4 +1,4 @@
-FROM nginx:1.24.0-alpine
+FROM tiangolo/nginx-rtmp:latest
 
 RUN apk add --update nginx
 # Replace the default Nginx configuration

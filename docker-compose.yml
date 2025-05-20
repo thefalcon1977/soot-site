@@ -9,7 +9,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     hostname: api
     restart: always
     container_name: api
@@ -21,16 +21,18 @@ services:
   nginx:
     build:
       context: ./nginx
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: god_nginx
     restart: always
     ports:
       - 8009:8009
+      - "1935:1935"  # RTMP port
     volumes:
-      - ./nginx/configs/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/configs/nginx-dev.conf:/etc/nginx/nginx.conf:ro
       - ./backend/logs/nginx:/var/log/nginx
       - ./backend/media/collectstatic/:/collectstatic/
       - ./backend/media/uploads/:/media/
+      - ./nginx/tmp/hls:/tmp/hls
     networks:
       - soot-site
     depends_on:
