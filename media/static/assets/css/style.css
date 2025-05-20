@@ -4678,8 +4678,8 @@ Fixed top top bottom
 
 .widget-search .search-form .search-submit {
   position: absolute;
-  right: 0px;
   top: 0px;
+  left: 0px;
   height: 100%;
   background: transparent;
   color: #000;
