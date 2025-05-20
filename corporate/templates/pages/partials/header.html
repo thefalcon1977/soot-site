@@ -1,44 +1,48 @@
-{% load thumbnail %}
+{% load thumbnail i18n %}
 
 <header class="header-style-2">
-
     <div class="header-navbar menu-1 navbar-sticky">
         <div class="container-fluid container-padding">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="site-logo">
-                    <a href="index.html">
+                    <a href="{% url 'pages:home' %}">
                         {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
-                                <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid">
-                            {% endthumbnail %}
+                            <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid">
+                        {% endthumbnail %}
                     </a>
                 </div>
 
                 <div class="offcanvas-icon d-block d-lg-none">
-                    <a href="#" class="nav-toggler"><i class="fal fa-bars"></i></a> 
+                    <a href="#" class="nav-toggler"><i class="fal fa-bars"></i></a>
                 </div>
-        
+
                 <nav class="site-navbar ms-auto">
                     <ul class="primary-menu">
-                        <li class="current">
+                        <li class="{% if request.resolver_match.url_name == 'home' %}current{% endif %}">
                             <a href="{% url 'pages:home' %}">{% trans "Home" %}</a>
                         </li>
-
-                        <li>
-                            <a href="{% url 'pages:blog-post-list' %}">{% trans "blog" %}</a>
+                        <li class="{% if 'blog' in request.resolver_match.url_name %}current{% endif %}">
+                            <a href="{% url 'pages:blog-post-list' %}">{% trans "Blog" %}</a>
                         </li>
-
-                        <li><a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a></li>
-
-                        <li>
-                            <a href="{% url 'pages:instruments-list' %}">{% trans "instruments" %}</a>
+                        <li class="{% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
+                            <a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a>
                         </li>
-
-                        <li>
-                            <a href="{% url 'pages:gallery-list' %}">{% trans "gallery" %}</a>
+                        <li class="{% if 'instrument' in request.resolver_match.url_name %}current{% endif %}">
+                            <a href="{% url 'pages:instruments-list' %}">{% trans "Instruments" %}</a>
                         </li>
-
-                        <li>
-                            <a href="{% url 'pages:instructor-list' %}">{% trans "instructors" %}</a>
+                        <li class="{% if request.resolver_match.url_name == 'gallery-list' %}current{% endif %}">
+                            <a href="{% url 'pages:gallery-list' %}">{% trans "Gallery" %}</a>
+                        </li>
+                        <li class="{% if 'instructor' in request.resolver_match.url_name %}current{% endif %}">
+                            <a href="{% url 'pages:instructor-list' %}">{% trans "Instructors" %}</a>
+                        </li>
+                        <li class="{% if 'live-stream' in request.resolver_match.url_name %}current{% endif %}">
+                            <a href="{% url 'pages:live-stream-list' %}">
+                                {% trans "Live Streams" %}
+                                {% if live_stream_count > 0 %}
+                                    <span class="badge bg-success ms-1">{{ live_stream_count }}</span>
+                                {% endif %}
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -46,12 +50,12 @@
                     <form action="{% url 'pages:logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-grey-outline btn-sm-2 rounded" style="margin-right: 15px;">
-                            <i class="fal fa-user me-2"></i> {% trans 'logout' %}
+                            <i class="fal fa-user me-2"></i> {% trans 'Logout' %}
                         </button>
-                    </form> 
+                    </form>
                 {% else %}
                     <div class="header-btn border-left-0 ms-3 d-none d-lg-block">
-                        <a href="/login" class="btn btn-grey-outline rounded-circle"><i class="fal fa-user"></i></a>
+                        <a href="{% url 'pages:login' %}" class="btn btn-grey-outline rounded-circle"><i class="fal fa-user"></i></a>
                     </div>
                 {% endif %}
             </div>

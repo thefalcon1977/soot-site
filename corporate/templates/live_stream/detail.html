@@ -1,0 +1,59 @@
+{% extends 'shared/_site.html' %}
+{% load thumbnail theme static i18n %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta %}
+    <meta name="description" content="{{ meta_description }}">
+{% endblock %}
+
+{% block body %}
+<section class="tutori-course-single tutori-course-layout-3 page-wrapper" aria-labelledby="live-stream-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-7">
+                <div class="tutori-course-content">
+                    <div class="tab-content tutori-course-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="single-course-details">
+                                <h4 id="live-stream-title" class="course-title">{{ liveStream.title }}</h4>
+                                {% if liveStream.status == 'Active' %}
+                                    <span class="badge bg-success mb-3">{% trans "Live Now" %}</span>
+                                {% elif liveStream.status == 'Scheduled' %}
+                                    <span class="badge bg-info mb-3">
+                                        {% trans "Scheduled for" %} {{ liveStream.scheduled_at|date:"SHORT_DATE_FORMAT" }}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-secondary mb-3">{% trans "Inactive" %}</span>
+                                {% endif %}
+                                <p>{{ liveStream.description|safe }}</p>
+                                {% if liveStream.stream_url %}
+                                    <a href="{{ liveStream.stream_url }}" class="btn btn-primary mt-3" target="_blank" rel="noopener noreferrer">
+                                        {% trans "Watch Live Stream" %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-5">
+                <!-- Course Sidebar start -->
+                <div class="course-sidebar course-sidebar-3 mt-5 mt-lg-0">
+                    <div class="course-widget course-details-info">
+                        <div class="course-thumbnail">
+                            {% if liveStream.image %}
+                                {% thumbnail liveStream.image "340x323" crop="center" format="WEBP" as im %}
+                                    <img src="{{ im.url }}" alt="{{ liveStream.alternate_text|default:liveStream.title }}" class="img-fluid w-100">
+                                {% endthumbnail %}
+                            {% else %}
+                                <img src="{% static 'images/placeholder-stream.jpg' %}" alt="{% trans 'Placeholder image for' %} {{ liveStream.title }}" class="img-fluid w-100">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

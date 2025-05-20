@@ -1,4 +1,7 @@
 from corporate.models.site import SiteContent
+from django.utils import timezone
+from django.db.models import Q
+from corporate.models import LiveStream
 
 def site_content(request):
     """
@@ -12,3 +15,13 @@ def site_content(request):
     return {
         "site_content": site_content
     }
+
+
+def live_stream_count(request):
+    """
+    Add the count of active or scheduled live streams to the template context.
+    """
+    count = LiveStream.objects.filter(
+        Q(is_active=True) | Q(scheduled_at__gt=timezone.now())
+    ).count()
+    return {'live_stream_count': count}

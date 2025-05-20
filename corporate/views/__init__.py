@@ -7,3 +7,4 @@ from .post import PostDetailView, PostListView
 from .instrument import InstrumentDetailView, InstrumentListView
 from .contact import ContactCreateView
 from .instructor import InstructorList, InstructorDetail
+from .live_stream import LiveStreamListView, LiveStreamDetailView
