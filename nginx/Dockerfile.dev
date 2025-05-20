@@ -1,14 +1,14 @@
-FROM nginx:1.24.0-alpine
+FROM tiangolo/nginx-rtmp:latest
 
-RUN apk add --update nginx
-# Replace the default Nginx configuration
-RUN rm /etc/nginx/conf.d/default.conf 
+# Create HLS and log directories with permissive permissions
+RUN mkdir -p /tmp/hls /var/log/nginx \
+    && chmod -R 755 /tmp/hls /var/log/nginx
 
-# RUN mkdir -p /tmp/nginx/vue-single-page-app
-RUN mkdir -p /var/log/nginx
-# RUN mkdir -p /var/www/html
+# Remove default.conf to avoid conflicts
+RUN rm -f /etc/nginx/conf.d/default.conf
 
-# WORKDIR /tmp/nginx/vue-single-page-app
+# Expose ports for HTTP and RTMP
+EXPOSE 80 1935
 
-# RUN chown nginx:nginx /var/www/html
+# Run Nginx in foreground
 CMD ["nginx", "-g", "daemon off;"]
