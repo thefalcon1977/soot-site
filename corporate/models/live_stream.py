@@ -66,6 +66,14 @@ class LiveStream(TitleSlugDescriptionMixin, PictureOperationAbstract, TimeStampM
         db_comment="Date and time when the live stream is scheduled to start."
     )
 
+    alternate_text = models.CharField(
+            verbose_name=_("Alternate Text"),
+            max_length=255,
+            blank=True,
+            help_text=_("Alternative text for the live stream image, used for accessibility."),
+            db_comment="Alternative text for the live stream image."
+        )
+
     class Meta:
         verbose_name = _("live stream")
         verbose_name_plural = _("live streams")

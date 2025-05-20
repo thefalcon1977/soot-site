@@ -37,17 +37,11 @@ class LiveStreamListView(ListView):
 
 
 class LiveStreamDetailView(DetailView):
-    """
-    Displays details of a single live stream.
-    """
     model = LiveStream
     template_name = "live_stream/detail.html"
     context_object_name = "liveStream"
-    
+
     def get_context_data(self, **kwargs):
-        """
-        Adds page title and meta description with stream-specific details to the context.
-        """
         context = super().get_context_data(**kwargs)
         live_stream = self.get_object()
         context['page_title'] = f"{live_stream.title} - {_('Live Stream')}"
@@ -56,4 +50,7 @@ class LiveStreamDetailView(DetailView):
             if hasattr(live_stream.description, 'plain_text')
             else _("Watch this live stream and stay updated with the latest content.")
         )
+        context['live_stream_count'] = LiveStream.objects.filter(
+            Q(is_active=True) | Q(scheduled_at__gt=timezone.now())
+        ).count()
         return context

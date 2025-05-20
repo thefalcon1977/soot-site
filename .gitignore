@@ -168,6 +168,10 @@ bandit_report.txt
 elearning/**
 media/uploads/**
 
+# Ignore all migrations files except __init__.py
+**/migrations/*
+!**/migrations/__init__.py
+
 
 
 # stadio
