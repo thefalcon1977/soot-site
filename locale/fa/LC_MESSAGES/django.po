@@ -392,42 +392,42 @@ msgstr "برچسب‌ها"
 #: corporate/templates/live_stream/detail.html:20
 #: corporate/templates/live_stream/list.html:23
 msgid "Live Now"
-msgstr ""
+msgstr "اکنون زنده"
 
 #: corporate/templates/live_stream/detail.html:23
 msgid "Scheduled for"
-msgstr ""
+msgstr "برنامه‌ریزی‌شده برای"
 
 #: corporate/templates/live_stream/detail.html:26
 msgid "Inactive"
-msgstr ""
+msgstr "غیرفعال"
 
 #: corporate/templates/live_stream/detail.html:31
 msgid "Watch Live Stream"
-msgstr ""
+msgstr "مشاهده پخش زنده"
 
 #: corporate/templates/live_stream/detail.html:50
 #: corporate/templates/live_stream/list.html:20
 msgid "Placeholder image for"
-msgstr ""
+msgstr "تصویر پیش‌فرض برای"
 
 #: corporate/templates/live_stream/list.html:7
 #: corporate/templates/pages/partials/header.html:35
 #: corporate/views/live_stream.py:16
 msgid "Live Streams"
-msgstr ""
+msgstr "پخش‌های زنده"
 
 #: corporate/templates/live_stream/list.html:25
 msgid "Scheduled"
-msgstr ""
+msgstr "برنامه‌ریزی‌شده"
 
 #: corporate/templates/live_stream/list.html:37
 msgid "Watch Stream"
-msgstr ""
+msgstr "مشاهده پخش"
 
 #: corporate/templates/live_stream/list.html:47
 msgid "No live streams available at the moment."
-msgstr ""
+msgstr "در حال حاضر هیچ پخش زنده‌ای در دسترس نیست."
 
 #: corporate/templates/pages/contact.html:42
 msgid "Send Message"
@@ -471,15 +471,15 @@ msgstr "خروج"
 msgid ""
 "Explore our collection of live streams, including upcoming and currently "
 "active broadcasts."
-msgstr ""
+msgstr "مجموعه پخش‌های زنده ما را کاوش کنید، شامل پخش‌های آینده و در حال حاضر فعال."
 
 #: corporate/views/live_stream.py:53
 msgid "Live Stream"
-msgstr ""
+msgstr "پخش‌ زنده"
 
 #: corporate/views/live_stream.py:57
 msgid "Watch this live stream and stay updated with the latest content."
-msgstr ""
+msgstr "این پخش زنده را تماشا کنید و با آخرین محتوا به‌روز بمانید."
 
 #~ msgid "Basic Information"
 #~ msgstr "اطلاعات پایه"
