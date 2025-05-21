@@ -9,6 +9,7 @@
         {% if liveStreams %}
             <div class="row justify-content-lg-center">
                 {% for liveStream in liveStreams %}
+
                     <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
                         <article class="course-grid bg-shadow tooltip-style" aria-labelledby="live-stream-{{ liveStream.id }}-title">
                             <div class="course-header">
@@ -20,23 +21,17 @@
                                     <img src="{% static 'images/placeholder-stream.jpg' %}" alt="{% trans 'Placeholder image for' %} {{ liveStream.title }}" class="img-fluid">
                                 {% endif %}
                                 {% if liveStream.status == 'Active' %}
-                                    <span class="badge bg-success position-absolute top-10 end-10">{% trans "Live Now" %}</span>
+                                    <span class="badge bg-success position-absolute top-10 end-10">{% trans "w" %}</span>
                                 {% elif liveStream.status == 'Scheduled' %}
                                     <span class="badge bg-info position-absolute top-10 end-10">{% trans "Scheduled" %}</span>
                                 {% endif %}
                             </div>
-
                             <div class="course-content">
                                 <h3 id="live-stream-{{ liveStream.id }}-title" class="course-title mb-20">
                                     <a href="{% url 'pages:live-stream-detail' liveStream.slug %}" class="text-decoration-none">
                                         {{ liveStream.title }}
                                     </a>
                                 </h3>
-                                {% if liveStream.stream_url %}
-                                    <a href="{{ liveStream.stream_url }}" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
-                                        {% trans "Watch Stream" %}
-                                    </a>
-                                {% endif %}
                             </div>
                         </article>
                     </div>

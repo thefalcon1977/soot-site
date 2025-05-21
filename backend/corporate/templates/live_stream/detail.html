@@ -41,11 +41,6 @@
                                 {% endif %}
 
                                 <p>{{ liveStream.description|safe }}</p>
-                                {% if liveStream.stream_url and liveStream.status == 'Active' %}
-                                    <a href="{{ liveStream.stream_url }}" class="btn btn-primary mt-3" target="_blank" rel="noopener noreferrer">
-                                        {% trans "Open Stream in New Tab" %}
-                                    </a>
-                                {% endif %}
                             </div>
                         </div>
                     </div>

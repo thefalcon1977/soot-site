@@ -176,3 +176,7 @@ media/uploads/**
 
 # stadio
 .vscode
+
+
+media/collectstatic/
+media/uploads/
