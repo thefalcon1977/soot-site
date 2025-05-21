@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  soot-site:
+  soot_site:
 
 
 services:
@@ -16,24 +16,24 @@ services:
     volumes:
       - ./backend:/app
     networks:
-      - soot-site
+      - soot_site
 
   nginx:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    container_name: god_nginx
+    container_name: soot-nginx
     restart: always
     ports:
       - 80:80
       - "1935:1935"  # RTMP port
     volumes:
-      - ./nginx/configs/nginx-dev.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/configs/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./backend/logs/nginx:/var/log/nginx
       - ./backend/media/collectstatic/:/collectstatic/
       - ./backend/media/uploads/:/media/
       - ./nginx/tmp/hls:/tmp/hls
     networks:
-      - soot-site
+      - soot_site
     depends_on:
       - backend
