@@ -34,12 +34,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'localhost'
+    'localhost',
+    'soot.tebgeram.com'
     ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
     'http://localhost',
+    "http://soot.tebgeram.com:8080"
 ]
 
 # Application definition
