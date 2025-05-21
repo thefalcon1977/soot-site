@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  soot-site:
+  soot_site:
 
 
 services:
@@ -10,19 +10,19 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
-    hostname: api
+    hostname: soot-api
     restart: always
-    container_name: api
+    container_name: soot-api
     volumes:
       - ./backend:/app
     networks:
-      - soot-site
+      - soot_site
 
   nginx:
     build:
       context: ./nginx
       dockerfile: Dockerfile.dev
-    container_name: god_nginx
+    container_name: soot-nginx
     restart: always
     ports:
       - 80:80
@@ -34,6 +34,6 @@ services:
       - ./backend/media/uploads/:/media/
       - ./nginx/tmp/hls:/tmp/hls
     networks:
-      - soot-site
+      - soot_site
     depends_on:
       - backend
