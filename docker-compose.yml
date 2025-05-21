@@ -10,9 +10,9 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    hostname: api
+    hostname: soot-api
     restart: always
-    container_name: api
+    container_name: soot-api
     volumes:
       - ./backend:/app
     networks:
