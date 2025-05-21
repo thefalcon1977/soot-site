@@ -243,7 +243,7 @@ $('.popup').magnificPopup({
         Course filtering
   --------------------------------------------- */
   var $courses = $('.course-gallery');
-  if ($.fn.imagesLoaded && $portfolio.length > 0) {
+  if ($.fn.imagesLoaded && $courses.length > 0) {
       imagesLoaded($courses, function () {
           $courses.isotope({
               itemSelector: '.course-item',
