@@ -5305,6 +5305,12 @@ Fixed top top bottom
   border-bottom: 1px solid #eee;
 }
 
+.desktop-menu .current > a {
+  border-radius: 6px;
+  padding: 4px 12px;
+  background: #e2f1ff; /* Optional: subtle background */
+}
+
 .desktop-menu {
   list-style: none;
   padding: 0;
