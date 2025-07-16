@@ -1,7 +1,7 @@
-from django.utils.translation import gettext_lazy as _
-from django_ckeditor_5.fields import CKEditor5Field
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.core.validators import URLValidator
+from django_ckeditor_5.fields import CKEditor5Field
 
 try:
     from sorl.thumbnail.fields import ImageField
@@ -16,31 +16,35 @@ from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugDescriptionMi
 
 class LiveStream(TitleSlugDescriptionMixin, PictureOperationAbstract, TimeStampMixin):
     """
-    Represents a live stream entity in the system.
-    
-    This model stores information about live streams, including their title, description,
-    image, and streaming URL. It inherits common functionality from mixins for timestamps,
-    title/slug/description, and image operations.
+    Model representing a live stream event with metadata and scheduling.
     """
-
     description = CKEditor5Field(
         verbose_name=_("Description"),
-        help_text=_(
-            "Detailed description of the live stream, including content, features, and schedule."
-        ),
+        help_text=_("Detailed description of the live stream."),
         config_name="default",
         blank=True,
-        db_comment="Stores the detailed rich-text description of the live stream."
+        db_comment="Rich-text description of the live stream."
     )
 
-    image = ImageField(
-        verbose_name=_("Stream Image"),
-        upload_to="live_streams/%Y/%m/",
-        help_text=_("Upload a representative image or thumbnail for the live stream."),
-        blank=True,
-        null=True,
-        db_comment="Image or thumbnail representing the live stream."
-    )
+    if ImageField is not None:
+        image = ImageField(
+            verbose_name=_("Stream Image"),
+            upload_to="live_streams/%Y/%m/",
+            help_text=_("Upload a representative image or thumbnail for the live stream."),
+            blank=True,
+            null=True,
+            db_comment="Image or thumbnail representing the live stream."
+        )
+    else:
+        # Fallback for missing sorl-thumbnail
+        image = models.ImageField(
+            verbose_name=_("Stream Image"),
+            upload_to="live_streams/%Y/%m/",
+            help_text=_("Upload a representative image or thumbnail for the live stream."),
+            blank=True,
+            null=True,
+            db_comment="Image or thumbnail representing the live stream."
+        )
 
     stream_url = models.URLField(
         verbose_name=_("Stream URL"),
@@ -67,12 +71,12 @@ class LiveStream(TitleSlugDescriptionMixin, PictureOperationAbstract, TimeStampM
     )
 
     alternate_text = models.CharField(
-            verbose_name=_("Alternate Text"),
-            max_length=255,
-            blank=True,
-            help_text=_("Alternative text for the live stream image, used for accessibility."),
-            db_comment="Alternative text for the live stream image."
-        )
+        verbose_name=_("Alternate Text"),
+        max_length=255,
+        blank=True,
+        help_text=_("Alternative text for the live stream image, used for accessibility."),
+        db_comment="Alternative text for the live stream image."
+    )
 
     class Meta:
         verbose_name = _("live stream")
@@ -85,26 +89,21 @@ class LiveStream(TitleSlugDescriptionMixin, PictureOperationAbstract, TimeStampM
             models.Index(fields=["is_active"], name="live_stream_active_idx"),
         ]
 
-    def __str__(self):
-        """User-friendly string representation of the live stream."""
+    def __str__(self) -> str:
         return f"{self.title} ({'Active' if self.is_active else 'Inactive'})"
 
-    def __repr__(self):
-        """Developer-friendly string representation of the live stream."""
+    def __repr__(self) -> str:
         return f"<LiveStream: {self.title} (ID: {self.pk})>"
 
-    def is_scheduled(self):
-        """Check if the live stream is scheduled for a future time."""
+    def is_scheduled(self) -> bool:
         from django.utils import timezone
-        if self.scheduled_at:
-            return self.scheduled_at > timezone.now()
-        return False
+        return bool(self.scheduled_at and self.scheduled_at > timezone.now())
 
     @property
-    def status(self):
-        """Return the current status of the live stream."""
+    def status(self) -> str:
         if self.is_active:
             return "Active"
-        elif self.is_scheduled():
+        if self.is_scheduled():
             return "Scheduled"
         return "Inactive"
+        
