@@ -5205,3 +5205,31 @@ Fixed top top bottom
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+
+.single-course-details {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+.badge {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+.live-stream-player {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+.watch-live-overlay {
+  display: none; /* Show on hover or when needed */
+}
+.live-stream-player:hover .watch-live-overlay {
+  display: block;
+}
+.stream-description {
+  background: #f8f9fa;
+  border-radius: 8px;
+}

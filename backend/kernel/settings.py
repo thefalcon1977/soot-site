@@ -41,7 +41,8 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
     'http://localhost',
-    "http://soot.tebgeram.com:8080"
+    "http://soot.tebgeram.com:8080",
+    "http://localhost:8080"
 ]
 
 # Application definition

@@ -5205,3 +5205,161 @@ Fixed top top bottom
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+
+.single-course-details {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+.badge {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+.live-stream-player {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+.watch-live-overlay {
+  display: none; /* Show on hover or when needed */
+}
+.live-stream-player:hover .watch-live-overlay {
+  display: block;
+}
+.stream-description {
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+  position: fixed;
+  border-radius: 25px 25px 0px 0px;
+  padding-top: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #fff;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: -3px -11px 11px 0px rgba(0, 0, 0, 0.04);
+}
+
+.mobile-bottom-nav .nav-item {
+  flex: 1;
+  text-align: center;
+  color: #888;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 6px 0 0 0;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.mobile-bottom-nav .nav-item i {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+
+.mobile-bottom-nav .nav-item.active,
+.mobile-bottom-nav .nav-item:active,
+.mobile-bottom-nav .nav-item:focus {
+  color: #e50914; /* Highlight color */
+}
+
+.mobile-bottom-nav .badge {
+  position: absolute;
+  top: 2px;
+  right: 18px;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+@media (min-width: 992px) {
+  .mobile-bottom-nav {
+      display: none;
+  }
+}
+
+/* Desktop Navbar */
+.desktop-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0 32px;
+  border-bottom: 1px solid #eee;
+}
+
+.desktop-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.desktop-menu li {
+  display: inline-block;
+}
+
+.desktop-menu li.current a {
+  color: #e50914; /* Highlight color */
+  font-weight: bold;
+}
+
+.desktop-menu a {
+  color: #222;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.desktop-menu a:hover,
+.desktop-menu a:focus {
+  color: #e50914;
+  background: #f8f8f8;
+}
+
+.desktop-menu i {
+  font-size: 18px;
+}
+
+/* Hide on mobile, show on desktop (Bootstrap style) */
+.d-none {
+  display: none !important;
+}
+@media (min-width: 992px) {
+  .d-lg-block {
+      display: block !important;
+  }
+  .desktop-navbar {
+      display: block !important;
+  }
+}
+/* Add padding to body or main content to prevent it from being hidden under the navbar */
+@media (min-width: 992px) {
+  body {
+      padding-top: 70px; /* Adjust this value to match your navbar height */
+  }
+}

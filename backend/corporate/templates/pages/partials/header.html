@@ -1,58 +1,70 @@
 {% load thumbnail i18n %}
 
-<header class="header-style-2">
-    <div class="header-navbar menu-1 navbar-sticky">
-        <div class="container-fluid container-padding">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="site-logo">
-                    <a href="{% url 'pages:home' %}">
-                        {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
-                            <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid">
-                        {% endthumbnail %}
-                    </a>
-                </div>
-
-                <div class="offcanvas-icon d-block d-lg-none">
-                    <a href="#" class="nav-toggler"><i class="fal fa-bars"></i></a>
-                </div>
-
-                <nav class="site-navbar ms-auto">
-                    <ul class="primary-menu">
-                        <li class="{% if request.resolver_match.url_name == 'home' %}current{% endif %}">
-                            <a href="{% url 'pages:home' %}">{% trans "Home" %}</a>
-                        </li>
-                        <li class="{% if 'blog' in request.resolver_match.url_name %}current{% endif %}">
-                            <a href="{% url 'pages:blog-post-list' %}">{% trans "Blog" %}</a>
-                        </li>
-                        <li class="{% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
-                            <a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a>
-                        </li>
-                        <li class="{% if request.resolver_match.url_name == 'gallery-list' %}current{% endif %}">
-                            <a href="{% url 'pages:gallery-list' %}">{% trans "Gallery" %}</a>
-                        </li>
-                        <li class="{% if 'live-stream' in request.resolver_match.url_name %}current{% endif %}">
-                            <a href="{% url 'pages:live-stream-list' %}">
-                                {% trans "Live Streams" %}
-                                {% if live_stream_count > 0 %}
-                                    <span class="badge bg-danger ms-1">{{ live_stream_count }}</span>
-                                {% endif %}
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                {% if user.is_authenticated %}
-                    <form action="{% url 'pages:logout' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-grey-outline btn-sm-2 rounded" style="margin-right: 15px;">
-                            <i class="fal fa-user me-2"></i> {% trans 'Logout' %}
-                        </button>
-                    </form>
-                {% else %}
-                    <div class="header-btn border-left-0 ms-3 d-none d-lg-block">
-                        <a href="{% url 'pages:login' %}" class="btn btn-grey-outline rounded-circle"><i class="fal fa-user"></i></a>
-                    </div>
+<nav class="desktop-navbar d-none d-lg-block ms-auto">
+    <ul class="desktop-menu d-flex align-items-center mb-0" style="display:inline-flex; vertical-align:middle;">
+        <li class="nav-item desktop-logo me-4">
+            <a href="{% url 'pages:home' %}">
+                {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
+                    <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid" style="max-height:48px;">
+                {% endthumbnail %}
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'home' %}current{% endif %}">
+            <a href="{% url 'pages:home' %}">
+                <i class="fal fa-home"></i> {% trans "Home" %}
+            </a>
+        </li>
+        <li class="{% if 'blog' in request.resolver_match.url_name %}current{% endif %}">
+            <a href="{% url 'pages:blog-post-list' %}">
+                <i class="fal fa-blog"></i> {% trans "Blog" %}
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'gallery-list' %}current{% endif %}">
+            <a href="{% url 'pages:gallery-list' %}">
+                <i class="fal fa-images"></i> {% trans "Gallery" %}
+            </a>
+        </li>
+        <li class="{% if 'live-stream' in request.resolver_match.url_name %}current{% endif %}">
+            <a href="{% url 'pages:live-stream-list' %}">
+                <i class="fal fa-broadcast-tower"></i> {% trans "Live Streams" %}
+                {% if live_stream_count > 0 %}
+                    <span class="badge bg-danger ms-1">{{ live_stream_count }}</span>
                 {% endif %}
-            </div>
-        </div>
-    </div>
-</header>
+            </a>
+        </li>
+        <li class="{% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
+            <a href="{% url 'pages:contact' %}">
+                <i class="fal fa-envelope"></i> {% trans "Contact Us" %}
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav d-lg-none">
+    <a href="{% url 'pages:home' %}" class="nav-item{% if request.resolver_match.url_name == 'home' %} active{% endif %}">
+        <i class="fal fa-home"></i>
+        <span>{% trans "Home" %}</span>
+    </a>
+    <a href="{% url 'pages:blog-post-list' %}" class="nav-item{% if 'blog' in request.resolver_match.url_name %} active{% endif %}">
+        <i class="fal fa-blog"></i>
+        <span>{% trans "Blog" %}</span>
+    </a>
+    <a href="{% url 'pages:live-stream-list' %}" class="nav-item{% if 'live-stream' in request.resolver_match.url_name %} active{% endif %}">
+        <i class="fal fa-broadcast-tower"></i>
+        <span>{% trans "Live" %}</span>
+        {% if live_stream_count > 0 %}
+            <span class="badge bg-danger">{{ live_stream_count }}</span>
+        {% endif %}
+    </a>
+    <a href="{% url 'pages:gallery-list' %}" class="nav-item{% if request.resolver_match.url_name == 'gallery-list' %} active{% endif %}">
+        <i class="fal fa-images"></i>
+        <span>{% trans "Gallery" %}</span>
+    </a>
+    <a href="{% url 'pages:contact' %}" class="nav-item{% if request.resolver_match.url_name == 'contact' %} active{% endif %}">
+        <i class="fal fa-envelope"></i>
+        <span>{% trans "Contact" %}</span>
+    </a>
+</nav>
+
