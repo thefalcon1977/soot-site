@@ -9,6 +9,8 @@
                 {% endthumbnail %}
             </a>
         </li>
+
+        
         <li class="{% if request.resolver_match.url_name == 'home' %}current{% endif %}">
             <a href="{% url 'pages:home' %}">
                 <i class="fal fa-home"></i> {% trans "Home" %}
@@ -28,7 +30,7 @@
             <a href="{% url 'pages:live-stream-list' %}">
                 <i class="fal fa-broadcast-tower"></i> {% trans "Live Streams" %}
                 {% if live_stream_count > 0 %}
-                    <span class="badge bg-danger ms-1">{{ live_stream_count }}</span>
+                <span class="badge bg-danger ms-1">{{ live_stream_count }}</span>
                 {% endif %}
             </a>
         </li>
@@ -36,6 +38,15 @@
             <a href="{% url 'pages:contact' %}">
                 <i class="fal fa-envelope"></i> {% trans "Contact Us" %}
             </a>
+        </li>
+        <li class="nav-item">
+        
+        <form action="{% url 'pages:blog-post-list' %}" method="get" class="header-search-form ms-3" role="search" style="display:inline-block;">
+            <input type="text" name="search" class="form-control" placeholder="{% trans 'Search blog...' %}" value="{{ request.GET.search|default_if_none:'' }}" style="width: 180px; display:inline-block; vertical-align:middle;">
+            <button type="submit" class="btn btn-link p-0" style="vertical-align:middle;">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
         </li>
     </ul>
 </nav>
