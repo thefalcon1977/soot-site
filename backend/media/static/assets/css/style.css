@@ -5233,3 +5233,173 @@ Fixed top top bottom
   background: #f8f9fa;
   border-radius: 8px;
 }
+
+
+
+/* Desktop sidebar Navigation */
+.desktop-sidebar-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 98px;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #e7e4e4;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Make children fill width */
+  padding-top: 60px;    /* Optional: space below top bar */
+  z-index: 1000;
+}
+
+.desktop-sidebar-nav .nav-item {
+  flex: 1;
+  text-align: center;
+  color: #888;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 12px 0 0 0;
+  position: relative;
+  transition: color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktop-sidebar-nav .nav-item a {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  color: #222;
+  text-decoration: none;
+  font-size: 24px;
+  border-radius: 0;
+  border-bottom: 1px solid #f3f3f3;
+  transition: background 0.2s, color 0.2s;
+  width: 100%;
+  gap: 10px;
+}
+
+.desktop-sidebar-nav .nav-item i {
+  display: block;
+  font-size: 24px;
+}
+
+.desktop-sidebar-nav .nav-item:hover {
+  color: #e50914; /* Highlight color */
+  font-weight: bold;
+}
+
+.desktop-sidebar-nav .nav-item.active {
+  background: #efefef;
+  color: #e50914; /* Highlight color */
+  font-weight: bold;
+  border-radius: 15px;
+  margin: 5px;
+
+}
+
+.desktop-sidebar-nav .nav-item .badge {
+  position: absolute;
+  top: 5px;
+  left: 18px;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+
+
+/* Mobile Bottom Navigation */
+.mobile-bottom-nav {
+  position: fixed;
+  border-radius: 25px 25px 0px 0px;
+  padding-top: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: -3px -11px 11px 0px rgba(0, 0, 0, 0.04);
+}
+
+.mobile-bottom-nav .nav-item {
+  flex: 1;
+  text-align: center;
+  color: #888;
+  text-decoration: none;
+  font-size: 10px;
+  padding: 6px 0 0 0;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.mobile-bottom-nav .nav-item i {
+  display: block;
+  font-size: 20px;
+}
+
+.mobile-bottom-nav .nav-item.active,
+.mobile-bottom-nav .nav-item:active,
+.mobile-bottom-nav .nav-item:focus {
+  color: #e50914; /* Highlight color */
+}
+
+.mobile-bottom-nav .badge {
+  position: absolute;
+  top: 2px;
+  right: 18px;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+@media (min-width: 992px) {
+  .mobile-bottom-nav {
+      display: none;
+  }
+}
+
+/* Desktop Navbar */
+.desktop-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  background: #fff;
+  box-shadow: -20px 13px 16px 8px rgba(0, 0, 0, 0.04);
+  padding: 0 32px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+
+/* Hide on mobile, show on desktop (Bootstrap style) */
+.d-none {
+  display: none !important;
+}
+@media (min-width: 992px) {
+  .d-lg-block {
+      display: block !important;
+  }
+  .desktop-navbar {
+      display: block !important;
+  }
+}
+/* Add padding to body or main content to prevent it from being hidden under the navbar */
+@media (min-width: 992px) {
+  body {
+      padding-top: 60px; /* Adjust this value to match your navbar height */
+  }
+}
+
+@media (min-width: 992px) {
+    .main-content {
+        margin-right: 98px; /* Same as sidebar width */
+    }
+}

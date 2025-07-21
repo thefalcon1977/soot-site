@@ -1,71 +1,8 @@
+<!--Top Header: Logo and Search -->
 {% load thumbnail i18n %}
 
-<nav class="desktop-navbar d-none d-lg-block ms-auto">
-    <ul class="desktop-menu d-flex align-items-center mb-0" style="display:inline-flex; vertical-align:middle;">
-        <li class="desktop-logo me-4 d-none d-lg-block">
-            <a href="{% url 'pages:home' %}">
-                {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
-                    <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid" style="max-height:48px;">
-                {% endthumbnail %}
-            </a>
-        </li>
-
-        
-        <li class="{% if request.resolver_match.url_name == 'home' %}current{% endif %}">
-            <a href="{% url 'pages:home' %}">
-                <i class="fal fa-home"></i> {% trans "Home" %}
-            </a>
-        </li>
-        <li class="{% if 'blog' in request.resolver_match.url_name %}current{% endif %}">
-            <a href="{% url 'pages:blog-post-list' %}">
-                <i class="fal fa-blog"></i> {% trans "Blog" %}
-            </a>
-        </li>
-        <li class="{% if request.resolver_match.url_name == 'gallery-list' %}current{% endif %}">
-            <a href="{% url 'pages:gallery-list' %}">
-                <i class="fal fa-images"></i> {% trans "Gallery" %}
-            </a>
-        </li>
-        <li class="{% if 'live-stream' in request.resolver_match.url_name %}current{% endif %}">
-            <a href="{% url 'pages:live-stream-list' %}">
-                <i class="fal fa-broadcast-tower"></i> {% trans "Live Streams" %}
-                {% if live_stream_count > 0 %}
-                <span class="badge bg-danger ms-1">{{ live_stream_count }}</span>
-                {% endif %}
-            </a>
-        </li>
-        <li class="{% if request.resolver_match.url_name == 'contact' %}current{% endif %}">
-            <a href="{% url 'pages:contact' %}">
-                <i class="fal fa-envelope"></i> {% trans "Contact Us" %}
-            </a>
-        </li>
-        {% if not request.user.is_authenticated %}
-            <li>
-                <a href="{% url 'pages:login' %}">
-                    <i class="fal fa-sign-in"></i> {% trans "Login" %}
-                </a>
-            </li>
-        {% else %}
-            <li>
-                <a href="{% url 'pages:logout' %}">
-                    <i class="fal fa-sign-out"></i> {% trans "Logout" %}
-                </a>
-            </li>
-        {% endif %} 
-        <li class="d-none d-lg-block">
-            <form action="{% url 'pages:blog-post-list' %}" method="get" class="header-search-form ms-3" role="search" style="display:inline-block;">
-                <input type="text" name="search" class="form-control" placeholder="{% trans 'Search blog...' %}" value="{{ request.GET.search|default_if_none:'' }}" style="width: 180px; display:inline-block; vertical-align:middle;">
-                <button type="submit" class="btn btn-link p-0" style="vertical-align:middle;">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
-        </li>
-    </ul>
-</nav>
-
-
-<!-- Mobile Top Header: Logo and Search (visible only on mobile) -->
-<div class="mobile-top-header d-lg-none d-flex flex-column align-items-center py-2">
+<!-- Navbar -->
+<div class="desktop-navbar">
     <ul class="d-flex align-items-center mb-0">
         <li class="desktop-logo me-4 d-lg-block">
             <a href="{% url 'pages:home' %}" class="mb-2">
@@ -73,7 +10,6 @@
                     <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid" style="max-height:48px;">
                 {% endthumbnail %}
             </a>
-
         </li>
         <li>
             <form action="{% url 'pages:blog-post-list' %}" method="get" class="header-search-form ms-3" role="search" style="display:inline-block;">
@@ -83,7 +19,7 @@
                 </button>
             </form>
         </li>
-        {% if not request.user.is_authenticated %}
+        {% comment %} {% if not request.user.is_authenticated %}
             <li>
                 <a href="{% url 'pages:login' %}">
                     <i class="fal fa-sign-in"></i> {% trans "Login" %}
@@ -95,10 +31,54 @@
                     <i class="fal fa-sign-out"></i> {% trans "Logout" %}
                 </a>
             </li>
-        {% endif %}
+        {% endif %} {% endcomment %}
     </ul>
 </div>
 
+<!-- Right Sidebar Menu (Desktop Only) -->
+<nav class="desktop-sidebar-nav d-none d-lg-block">
+
+    <a href="{% url 'pages:home' %}" class="nav-item{% if request.resolver_match.url_name == 'home' %} active{% endif %}">
+        <i class="fal fa-home me-2"></i>
+        <span>{% trans "Home" %}</span>
+    </a>
+
+    <a href="{% url 'pages:blog-post-list' %}" class="nav-item{% if 'blog' in request.resolver_match.url_name %} active{% endif %}">
+            <i class="fal fa-blog me-2"></i>
+            <span>{% trans "Blog" %}</span>
+    </a>
+
+    <a href="{% url 'pages:gallery-list' %}" class="nav-item{% if request.resolver_match.url_name == 'gallery-list' %} active{% endif %}">
+            <i class="fal fa-images me-2"></i>
+            <span>{% trans "Gallery" %}</span>
+    </a>
+
+    <a href="{% url 'pages:live-stream-list' %}" class="nav-item{% if 'live-stream' in request.resolver_match.url_name %} active{% endif %}">
+        {% if live_stream_count > 0 %}
+            <span class="badge bg-danger ms-1">{{ live_stream_count }}</span>
+        {% endif %}
+        <i class="fal fa-broadcast-tower me-2"></i>
+        <span>{% trans "Live" %}</span>
+    </a>
+
+    <a href="{% url 'pages:contact' %}" class="nav-item{% if request.resolver_match.url_name == 'contact' %} active{% endif %}">
+            <i class="fal fa-envelope me-2"></i>
+            <span>{% trans "Contact Us" %}</span>
+        </a>
+
+    {% if not request.user.is_authenticated %}
+        <a href="{% url 'pages:login' %}" class="nav-item">
+            <i class="fal fa-sign-in me-2"></i>
+            <span>{% trans "Login" %}</span>
+        </a>
+
+    {% else %}
+        <a href="{% url 'pages:logout' %}" class="nav-item">
+            <i class="fal fa-sign-out me-2"></i>
+            <span>{% trans "Logout" %}</span>
+        </a>
+    {% endif %}
+</nav>
 
 <!-- Mobile Bottom Navigation -->
 <nav class="mobile-bottom-nav d-lg-none">

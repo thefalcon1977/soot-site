@@ -3,95 +3,96 @@
 
 {% block body %}
 
-<!--====== Header End ======-->
-<!-- Banner Section Start -->
-{% thumbnail banner.picture "1440x961" crop="center" format='WEBP' as im %}
-<section class="banner-style-2" style="background-image: url('{{ im.url }}');">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-12 col-xl-8 col-lg-10">
-                <div class="banner-content text-center">
-                    
-                    <h1 class="cd-headline clip is-full-width">{{ banner.title }}
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-{% endthumbnail %}
-<!-- Banner Section End -->
-<!--  Course style 1 -->
-
-<section class="section-padding bg-grey pb-70">
-    <div class="container-fluid container-grid">
-        <div class="row justify-content-center">
-            <div class="col-xl-8">
-                <div class="heading mb-100 text-center">
-                    <h2>
-                        <a href="{% url 'pages:blog-post-list'%}">
-                            {% trans 'Latest Posts' %}
-                        </a>
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            {% for post in recent_posts %}
-            <div class="col-xl col-lg-3 col-md-6">
-                <div class="course-grid course-style-4 bg-white mb-80 mb-xl-0">
-                    <div class="course-header">
-                        <div class="course-thumb">
-                            {% thumbnail post.picture "234x250" crop="center" format='WEBP' as im %}
-                            <img src="{{ im.url }}" alt="{{ post.alternate_text }}" class="img-fluid">
-                            {% endthumbnail %}
-                        </div>
-                    </div>
-
-                    <div class="course-content">
-                        <h3 class="course-title"> <a
-                                href="{% url 'pages:blog-post-detail' post.slug %}">{{ post.title }}</a> </h3>
-                        <div class="course-meta">
-                        </div>
+<div class="main-content">
+    <!-- Banner Section Start -->
+    {% thumbnail banner.picture "1440x961" crop="center" format='WEBP' as im %}
+    <section class="banner-style-2" style="background-image: url('{{ im.url }}');">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-12 col-xl-8 col-lg-10">
+                    <div class="banner-content text-center">
+                        
+                        <h1 class="cd-headline clip is-full-width">{{ banner.title }}
+                        </h1>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-            <!-- COURSE END -->
         </div>
-</section>
-
-<section class="section-padding bg-grey pb-70">
-    <div class="container-fluid container-grid">
-        <div class="row justify-content-center">
-            <div class="col-xl-8">
-                <div class="heading mb-100 text-center">
-                    <h2>
-                        <a href="{% url 'pages:gallery-list'%}">
-                            {% trans 'Galleries' %}
-                        </a>
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            {% for gallery in galleries %}
-            <div class="col-xl col-lg-3 col-md-6">
-                <div class="course-grid course-style-4 bg-white mb-80 mb-xl-0">
-                    <div class="course-header">
-                        <div class="course-thumb">
-                            {% thumbnail gallery.image "234x250" crop="center" format='WEBP' as im %}
-                            <img src="{{ im.url }}" alt="{{ gallery.alternate_text }}" class="img-fluid">
-                            {% endthumbnail %}
-                        </div>
+    </section>
+    {% endthumbnail %}
+    <!-- Banner Section End -->
+    <!--  Course style 1 -->
+    
+    <section class="section-padding bg-grey pb-70">
+        <div class="container-fluid container-grid">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="heading mb-100 text-center">
+                        <h2>
+                            <a href="{% url 'pages:blog-post-list'%}">
+                                {% trans 'Latest Posts' %}
+                            </a>
+                        </h2>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-            <!-- COURSE END -->
-        </div>
-</section>
+    
+            <div class="row justify-content-center">
+                {% for post in recent_posts %}
+                <div class="col-xl col-lg-3 col-md-6">
+                    <div class="course-grid course-style-4 bg-white mb-80 mb-xl-0">
+                        <div class="course-header">
+                            <div class="course-thumb">
+                                {% thumbnail post.picture "234x250" crop="center" format='WEBP' as im %}
+                                <img src="{{ im.url }}" alt="{{ post.alternate_text }}" class="img-fluid">
+                                {% endthumbnail %}
+                            </div>
+                        </div>
+    
+                        <div class="course-content">
+                            <h3 class="course-title"> <a
+                                    href="{% url 'pages:blog-post-detail' post.slug %}">{{ post.title }}</a> </h3>
+                            <div class="course-meta">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- COURSE END -->
+            </div>
+    </section>
+    
+    <section class="section-padding bg-grey pb-70">
+        <div class="container-fluid container-grid">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <div class="heading mb-100 text-center">
+                        <h2>
+                            <a href="{% url 'pages:gallery-list'%}">
+                                {% trans 'Galleries' %}
+                            </a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row justify-content-center">
+                {% for gallery in galleries %}
+                <div class="col-xl col-lg-3 col-md-6">
+                    <div class="course-grid course-style-4 bg-white mb-80 mb-xl-0">
+                        <div class="course-header">
+                            <div class="course-thumb">
+                                {% thumbnail gallery.image "234x250" crop="center" format='WEBP' as im %}
+                                <img src="{{ im.url }}" alt="{{ gallery.alternate_text }}" class="img-fluid">
+                                {% endthumbnail %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- COURSE END -->
+            </div>
+    </section>
+</div>
 
 {% endblock %}

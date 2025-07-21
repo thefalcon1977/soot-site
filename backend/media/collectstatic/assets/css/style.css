@@ -5236,6 +5236,81 @@ Fixed top top bottom
 
 
 
+/* Desktop sidebar Navigation */
+.desktop-sidebar-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 98px;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #e7e4e4;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Make children fill width */
+  padding-top: 60px;    /* Optional: space below top bar */
+  z-index: 1000;
+}
+
+.desktop-sidebar-nav .nav-item {
+  flex: 1;
+  text-align: center;
+  color: #888;
+  text-decoration: none;
+  font-size: 12px;
+  padding: 12px 0 0 0;
+  position: relative;
+  transition: color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktop-sidebar-nav .nav-item a {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  color: #222;
+  text-decoration: none;
+  font-size: 24px;
+  border-radius: 0;
+  border-bottom: 1px solid #f3f3f3;
+  transition: background 0.2s, color 0.2s;
+  width: 100%;
+  gap: 10px;
+}
+
+.desktop-sidebar-nav .nav-item i {
+  display: block;
+  font-size: 24px;
+}
+
+.desktop-sidebar-nav .nav-item:hover {
+  color: #e50914; /* Highlight color */
+  font-weight: bold;
+}
+
+.desktop-sidebar-nav .nav-item.active {
+  background: #efefef;
+  color: #e50914; /* Highlight color */
+  font-weight: bold;
+  border-radius: 15px;
+  margin: 5px;
+
+}
+
+.desktop-sidebar-nav .nav-item .badge {
+  position: absolute;
+  top: 5px;
+  left: 18px;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+
+
 /* Mobile Bottom Navigation */
 .mobile-bottom-nav {
   position: fixed;
@@ -5246,7 +5321,6 @@ Fixed top top bottom
   right: 0;
   height: 60px;
   background: #fff;
-  border-top: 1px solid #eee;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -5259,7 +5333,7 @@ Fixed top top bottom
   text-align: center;
   color: #888;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 10px;
   padding: 6px 0 0 0;
   position: relative;
   transition: color 0.2s;
@@ -5267,8 +5341,7 @@ Fixed top top bottom
 
 .mobile-bottom-nav .nav-item i {
   display: block;
-  font-size: 22px;
-  margin-bottom: 2px;
+  font-size: 20px;
 }
 
 .mobile-bottom-nav .nav-item.active,
@@ -5300,56 +5373,11 @@ Fixed top top bottom
   right: 0;
   z-index: 1050;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: -20px 13px 16px 8px rgba(0, 0, 0, 0.04);
   padding: 0 32px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.desktop-menu .current > a {
-  border-radius: 6px;
-  padding: 4px 12px;
-  background: #e2f1ff; /* Optional: subtle background */
-}
-
-.desktop-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: 32px;
-  display: flex;
-  align-items: center;
-}
-
-.desktop-menu li {
-  display: inline-block;
-}
-
-.desktop-menu li.current a {
-  color: #e50914; /* Highlight color */
-  font-weight: bold;
-}
-
-.desktop-menu a {
-  color: #222;
-  text-decoration: none;
-  font-size: 16px;
-  transition: color 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  border-radius: 6px;
-}
-
-.desktop-menu a:hover,
-.desktop-menu a:focus {
-  color: #e50914;
-  background: #f8f8f8;
-}
-
-.desktop-menu i {
-  font-size: 18px;
-}
 
 /* Hide on mobile, show on desktop (Bootstrap style) */
 .d-none {
@@ -5366,6 +5394,12 @@ Fixed top top bottom
 /* Add padding to body or main content to prevent it from being hidden under the navbar */
 @media (min-width: 992px) {
   body {
-      padding-top: 70px; /* Adjust this value to match your navbar height */
+      padding-top: 60px; /* Adjust this value to match your navbar height */
   }
+}
+
+@media (min-width: 992px) {
+    .main-content {
+        margin-right: 98px; /* Same as sidebar width */
+    }
 }
