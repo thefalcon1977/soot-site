@@ -93,6 +93,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 'corporate.context_processors.site_content',
                 'corporate.context_processors.live_stream_count',
+                'corporate.context_processors.site_meta',
             ],
             "builtins": [
                 "django.templatetags.static",

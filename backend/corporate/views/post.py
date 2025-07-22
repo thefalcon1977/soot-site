@@ -48,7 +48,7 @@ class PostDetailView(SageBlogContextMixin, DetailView):
     model = Post
     template_name = "pages/blog/detail.html"
     context_object_name = "post"
-    page_title = "Blog Posts"
+    page_title = "blog"
 
     def get_queryset(self):
         # Customize the queryset to show only active posts
@@ -59,6 +59,7 @@ class PostDetailView(SageBlogContextMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context["blog_recent_posts"] = Post.objects.filter_actives().filter_recent_posts()
         context["blog_categories"] = PostCategory.objects.filter(is_published=True).annotate_total_posts()
+        context["page_title"] = self.page_title
         context["blog_trend_tags"] = PostTag.objects.filter_trend_tags(
             days_ago=0, min_count=1, limit=5
         )

@@ -13,7 +13,8 @@ def site_content(request):
         site_content = None  # If no site content exists, return None
 
     return {
-        "site_content": site_content
+        "site_content": site_content,
+        "favicon_url": site_content.site_logo.url if site_content and site_content.site_logo else "/static/assets/images/icon/logo.png"
     }
 
 
@@ -25,3 +26,12 @@ def live_stream_count(request):
         Q(is_active=True) | Q(scheduled_at__gt=timezone.now())
     ).count()
     return {'live_stream_count': count}
+
+def site_meta(request):
+    title = 'Default Site Title'
+    a = site_content(request)
+    favicon = a["favicon_url"]
+    return {
+        'page_title': title,
+        'favicon_url': favicon,
+    }
