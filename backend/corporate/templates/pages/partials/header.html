@@ -1,8 +1,8 @@
 <!--Top Header: Logo and Search -->
 {% load thumbnail i18n %}
 
-<!-- Navbar -->
-<header class="custom-header">
+<!-- Desktop Navbar -->
+<header class="lg-top-header d-none d-lg-block">
     <div class="header-container">
       <!-- Logo (right side in RTL) -->
       <div class="header-logo">
@@ -35,8 +35,28 @@
         </a>
       </div>
     </div>
-  </header>
+</header>
 
+<!-- mobile Navbar -->
+<header class="mobile-top-header d-lg-none">
+  <div class="header-container">
+    <!-- Logo (right side in RTL) -->
+    <div class="header-logo">
+      <a href="{% url 'pages:home' %}">
+        {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
+          <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid" style="max-height:48px;">
+        {% endthumbnail %}
+      </a>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="header-actions">
+      <a href="{% url 'pages:login' %}" class="header-login-btn">
+        <i class="fa fa-user"></i>
+      </a>
+    </div>
+  </div>
+</header>
 <!-- Right Sidebar Menu (Desktop Only) -->
 <nav class="desktop-sidebar-nav d-none d-lg-block">
 

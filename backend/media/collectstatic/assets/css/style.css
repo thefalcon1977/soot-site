@@ -5362,20 +5362,8 @@ Fixed top top bottom
 }
 
 /* Desktop Navbar */
-.desktop-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1050;
-  background: #fff;
-  box-shadow: -20px 13px 16px 8px rgba(0, 0, 0, 0.04);
-  padding: 0 32px;
-  border-bottom: 1px solid #e5e5e5;
-}
 
-
-.custom-header {
+.lg-top-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -5476,4 +5464,31 @@ Fixed top top bottom
 
 .header-login-btn:hover {
   background: #f7f7fa;
+}
+
+
+.mobile-top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  height: 60px;
+  background: #fff;
+  box-shadow: -20px 13px 16px 8px rgba(0, 0, 0, 0.04);
+  padding: 0px 5px 0px 5px;
+  border-bottom: 1px solid #e5e5e5;
+
+}
+
+.mobile-top-header .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 7px auto;
+  gap: 1rem;
+}
+
+.mobile-top-header .header-logo i {
+  font-size: 15px;
 }
