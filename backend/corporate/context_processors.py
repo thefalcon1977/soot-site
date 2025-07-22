@@ -3,12 +3,14 @@ from django.utils import timezone
 from django.db.models import Q
 from corporate.models import LiveStream
 
+
 def site_content(request):
     """
     Provides site-wide footer content to all templates.
     """
     try:
-        site_content = SiteContent.objects.first()  # Fetch the first (or only) site content entry
+        # Fetch the first (or only) site content entry
+        site_content = SiteContent.objects.first()
     except SiteContent.DoesNotExist:
         site_content = None  # If no site content exists, return None
 
@@ -26,6 +28,7 @@ def live_stream_count(request):
         Q(is_active=True) | Q(scheduled_at__gt=timezone.now())
     ).count()
     return {'live_stream_count': count}
+
 
 def site_meta(request):
     title = 'Default Site Title'
