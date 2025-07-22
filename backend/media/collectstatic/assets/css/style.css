@@ -4523,10 +4523,6 @@ Footer Section
   border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.footer-logo {
-  padding: auto;
-}
-
 .footer-btm-links a {
   color: #fff;
   opacity: .8;
@@ -5125,9 +5121,6 @@ Footer Section
   border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.footer-logo {
-  margin-right: 20px;
-}
 
 .footer-btm-links a {
   color: #fff;
