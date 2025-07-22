@@ -2,38 +2,40 @@
 {% load thumbnail i18n %}
 
 <!-- Navbar -->
-<div class="desktop-navbar">
-    <ul class="d-flex align-items-center mb-0">
-        <li class="desktop-logo me-4 d-lg-block">
-            <a href="{% url 'pages:home' %}" class="mb-2">
-                {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
-                    <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid" style="max-height:48px;">
-                {% endthumbnail %}
-            </a>
-        </li>
-        <li>
-            <form action="{% url 'pages:blog-post-list' %}" method="get" class="header-search-form ms-3" role="search" style="display:inline-block;">
-                <input type="text" name="search" class="form-control" placeholder="{% trans 'Search blog...' %}" value="{{ request.GET.search|default_if_none:'' }}" style="width: 180px; display:inline-block; vertical-align:middle;">
-                <button type="submit" class="btn btn-link p-0" style="vertical-align:middle;">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
-        </li>
-        {% comment %} {% if not request.user.is_authenticated %}
-            <li>
-                <a href="{% url 'pages:login' %}">
-                    <i class="fal fa-sign-in"></i> {% trans "Login" %}
-                </a>
-            </li>
-        {% else %}
-            <li>
-                <a href="{% url 'pages:logout' %}">
-                    <i class="fal fa-sign-out"></i> {% trans "Logout" %}
-                </a>
-            </li>
-        {% endif %} {% endcomment %}
-    </ul>
-</div>
+<header class="custom-header">
+    <div class="header-container">
+      <!-- Logo (right side in RTL) -->
+      <div class="header-logo">
+        <i class="fal fa-bars"></i>
+        <a href="{% url 'pages:home' %}">
+          {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
+            <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid" style="max-height:48px;">
+          {% endthumbnail %}
+        </a>
+      </div>
+      <!-- Search Bar -->
+      <form action="{% url 'pages:blog-post-list' %}" method="get" class="header-search-form" role="search">
+        <input type="text" name="search" class="header-search-input" placeholder="{% trans 'جستجو ' %}" value="{{ request.GET.search|default_if_none:'' }}">
+        <button type="submit" class="header-search-btn">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+      <!-- Action Buttons -->
+      <div class="header-actions">
+
+        <a href="{% url 'pages:live-stream-list' %}" class="header-login-btn">
+          <i class="fal fa-broadcast-tower me-2"></i>
+          {% if live_stream_count > 0 %}
+            <span class="badge bg-danger ms-1">{{ live_stream_count }}</span>
+          {% endif %}
+        </a>
+
+        <a href="{% url 'pages:login' %}" class="header-login-btn">
+          <i class="fa fa-user"></i> ورود
+        </a>
+      </div>
+    </div>
+  </header>
 
 <!-- Right Sidebar Menu (Desktop Only) -->
 <nav class="desktop-sidebar-nav d-none d-lg-block">

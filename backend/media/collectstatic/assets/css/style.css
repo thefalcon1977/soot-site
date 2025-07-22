@@ -5250,7 +5250,7 @@ Fixed top top bottom
   display: flex;
   flex-direction: column;
   align-items: stretch; /* Make children fill width */
-  padding-top: 60px;    /* Optional: space below top bar */
+  padding-top: 70px;    /* Optional: space below top bar */
   z-index: 1000;
 }
 
@@ -5372,4 +5372,108 @@ Fixed top top bottom
   box-shadow: -20px 13px 16px 8px rgba(0, 0, 0, 0.04);
   padding: 0 32px;
   border-bottom: 1px solid #e5e5e5;
+}
+
+
+.custom-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  height: 70px;
+  background: #fff;
+  box-shadow: -20px 13px 16px 8px rgba(0, 0, 0, 0.04);
+  padding: 0 32px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px auto;
+  gap: 1rem;
+}
+
+.header-logo {
+  flex: 0 0 auto;
+}
+
+.header-logo i {
+  font-size: 22px;
+}
+
+.header-search-form {
+  display: flex;
+  align-items: center;
+  background: #f7f7fa;
+  border-radius: 16px;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  min-width: 350px;
+  max-width: 500px;
+  max-height: 45px;
+  flex: 1 1 auto;
+}
+
+.header-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
+  flex: 1 1 auto;
+}
+
+.header-search-form .header-search-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.header-search-form .header-search-btn:hover {
+  color: #272443;
+  font-size: 1.3rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-action-btn {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.1rem;
+  color: #222;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.header-action-btn:hover {
+  background: #f7f7fa;
+}
+
+.header-login-btn {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #222;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+
+.header-login-btn:hover {
+  background: #f7f7fa;
 }
