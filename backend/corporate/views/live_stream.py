@@ -10,7 +10,7 @@ class LiveStreamListView(ListView):
     Displays a list of live streams, optionally filtered by active or scheduled status.
     """
     model = LiveStream
-    template_name = "live_stream/list.html"
+    template_name = "pages/live_stream/list.html"
     context_object_name = "liveStreams"
     paginate_by = 12  # Number of streams per page
     page_title = _("Live Streams")
@@ -38,7 +38,7 @@ class LiveStreamListView(ListView):
 
 class LiveStreamDetailView(DetailView):
     model = LiveStream
-    template_name = "live_stream/detail.html"
+    template_name = "pages/live_stream/detail.html"
     context_object_name = "liveStream"
 
     def get_context_data(self, **kwargs):

@@ -1,44 +1,42 @@
 {% load thumbnail %}
 
 <!-- Footer section start -->
-<section class="footer footer-4 pt-200">
-    <div class="footer-mid">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-3 me-auto col-sm-8">
-                    <div class="footer-logo mb-3">
-                            {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
-                                <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid">
-                            {% endthumbnail %}
-                    </div>
-                    <div class="widget footer-widget mb-5 mb-lg-0">				
-                        <p>{{ site_content.footer_description|safe }}</p>
-                    </div>
+<section class="footer-continer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-sm-12">
+                <div class="footer-logo">
+                    {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
+                        <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid">
+                    {% endthumbnail %}
                 </div>
-
-                <div class="col-xl-2 col-sm-4">
-                    <div class="footer-widget mb-5 mb-xl-0">
-                        <h5 class="widget-title">{% trans 'Explore' %}</h5>
-                        <ul class="list-unstyled footer-links">
-                            <li><a href="{% url 'pages:blog-post-list' %}">{% trans 'Blog' %}</a></li>
-                            <li><a href="{% url 'pages:gallery-list' %}">{% trans 'Gallery' %}</a></li>
-                            <li><a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a></li>
-                        </ul>
-                    </div>
+                <div>				
+                    <p>{{ site_content.footer_description|safe }}</p>
                 </div>
+            </div>
 
-                <div class="col-xl-2 col-sm-4">
-                    <div class="footer-widget mb-5 mb-xl-0">
-                        <h5 class="widget-title">{% trans 'Address' %}</h5>
-                        <ul class="list-unstyled footer-links">
-                            <li><h6 class="text-white">{% trans 'Phone' %}</h6>
-                                <a href="tel:{{ site_content.phone_number }}">{{ site_content.phone_number }}</a>
-                            </li>
-                            <li><h6 class="text-white">{% trans 'Email' %}</h6>
-                                <a href="mailto:{{ site_content.email }}">{{ site_content.email }}</a>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="col-xl-3 col-sm-6 col-xm-6">
+                <div class="footer-widget">
+                    <h5 class="widget-title">{% trans 'Explore' %}</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="{% url 'pages:blog-post-list' %}">{% trans 'Blog' %}</a></li>
+                        <li><a href="{% url 'pages:gallery-list' %}">{% trans 'Gallery' %}</a></li>
+                        <li><a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-sm-6 col-xm-6">
+                <div class="footer-widget">
+                    <h5 class="widget-title">{% trans 'Address' %}</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><h6 class="text-white">{% trans 'Phone' %}</h6>
+                            <a href="tel:{{ site_content.phone_number }}">{{ site_content.phone_number }}</a>
+                        </li>
+                        <li><h6 class="text-white">{% trans 'Email' %}</h6>
+                            <a href="mailto:{{ site_content.email }}">{{ site_content.email }}</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

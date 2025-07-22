@@ -6,7 +6,7 @@ from sage_blog.filters.post import PostFilter
 
 class PostListView(SageBlogContextMixin, PaginatedMixin, SearchableMixin, ListView):
     model = Post
-    template_name = "blog/list.html"
+    template_name = "pages/blog/list.html"
     context_object_name = "blog_posts"
     paginate_by = 10
     page_title = "Blog Posts"
@@ -46,7 +46,7 @@ class PostListView(SageBlogContextMixin, PaginatedMixin, SearchableMixin, ListVi
 
 class PostDetailView(SageBlogContextMixin, DetailView):
     model = Post
-    template_name = "blog/detail.html"
+    template_name = "pages/blog/detail.html"
     context_object_name = "post"
     page_title = "Blog Posts"
 

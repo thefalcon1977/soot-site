@@ -59,6 +59,10 @@ body {
   color: var(--theme-text-color);
 }
 
+.main-content {
+  margin-top: 60px;
+}
+
 p {
   color: var(--theme-text-color);
   font-family: var(--theme-secondary-font);
@@ -4442,13 +4446,13 @@ Course Review
 /* ====================
 Footer Section
 ======================*/
-.footer {
+.footer-continer {
   padding: 100px 0px 20px;
   position: relative;
-  background: #000000;
+  background: #1e2339;
 }
 
-.footer .footer-widget .widget-title {
+.footer-continer .footer-widget .widget-title {
   text-transform: capitalize;
   font-size: 18px;
   color: #fff;
@@ -4456,24 +4460,29 @@ Footer Section
   font-weight: 600;
 }
 
-.footer .footer-widget p {
+.footer-continer .footer-widget {
+  margin-top: 80px;
+  margin-right: 20px;
+}
+
+.footer-continer .footer-widget p {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.footer .footer-links li {
+.footer-continer .footer-links li {
   padding: 5px 0px;
   font-size: 15px;
   color: rgba(255, 255, 255, 0.7);
 }
 
-.footer .footer-links a {
+.footer-continer .footer-links a {
   color: rgba(255, 255, 255, 0.7);
   position: relative;
   padding-bottom: 5px;
   transition: all .4s ease;
 }
 
-.footer .footer-links a:before {
+.footer-continer .footer-links a:before {
   position: absolute;
   content: "";
   left: 0px;
@@ -4485,23 +4494,23 @@ Footer Section
   transition: all .4s ease;
 }
 
-.footer .footer-links a:hover {
+.footer-continer .footer-links a:hover {
   color: #fff;
 }
 
-.footer .footer-links a:hover:before {
+.footer-continer .footer-links a:hover:before {
   width: 100%;
   opacity: 1;
 }
 
-.footer .footer-socials a {
+.footer-continer .footer-socials a {
   font-size: 14px;
   color: #fff;
   text-align: center;
   margin-right: 10px;
 }
 
-.footer .footer-socials a:hover {
+.footer-continer .footer-socials a:hover {
   color: var(--theme-secondary-color);
 }
 
@@ -4515,7 +4524,7 @@ Footer Section
 }
 
 .footer-logo {
-  margin-right: 20px;
+  padding: auto;
 }
 
 .footer-btm-links a {
@@ -5359,12 +5368,6 @@ Fixed top top bottom
   border-radius: 10px;
 }
 
-@media (min-width: 992px) {
-  .mobile-bottom-nav {
-      display: none;
-  }
-}
-
 /* Desktop Navbar */
 .desktop-navbar {
   position: fixed;
@@ -5376,30 +5379,4 @@ Fixed top top bottom
   box-shadow: -20px 13px 16px 8px rgba(0, 0, 0, 0.04);
   padding: 0 32px;
   border-bottom: 1px solid #e5e5e5;
-}
-
-
-/* Hide on mobile, show on desktop (Bootstrap style) */
-.d-none {
-  display: none !important;
-}
-@media (min-width: 992px) {
-  .d-lg-block {
-      display: block !important;
-  }
-  .desktop-navbar {
-      display: block !important;
-  }
-}
-/* Add padding to body or main content to prevent it from being hidden under the navbar */
-@media (min-width: 992px) {
-  body {
-      padding-top: 60px; /* Adjust this value to match your navbar height */
-  }
-}
-
-@media (min-width: 992px) {
-    .main-content {
-        margin-right: 98px; /* Same as sidebar width */
-    }
 }

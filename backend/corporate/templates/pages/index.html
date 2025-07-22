@@ -6,19 +6,19 @@
 <div class="main-content">
     <!-- Banner Section Start -->
     {% thumbnail banner.picture "1440x961" crop="center" format='WEBP' as im %}
-    <section class="banner-style-2" style="background-image: url('{{ im.url }}');">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-12 col-xl-8 col-lg-10">
-                    <div class="banner-content text-center">
-                        
-                        <h1 class="cd-headline clip is-full-width">{{ banner.title }}
-                        </h1>
+        <section class="banner-style-2" style="background-image: url('{{ im.url }}');">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-12 col-xl-8 col-lg-10">
+                        <div class="banner-content text-center">
+                            
+                            <h1 class="cd-headline clip is-full-width">{{ banner.title }}
+                            </h1>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     {% endthumbnail %}
     <!-- Banner Section End -->
     <!--  Course style 1 -->
@@ -83,7 +83,7 @@
                         <div class="course-header">
                             <div class="course-thumb">
                                 {% thumbnail gallery.image "234x250" crop="center" format='WEBP' as im %}
-                                <img src="{{ im.url }}" alt="{{ gallery.alternate_text }}" class="img-fluid">
+                                    <img src="{{ im.url }}" alt="{{ gallery.alternate_text }}" class="img-fluid">
                                 {% endthumbnail %}
                             </div>
                         </div>
