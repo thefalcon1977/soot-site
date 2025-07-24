@@ -22,7 +22,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["galleries"] = Gallery.objects.all()[:4]
-        context["banner"] = Banner.objects.first()
+        context["banners"] = Banner.objects.all()
         context["recent_posts"] = Post.objects.join_category().filter_actives().filter_recent_posts(num_posts=4)
         context["page_title"] = self.page_title
         return context

@@ -1,13 +1,12 @@
 from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 from django.utils.translation import gettext_lazy as _
-from sage_tools.mixins.admins import LimitOneInstanceAdminMixin
 
 from corporate.models import Banner
 
 
 @admin.register(Banner)
-class BannerAdmin(LimitOneInstanceAdminMixin, AdminImageMixin):
+class BannerAdmin(admin.ModelAdmin, AdminImageMixin):
     """
     Administrator Panel for Banner.
     Provides a detailed and user-friendly interface for managing banners,

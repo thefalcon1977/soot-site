@@ -5492,3 +5492,49 @@ Fixed top top bottom
 .mobile-top-header .header-logo i {
   font-size: 15px;
 }
+
+.test {
+  max-width: 100px;
+}
+
+
+/* Banner Section */
+
+.banner-carousel-style {
+  padding: 0;
+  margin: 20px;
+  background: linear-gradient(90deg, #f7b042 0%, #6b3e1d 100%);
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 180px; /* adjust as needed */
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.banner-carousel-style:after {
+  display: none; /* Remove the dark overlay */
+}
+
+/* Example for content alignment */
+.banner-carousel-style .banner-content {
+  flex: 1;
+  padding: 32px 40px;
+  color: #fff;
+}
+
+.banner-carousel-style .banner-image {
+  flex: 0 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 32px;
+}
+
+.banner-carousel-style .banner-image img {
+  height: 140px; /* adjust as needed */
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}

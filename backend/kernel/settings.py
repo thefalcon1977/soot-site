@@ -252,3 +252,11 @@ LOCALE_PATHS = (
     "locale/",
     "locales"
 )
+
+# ====================================
+# Slug Type Mapping for sage_seo Middleware
+# ====================================
+SLUG_TYPE_MAPPING = {
+    "blog": "sage_blog.models.Post",
+    "page": "corporate.models.Page",
+}

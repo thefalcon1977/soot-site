@@ -1,13 +1,12 @@
 from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 from django.utils.translation import gettext_lazy as _
-from sage_tools.mixins.admins import LimitOneInstanceAdminMixin
 
 from corporate.models import SiteContent
 
 
 @admin.register(SiteContent)
-class SiteContentAdmin(LimitOneInstanceAdminMixin, AdminImageMixin):
+class SiteContentAdmin(admin.ModelAdmin, AdminImageMixin):
     """
     Administrator Panel for SiteContent.
     Provides an interface for managing site content, including contact details, footer information, and branding.

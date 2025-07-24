@@ -163,6 +163,9 @@
 }
 
 @media (max-width: 768px) {
+  .banner-carousel-style {
+    font-size: 10px;
+  }
   .container-padding {
     padding: 0px 30px;
   }
