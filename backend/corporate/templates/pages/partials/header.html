@@ -36,7 +36,7 @@
 </nav>
 
 <!-- mobile Navbar -->
-<nav class="mobile-top-header d-lg-none">
+<nav class="mobile-top-header d-md-none">
   <div class="header-container">
     <!-- Logo (right side in RTL) -->
     <div class="header-logo">
@@ -101,7 +101,7 @@
 </nav>
 
 <!-- Mobile Bottom Navigation -->
-<nav class="mobile-bottom-nav d-lg-none">
+<nav class="mobile-bottom-nav d-md-none">
     <a href="{% url 'pages:home' %}" class="nav-item{% if request.resolver_match.url_name == 'home' %} active{% endif %}">
         <i class="fal fa-home"></i>
         <span>{% trans "Home" %}</span>
