@@ -2,7 +2,7 @@
 {% load thumbnail i18n %}
 
 <!-- Desktop Navbar -->
-<nav class="lg-top-header d-none d-lg-block">
+<nav class="desktop-top-header d-none d-lg-block">
     <div class="header-container">
       <!-- Logo (right side in RTL) -->
       <div class="header-logo">
@@ -36,7 +36,7 @@
 </nav>
 
 <!-- mobile Navbar -->
-<nav class="mobile-top-nav d-lg-none">
+<nav class="mobile-top-header d-lg-none">
   <div class="header-container">
     <!-- Logo (right side in RTL) -->
     <div class="header-logo">
@@ -46,9 +46,6 @@
         {% endthumbnail %}
       </a>
     </div>
-
-    
-
     <!-- Action Buttons -->
     <div class="header-actions">
       <a href="{% url 'pages:login' %}" class="header-login-btn">
