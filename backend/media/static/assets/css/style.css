@@ -2942,8 +2942,8 @@ portflio filter
 
 .course-style-4 {
   border: 1px solid #F1F3F8;
-  border-radius: 4px;
-  padding: 0px 30px 10px 30px;
+  border-radius: 15px;
+  padding: 30px 30px 10px 30px;
   transition: all .4s ease;
 }
 
@@ -2958,7 +2958,7 @@ portflio filter
 }
 
 .course-style-4 .course-thumb {
-  border-radius: 4px;
+  border-radius: 15px;
   overflow: hidden;
 }
 
