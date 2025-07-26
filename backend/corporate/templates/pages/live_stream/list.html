@@ -2,47 +2,69 @@
 {% load thumbnail theme static i18n %}
 
 {% block body %}
-  <section class="blog-container">
-    {% if liveStreams %}
-      <div class="row justify-content-right">
-        <div class="col-xl-8">
-          <div class="heading mb-80 text-right">
-            <h3><a href="{% url 'pages:blog-post-list' %}">{% trans 'Live Streams' %}</a></h3>
+  <section class="section-padding page stream-container" aria-labelledby="live-streams-heading">
+    <div class="container">
+      {% if liveStreams %}
+        <!-- Live Streams Count -->
+        <div class="row mb-4">
+          <div class="col-12">
+            <div class="stream-count-info d-flex justify-content-between align-items-center">
+              <span class="text-muted">{% trans 'Showing' %} {{ liveStreams|length }} {% trans 'live streams' %}</span>
+              <div class="view-options">
+                <span class="text-muted small">{% trans 'Sort by latest' %}</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row justify-content-lg-right">
-        {% for liveStream in liveStreams %}
-          <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
-            <article class="course-grid bg-shadow tooltip-style" aria-labelledby="live-stream-{{ liveStream.id }}-title">
-              <div class="course-header">
-                {% if liveStream.image %}
-                  {% thumbnail liveStream.image '340x323' crop='center' format='WEBP' as im %}
-                  <img src="{{ im.url }}" alt="{{ liveStream.alternate_text|default:liveStream.title }}" class="img-fluid" />
-                  {% endthumbnail %}
-                {% else %}
-                  <img src="{% static 'images/placeholder-stream.jpg' %}" alt="{% trans 'Placeholder image for' %} {{ liveStream.title }}" class="img-fluid" />
-                {% endif %}
-                {% if liveStream.status == 'Active' %}
-                  <span class="badge bg-success position-absolute top-10 end-10">{% trans 'w' %}</span>
-                {% elif liveStream.status == 'Scheduled' %}
-                  <span class="badge bg-info position-absolute top-10 end-10">{% trans 'Scheduled' %}</span>
-                {% endif %}
-              </div>
-              <div class="course-content">
-                <h3 id="live-stream-{{ liveStream.id }}-title" class="course-title mb-20"><a href="{% url 'pages:live-stream-detail' liveStream.slug %}" class="text-decoration-none">{{ liveStream.title }}</a></h3>
-              </div>
-            </article>
-          </div>
-        {% endfor %}
-      </div>
-    {% else %}
-      <div class="text-center py-5">
-        <img src="{% static 'assets/images/no-data.svg' %}" alt="{% trans 'No data available' %}" class="mb-4" style="max-width: 350px;" />
-        <p class="lead">
-          {% trans 'No live streams available at the moment' %}
-        </p>
-      </div>
-    {% endif %}
+
+        <!-- Live Streams Grid -->
+        <div class="row justify-content-lg-right">
+          {% for liveStream in liveStreams %}
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
+              <a href="{% url 'pages:live-stream-detail' liveStream.slug %}" class="text-decoration-none">
+                <article class="stream-item" aria-labelledby="live-stream-{{ liveStream.id }}-title">
+                  <div class="stream-thumb">
+                    {% if liveStream.image %}
+                      {% thumbnail liveStream.image '340x323' crop='center' format='WEBP' as im %}
+                      <img src="{{ im.url }}" alt="{{ liveStream.alternate_text|default:liveStream.title }}" class="img-fluid" />
+                      {% endthumbnail %}
+                    {% else %}
+                      <img src="{% static 'assets/images/placeholder-stream.jpg' %}" alt="{% trans 'Placeholder image for' %} {{ liveStream.title }}" class="img-fluid" />
+                    {% endif %}
+
+                    <!-- Status Badge -->
+                    {% if liveStream.status == 'Active' %}
+                      <span class="stream-status-badge live badge bg-danger"><i class="fas fa-circle me-1"></i>{% trans 'LIVE' %}</span>
+                    {% elif liveStream.status == 'Scheduled' %}
+                      <span class="stream-status-badge scheduled badge bg-info"><i class="far fa-clock me-1"></i>{% trans 'Scheduled' %}</span>
+                    {% endif %}
+                  </div>
+
+                  <div class="stream-content">
+                    <div class="stream-meta mb-2">
+                      <span class="stream-date">
+                        <i class="far fa-calendar-alt me-1"></i>
+                        {{ liveStream.created_at|date:'M d, Y' }}
+                      </span>
+                    </div>
+
+                    <h3 id="live-stream-{{ liveStream.id }}-title" class="stream-title">{{ liveStream.title }}</h3>
+                  </div>
+                </article>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <!-- No Data State -->
+        <div class="no-data-state">
+          <img src="{% static 'assets/images/no-data.svg' %}" alt="{% trans 'No data available' %}" class="mb-4" />
+          <h4 class="mb-3">{% trans 'No Live Streams Available' %}</h4>
+          <p class="lead">
+            {% trans 'No live streams available at the moment. Check back later for new content!' %}
+          </p>
+        </div>
+      {% endif %}
+    </div>
   </section>
 {% endblock %}

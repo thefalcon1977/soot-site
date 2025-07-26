@@ -164,9 +164,11 @@
 
 @media (max-width: 768px) {
 
-  .blog-container {
-    margin-top: 80px;
+  .stream-container {
+    padding: 50px 20px !important;
+    margin-top: 35px;
   }
+
   .banner-carousel-style {
     font-size: 10px;
     flex-direction: column;
@@ -175,6 +177,7 @@
   }
 
   .blog-container {
+    margin-top: 80px;
     padding: 50px 20px !important;
   }
 
