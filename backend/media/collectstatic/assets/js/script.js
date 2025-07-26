@@ -262,3 +262,30 @@ $('.popup').magnificPopup({
 
 
 }(jQuery));
+
+$(document).ready(function(){
+  $("#bannerOwlCarousel").owlCarousel({
+    items: 1,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    nav: true,
+    dots: true
+  });
+});
+
+// Owl Carousel for Banner
+$(document).ready(function(){
+  $(".banner-carousel").owlCarousel({
+    items: 1,
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    autoplayHoverPause: true,
+    nav: false,
+    dots: false,
+    animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
+    rtl: true // since your site is RTL
+  });
+});

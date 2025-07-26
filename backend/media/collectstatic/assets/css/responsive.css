@@ -1,3 +1,18 @@
+/*
+ * responsive.css
+ *
+ * This stylesheet contains responsive design rules for the site, using CSS media queries to adjust layout and styles for different screen sizes and devices.
+ *
+ * Structure:
+ * - @media (min-width: 1200px): Styles for large desktops and up
+ * - @media (min-width: 992px) and (max-width: 1200px): Styles for medium desktops/laptops
+ * - @media (min-width: 768px) and (max-width: 991px): Styles for tablets and small desktops
+ * - @media (max-width: 768px): Styles for mobile devices and small tablets
+ * - @media (max-width: 480px): Styles for very small screens (phones)
+ *
+ * Each section overrides or adjusts the base styles to ensure the site remains usable and visually appealing across all devices.
+ */
+
 @media (min-width: 1200px) {
 
   .container {
@@ -148,6 +163,58 @@
 }
 
 @media (max-width: 768px) {
+
+  .stream-container {
+    padding: 50px 20px !important;
+    margin-top: 35px;
+  }
+
+  .banner-carousel-style {
+    font-size: 10px;
+    flex-direction: column;
+    min-height: auto;
+    padding: 20px 0;
+  }
+
+  .blog-container {
+    margin-top: 80px;
+    padding: 50px 20px !important;
+  }
+
+  .banner-carousel-style .banner-logo {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .banner-carousel-style .banner-content {
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .banner-carousel-style .banner-content p {
+    font-size: 20px;
+  }
+
+  .banner-carousel-style .banner-image {
+    padding: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .banner-carousel-style .banner-image img {
+    height: 120px;
+  }
+
+  .banner-carousel-style .banner-cover-image {
+    opacity: 0.1;
+  }
+
   .container-padding {
     padding: 0px 30px;
   }
@@ -258,6 +325,25 @@
 }
 
 @media (max-width: 480px) {
+  .banner-carousel-style {
+    margin: 10px;
+    padding: 15px 0;
+  }
+
+  .banner-carousel-style .banner-content p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .banner-carousel-style .banner-content button {
+    padding: 6px 15px;
+    font-size: 12px;
+  }
+
+  .banner-carousel-style .banner-image img {
+    height: 100px;
+  }
+
   .site-navigation {
     padding: 10px 10px;
   }

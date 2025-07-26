@@ -1,102 +1,387 @@
 {% extends 'shared/_site.html' %}
 {% load thumbnail theme static i18n %}
 
-{% block title %}{{ page_title }}{% endblock %}
+{% block title %}
+  {{ page_title }}
+{% endblock %}
 {% block meta %}
-    <meta name="description" content="{{ meta_description }}">
+  <meta name="description" content="{{ meta_description }}" />
 {% endblock %}
 
 {% block body %}
-<section class="tutori-course-single tutori-course-layout-3 page-wrapper" aria-labelledby="live-stream-title">
+  <section class="tutori-course-single tutori-course-layout-3 page-wrapper" aria-labelledby="live-stream-title">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-8 col-lg-7">
-                <div class="tutori-course-content">
-                    <div class="tab-content tutori-course-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                            <div class="single-course-details p-4 rounded shadow-sm bg-white">
-                                <h4 id="live-stream-title" class="course-title mb-3 fw-bold">{{ liveStream.title }}</h4>
-                                <div class="d-flex align-items-center mb-3">
-                                    {% if liveStream.status == 'Active' %}
-                                        <span class="badge bg-success px-3 py-2 rounded-pill d-flex align-items-center">
-                                            <i class="bi bi-dot me-2"></i> {% trans "Live Now" %}
-                                        </span>
-                                    {% elif liveStream.status == 'Scheduled' %}
-                                        <span class="badge bg-info px-3 py-2 rounded-pill d-flex align-items-center">
-                                            <i class="bi bi-clock me-2"></i> {% trans "Scheduled for" %} {{ liveStream.scheduled_at|date:"SHORT_DATE_FORMAT" }}
-                                        </span>
-                                    {% else %}
-                                        <span class="badge bg-secondary px-3 py-2 rounded-pill d-flex align-items-center">
-                                            <i class="bi bi-x-circle me-2"></i> {% trans "Inactive" %}
-                                        </span>
-                                    {% endif %}
-                                </div>
-                                <hr>
-                                {% if liveStream.status == 'Active' and liveStream.stream_url %}
-                                    <div class="live-stream-player mb-4 position-relative">
-                                        <video id="live-stream-player" class="video-js vjs-default-skin rounded" width="100%" height="400" controls autoplay poster="{{ liveStream.image.url|default:'' }}">
-                                            <source src="{{ liveStream.stream_url }}" type="application/x-mpegURL">
-                                            {% trans "Your browser does not support the video tag." %}
-                                        </video>
-                                        <div class="watch-live-overlay position-absolute top-50 start-50 translate-middle">
-                                            <button class="btn btn-danger btn-lg shadow">{% trans "Watch Live" %}</button>
-                                        </div>
-                                    </div>
-                                {% elif liveStream.status == 'Scheduled' %}
-                                    <p class="text-info">{% trans "This stream is scheduled and will be available on" %} {{ liveStream.scheduled_at|date:"SHORT_DATE_FORMAT" }}.</p>
-                                {% else %}
-                                    <p class="text-muted">{% trans "This stream is currently inactive." %}</p>
-                                {% endif %}
-                                <div class="stream-description bg-light p-3 rounded mt-4">
-                                    <h5 class="mb-2">{% trans "About this Stream" %}</h5>
-                                    <p class="mb-0">{{ liveStream.description|safe }}</p>
-                                </div>
-                            </div>
-                        </div>
+      <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-10">
+          <div class="tutori-course-content">
+            <div class="tab-content tutori-course-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="single-course-details p-4 rounded shadow-sm bg-white">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h4 id="live-stream-title" class="course-title mb-3 fw-bold">{{ liveStream.title }}</h4>
+                        {% if liveStream.status == 'Active' %}
+                      <span class="badge bg-success px-3 py-2 rounded-pill d-flex align-items-center"><i class="stream-status-badge live badge bg-danger"></i> {% trans 'Live Now' %}</span>
+                    {% elif liveStream.status == 'Scheduled' %}
+                      <span class="stream-status-badge scheduled badge bg-info"><i class="far fa-clock me-1"></i> {% trans 'Scheduled for' %} {{ liveStream.scheduled_at|date:'SHORT_DATE_FORMAT' }}</span>
+                    {% else %}
+                      <span class="badge bg-secondary px-3 py-2 rounded-pill d-flex align-items-center"><i class="bi bi-x-circle me-2"></i> {% trans 'Inactive' %}</span>
+                    {% endif %}
+                  </div>
+                  <hr />
+                  {% if liveStream.status == 'Active' and liveStream.stream_url %}
+                    <div class="live-stream-player mb-4 position-relative">
+                      <video id="live-stream-player" class="video-js vjs-default-skin rounded" width="100%" height="400" controls autoplay poster="{{ liveStream.image.url|default:'' }}">
+                        <source src="{{ liveStream.stream_url }}" type="application/x-mpegURL" />
+                        {% trans 'Your browser does not support the video tag.' %}
+                      </video>
                     </div>
+                  {% elif liveStream.status == 'Scheduled' %}
+                    <p class="text-info">
+                      {% trans 'This stream is scheduled and will be available on' %} {{ liveStream.scheduled_at|date:'SHORT_DATE_FORMAT' }}.
+                    </p>
+                  {% else %}
+                    <p class="text-muted">
+                      {% trans 'This stream is currently inactive.' %}
+                    </p>
+                  {% endif %}
+                  <div class="stream-description bg-light p-3 rounded mt-4">
+                    <h5 class="mb-2">{% trans 'About this Stream' %}</h5>
+                    <p class="mb-0">{{ liveStream.description|safe }}</p>
+                  </div>
                 </div>
+              </div>
             </div>
-
-            <div class="col-xl-4 col-lg-5">
-                <!-- Course Sidebar start -->
-                <div class="course-sidebar course-sidebar-3 mt-5 mt-lg-0">
-                    <div class="course-widget course-details-info">
-                        <div class="course-thumbnail">
-                            {% if liveStream.image %}
-                                {% thumbnail liveStream.image "340x323" crop="center" format="WEBP" as im %}
-                                    <img src="{{ im.url }}" alt="{{ liveStream.alternate_text|default:liveStream.title }}" class="img-fluid w-100">
-                                {% endthumbnail %}
-                            {% else %}
-                                <img src="{% static 'images/placeholder-stream.jpg' %}" alt="{% trans 'Placeholder image for' %} {{ liveStream.title }}" class="img-fluid w-100">
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </div>
-</section>
 
-<!-- Include Video.js for HLS support -->
-{% if liveStream.stream_url and liveStream.status == 'Active' %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Include Video.js for HLS support -->
+  {% if liveStream.stream_url and liveStream.status == 'Active' %}
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var player = videojs('live-stream-player', {
-                fluid: true,
-                responsive: true,
-                aspectRatio: '16:9',
-                sources: [{
-                    src: '{{ liveStream.stream_url }}',
-                    type: 'application/x-mpegURL'
-                }]
-            });
-            player.on('error', function(e) {
-                console.error('Video.js error:', player.error());
-            });
-            player.play();
-        });
+      document.addEventListener('DOMContentLoaded', function () {
+        var player = videojs('live-stream-player', {
+          fluid: true,
+          responsive: true,
+          aspectRatio: '16:9',
+          controls: true,
+          preload: 'auto',
+          html5: {
+            hls: {
+              enableLowInitialPlaylist: true,
+              smoothQualityChange: true,
+              overrideNative: true,
+              allowSeeksWithinUnsafeLiveWindow: true,
+              bandwidth: 0, // Let system detect
+              maxBandwidth: 0 // No limit initially
+            }
+          },
+          sources: [
+            {
+              src: '{{ liveStream.stream_url }}',
+              type: 'application/x-mpegURL'
+            }
+          ]
+        })
+      
+        // Auto Quality System based on Network Speed
+        var autoQualitySystem = {
+          currentQuality: null,
+          networkSpeed: 0,
+          bufferHealth: 100,
+          qualityLevels: [],
+          isAdjusting: false,
+          lastAdjustment: 0,
+      
+          // Network speed thresholds (in Mbps)
+          thresholds: {
+            '4k': 25, // 2160p requires ~25 Mbps
+            '1440p': 15, // 1440p requires ~15 Mbps
+            '1080p': 8, // 1080p requires ~8 Mbps
+            '720p': 4, // 720p requires ~4 Mbps
+            '480p': 2, // 480p requires ~2 Mbps
+            '360p': 1 // 360p requires ~1 Mbps
+          },
+      
+          init: function () {
+            this.detectNetworkSpeed()
+            this.setupQualityMonitoring()
+            this.setupBufferMonitoring()
+            this.createQualityIndicator()
+          },
+      
+          detectNetworkSpeed: function () {
+            var self = this
+      
+            // Method 1: Navigator Connection API
+            if ('connection' in navigator) {
+              var connection = navigator.connection
+              var effectiveType = connection.effectiveType
+              var downlink = connection.downlink // Mbps
+      
+              if (downlink) {
+                self.networkSpeed = downlink
+                console.log('Network speed detected:', downlink + ' Mbps')
+              } else {
+                // Estimate based on effective type
+                switch (effectiveType) {
+                  case 'slow-2g':
+                    self.networkSpeed = 0.5
+                    break
+                  case '2g':
+                    self.networkSpeed = 1
+                    break
+                  case '3g':
+                    self.networkSpeed = 3
+                    break
+                  case '4g':
+                    self.networkSpeed = 10
+                    break
+                  default:
+                    self.networkSpeed = 5
+                    break
+                }
+              }
+      
+              // Listen for connection changes
+              connection.addEventListener('change', function () {
+                self.detectNetworkSpeed()
+                self.adjustQualityBasedOnSpeed()
+              })
+            } else {
+              // Method 2: Speed test using small file download
+              self.performSpeedTest()
+            }
+      
+            // Initial quality adjustment
+            setTimeout(function () {
+              self.adjustQualityBasedOnSpeed()
+            }, 2000)
+          },
+      
+          performSpeedTest: function () {
+            var self = this
+            var startTime = Date.now()
+            var testSize = 100000 // 100KB test
+      
+            // Create a test request
+            var xhr = new XMLHttpRequest()
+            xhr.open('GET', '{{ liveStream.stream_url }}', true)
+            xhr.setRequestHeader('Range', 'bytes=0-' + testSize)
+      
+            xhr.onload = function () {
+              if (xhr.status === 206 || xhr.status === 200) {
+                var endTime = Date.now()
+                var duration = (endTime - startTime) / 1000 // seconds
+                var bytesReceived = xhr.response ? xhr.response.length : testSize
+                var speedBps = bytesReceived / duration // bytes per second
+                var speedMbps = (speedBps * 8) / (1024 * 1024) // Mbps
+      
+                self.networkSpeed = speedMbps
+                console.log('Speed test result:', speedMbps.toFixed(2) + ' Mbps')
+                self.adjustQualityBasedOnSpeed()
+              }
+            }
+      
+            xhr.onerror = function () {
+              // Fallback to conservative estimate
+              self.networkSpeed = 3
+              console.log('Speed test failed, using conservative estimate: 3 Mbps')
+              self.adjustQualityBasedOnSpeed()
+            }
+      
+            xhr.send()
+          },
+      
+          adjustQualityBasedOnSpeed: function () {
+            var self = this
+            if (self.isAdjusting || Date.now() - self.lastAdjustment < 5000) return
+      
+            self.isAdjusting = true
+            self.lastAdjustment = Date.now()
+      
+            var qualityLevels = player.qualityLevels()
+            if (!qualityLevels || qualityLevels.length === 0) {
+              self.isAdjusting = false
+              return
+            }
+      
+            // Determine optimal quality based on network speed
+            var optimalHeight = self.getOptimalQuality()
+            var selectedLevel = null
+            var minDiff = Infinity
+      
+            // Find the closest quality level
+            for (var i = 0; i < qualityLevels.length; i++) {
+              var level = qualityLevels[i]
+              var diff = Math.abs(level.height - optimalHeight)
+              if (diff < minDiff) {
+                minDiff = diff
+                selectedLevel = level
+              }
+            }
+      
+            if (selectedLevel && selectedLevel !== self.currentQuality) {
+              // Disable all levels first
+              for (var i = 0; i < qualityLevels.length; i++) {
+                qualityLevels[i].enabled = false
+              }
+      
+              // Enable selected level
+              selectedLevel.enabled = true
+              self.currentQuality = selectedLevel
+      
+              console.log('Auto-adjusted quality to:', selectedLevel.height + 'p', 'based on speed:', self.networkSpeed.toFixed(2) + ' Mbps')
+              self.updateQualityIndicator(selectedLevel.height + 'p (Auto)')
+      
+              // Show notification
+              self.showQualityNotification('Quality: ' + selectedLevel.height + 'p (Auto-adjusted)')
+            }
+      
+            setTimeout(function () {
+              self.isAdjusting = false
+            }, 1000)
+          },
+      
+          getOptimalQuality: function () {
+            var speed = this.networkSpeed
+            var bufferFactor = this.bufferHealth / 100
+      
+            // Adjust speed based on buffer health
+            var adjustedSpeed = speed * bufferFactor
+      
+            if (adjustedSpeed >= this.thresholds['4k']) return 2160
+            if (adjustedSpeed >= this.thresholds['1440p']) return 1440
+            if (adjustedSpeed >= this.thresholds['1080p']) return 1080
+            if (adjustedSpeed >= this.thresholds['720p']) return 720
+            if (adjustedSpeed >= this.thresholds['480p']) return 480
+            return 360
+          },
+      
+          setupQualityMonitoring: function () {
+            var self = this
+      
+            player.qualityLevels().on('addqualitylevel', function (event) {
+              console.log('Quality level available:', event.qualityLevel.height + 'p')
+              self.qualityLevels.push(event.qualityLevel)
+      
+              // Trigger quality adjustment when levels are available
+              setTimeout(function () {
+                self.adjustQualityBasedOnSpeed()
+              }, 1000)
+            })
+      
+            player.qualityLevels().on('change', function () {
+              var activeLevel = null
+              for (var i = 0; i < player.qualityLevels().length; i++) {
+                var level = player.qualityLevels()[i]
+                if (level.enabled) {
+                  activeLevel = level
+                  break
+                }
+              }
+      
+              if (activeLevel) {
+                console.log('Quality changed to:', activeLevel.height + 'p')
+              }
+            })
+          },
+      
+          setupBufferMonitoring: function () {
+            var self = this
+      
+            // Monitor buffer health
+            setInterval(function () {
+              if (player.buffered().length > 0) {
+                var currentTime = player.currentTime()
+                var bufferedEnd = player.buffered().end(player.buffered().length - 1)
+                var bufferLength = bufferedEnd - currentTime
+      
+                // Calculate buffer health (0-100%)
+                var targetBuffer = 10 // 10 seconds target
+                self.bufferHealth = Math.min(100, (bufferLength / targetBuffer) * 100)
+      
+                // If buffer is low, consider downgrading quality
+                if (self.bufferHealth < 30 && !self.isAdjusting) {
+                  console.log('Low buffer detected:', self.bufferHealth.toFixed(1) + '%')
+                  self.networkSpeed *= 0.8 // Reduce effective speed
+                  self.adjustQualityBasedOnSpeed()
+                }
+              }
+            }, 5000)
+          },
+      
+          createQualityIndicator: function () {
+            // Create quality indicator in control bar
+            var qualityIndicator = document.createElement('div')
+            qualityIndicator.className = 'vjs-quality-indicator'
+            qualityIndicator.innerHTML = '<span class="quality-text">Auto</span>'
+      
+            // Add to control bar
+            var controlBar = player.getChild('controlBar')
+            if (controlBar) {
+              controlBar.el().appendChild(qualityIndicator)
+            }
+          },
+      
+          updateQualityIndicator: function (text) {
+            var indicator = document.querySelector('.vjs-quality-indicator .quality-text')
+            if (indicator) {
+              indicator.textContent = text
+            }
+          },
+      
+          showQualityNotification: function (message) {
+            var notification = player.createModal(message)
+            setTimeout(function () {
+              notification.close()
+            }, 3000)
+          }
+        }
+      
+        // Initialize auto quality system when player is ready
+        player.ready(function () {
+          autoQualitySystem.init()
+        })
+      
+        // Enhanced error handling with quality fallback
+        player.on('error', function (e) {
+          var error = player.error()
+          console.error('Video.js error:', error)
+      
+          if (error && error.code === 4) {
+            // Network error - automatically reduce quality
+            autoQualitySystem.networkSpeed *= 0.5
+            autoQualitySystem.adjustQualityBasedOnSpeed()
+            autoQualitySystem.showQualityNotification('Network issue detected. Quality automatically reduced.')
+          } else {
+            player.createModal('Stream temporarily unavailable. Please try again later.')
+          }
+        })
+      
+        // Monitor playback for quality adjustments
+        player.on('waiting', function () {
+          console.log('Buffering detected - may need quality adjustment')
+          autoQualitySystem.bufferHealth *= 0.8
+        })
+      
+        player.on('canplay', function () {
+          console.log('Playback resumed')
+          autoQualitySystem.bufferHealth = Math.min(100, autoQualitySystem.bufferHealth * 1.1)
+        })
+      
+        // Auto-play with error handling
+        var playPromise = player.play()
+        if (playPromise !== undefined) {
+          playPromise.catch(function (error) {
+            console.log('Auto-play prevented:', error)
+          })
+        }
+      })
     </script>
-{% endif %}
+  {% endif %}
 {% endblock %}
