@@ -3,163 +3,161 @@
 
 {% block body %}
 
-<div class="page-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-xl-8">
-                <div class="row">
-                    {% for post in blog_posts %}
-                    <div class="col-xl-6">
-                        <div class="blog-item mb-30">
-                            <!-- Post Thumbnail -->
-                            <div class="post-thumb">
+<div class="blog-container">
+    <div class="row">
+        <div class="col-lg-8 col-xl-8">
+            <div class="row">
+                {% for post in blog_posts %}
+                <div class="col-xl-6">
+                    <div class="blog-item mb-30">
+                        <!-- Post Thumbnail -->
+                        <div class="post-thumb">
+                            <a href="{% url 'pages:blog-post-detail' post.slug %}">
+                                {% thumbnail post.picture "752x390" crop="center" format='WEBP' as im %}
+                                <img src="{{ im.url }}" alt="{{ post.alternate_text }}" class="img-fluid">
+                                {% endthumbnail %}
+                            </a>
+                        </div>
+
+                        <!-- Blog Content -->
+                        <div class="blog-content">
+                            <div class="post-meta">
+                                <span class="post-author">by {{ post.author.username|default:"Admin" }}</span>
+                                <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>
+                                    {{ post.created_at|date:"F d, Y" }}</span>
+                                <span class="post-comments"><i class="far fa-comments"></i>
+                                    {{ post.comments.count|default:0 }}</span>
+                            </div>
+
+                            <h3 class="post-title">
+                                <a href="{% url 'pages:blog-post-detail' post.slug %}">{{ post.title }}</a>
+                            </h3>
+
+                            <p>{{ post.summary }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <nav class="blog-page-navigation">
+                <ul class="pagination">
+                    <!-- Previous Page -->
+                    {% if page_obj.has_previous %}
+                    <li class="pagination-arrow">
+                        <a href="?{{ request.GET|update_query_parameter:page_obj.previous_page_number }}">
+                            <i class="fa fa-angle-double-left"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+            
+                    <!-- First Page & Ellipsis -->
+                    {% if page_obj.number > 3 %}
+                    <li><a href="?{{ request.GET|update_query_parameter:1 }}">1</a></li>
+                    <li><a href="javascript:void(0)">...</a></li>
+                    {% endif %}
+            
+                    <!-- Page Numbers -->
+                    {% for i in page_obj.paginator.page_range %}
+                        {% if i >= page_obj.number|add:"-2" and i <= page_obj.number|add:"2" %}
+                            <li>
+                                <a class="{% if i == page_obj.number %}active{% endif %}" href="?{{ request.GET|update_query_parameter:i }}">
+                                    {{ i }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+            
+                    <!-- Last Page & Ellipsis -->
+                    {% if page_obj.number < page_obj.paginator.num_pages|add:"-2" %}
+                    <li><a href="javascript:void(0)">...</a></li>
+                    <li><a href="?{{ request.GET|update_query_parameter:page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+                    {% endif %}
+            
+                    <!-- Next Page -->
+                    {% if page_obj.has_next %}
+                    <li class="pagination-arrow">
+                        <a href="?{{ request.GET|update_query_parameter:page_obj.next_page_number }}">
+                            <i class="fa fa-angle-double-right"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        <div class="col-lg-4 col-xl-4">
+            <div class="blog-sidebar mt-5 mt-lg-0">
+                <div class="widget widget-search">
+                    <form action="{% url 'pages:blog-post-list' %}" method="GET" role="search" class="search-form">
+                        <input type="text" class="form-control" name="search" value="{{ request.GET.search }}"
+                            placeholder="{% trans 'Search' %}">
+                        <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+
+
+                <div class="widget widget_latest_post">
+                    <h4 class="widget-title">{% trans 'Latest Posts' %}</h4>
+                    <div class="recent-posts">
+                        {% for post in blog_recent_posts %}
+                        <div class="single-latest-post">
+                            <div class="widget-thumb">
                                 <a href="{% url 'pages:blog-post-detail' post.slug %}">
-                                    {% thumbnail post.picture "752x390" crop="center" format='WEBP' as im %}
+                                    {% thumbnail post.picture "80x80" crop="center" format='WEBP' as im %}
                                     <img src="{{ im.url }}" alt="{{ post.alternate_text }}" class="img-fluid">
                                     {% endthumbnail %}
                                 </a>
                             </div>
-
-                            <!-- Blog Content -->
-                            <div class="blog-content">
-                                <div class="post-meta">
-                                    <span class="post-author">by {{ post.author.username|default:"Admin" }}</span>
-                                    <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>
-                                        {{ post.created_at|date:"F d, Y" }}</span>
-                                    <span class="post-comments"><i class="far fa-comments"></i>
-                                        {{ post.comments.count|default:0 }}</span>
-                                </div>
-
-                                <h3 class="post-title">
-                                    <a href="{% url 'pages:blog-post-detail' post.slug %}">{{ post.title }}</a>
-                                </h3>
-
-                                <p>{{ post.summary }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-                </div>
-
-                <nav class="blog-page-navigation">
-                    <ul class="pagination">
-                        <!-- Previous Page -->
-                        {% if page_obj.has_previous %}
-                        <li class="pagination-arrow">
-                            <a href="?{{ request.GET|update_query_parameter:page_obj.previous_page_number }}">
-                                <i class="fa fa-angle-double-left"></i>
-                            </a>
-                        </li>
-                        {% endif %}
-                
-                        <!-- First Page & Ellipsis -->
-                        {% if page_obj.number > 3 %}
-                        <li><a href="?{{ request.GET|update_query_parameter:1 }}">1</a></li>
-                        <li><a href="javascript:void(0)">...</a></li>
-                        {% endif %}
-                
-                        <!-- Page Numbers -->
-                        {% for i in page_obj.paginator.page_range %}
-                            {% if i >= page_obj.number|add:"-2" and i <= page_obj.number|add:"2" %}
-                                <li>
-                                    <a class="{% if i == page_obj.number %}active{% endif %}" href="?{{ request.GET|update_query_parameter:i }}">
-                                        {{ i }}
-                                    </a>
-                                </li>
-                            {% endif %}
-                        {% endfor %}
-                
-                        <!-- Last Page & Ellipsis -->
-                        {% if page_obj.number < page_obj.paginator.num_pages|add:"-2" %}
-                        <li><a href="javascript:void(0)">...</a></li>
-                        <li><a href="?{{ request.GET|update_query_parameter:page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
-                        {% endif %}
-                
-                        <!-- Next Page -->
-                        {% if page_obj.has_next %}
-                        <li class="pagination-arrow">
-                            <a href="?{{ request.GET|update_query_parameter:page_obj.next_page_number }}">
-                                <i class="fa fa-angle-double-right"></i>
-                            </a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-lg-4 col-xl-4">
-                <div class="blog-sidebar mt-5 mt-lg-0">
-                    <div class="widget widget-search">
-                        <form action="{% url 'pages:blog-post-list' %}" method="GET" role="search" class="search-form">
-                            <input type="text" class="form-control" name="search" value="{{ request.GET.search }}"
-                                placeholder="{% trans 'Search' %}">
-                            <button type="submit" class="search-submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
-
-
-                    <div class="widget widget_latest_post">
-                        <h4 class="widget-title">{% trans 'Latest Posts' %}</h4>
-                        <div class="recent-posts">
-                            {% for post in blog_recent_posts %}
-                            <div class="single-latest-post">
-                                <div class="widget-thumb">
+                            <div class="widget-content">
+                                <h5>
                                     <a href="{% url 'pages:blog-post-detail' post.slug %}">
-                                        {% thumbnail post.picture "80x80" crop="center" format='WEBP' as im %}
-                                        <img src="{{ im.url }}" alt="{{ post.alternate_text }}" class="img-fluid">
-                                        {% endthumbnail %}
+                                        {{ post.title }}
                                     </a>
-                                </div>
-                                <div class="widget-content">
-                                    <h5>
-                                        <a href="{% url 'pages:blog-post-detail' post.slug %}">
-                                            {{ post.title }}
-                                        </a>
-                                    </h5>
-                                    <span><i class="fa fa-calendar-times"></i>
-                                        {{ post.created_at|date:"F d, Y" }}</span>
-                                </div>
+                                </h5>
+                                <span><i class="fa fa-calendar-times"></i>
+                                    {{ post.created_at|date:"F d, Y" }}</span>
                             </div>
-                            {% endfor %}
                         </div>
-                    </div>
-
-
-                    <div class="widget widget_categories">
-                        <h4 class="widget-title">{% trans 'Categories' %}</h4>
-                        <ul>
-                            {% if request.GET %}
-                            <li class="cat-item">
-                                <a href="{% url 'pages:blog-post-list' %}">{% trans "Clear Filter" %}</a>
-                            </li>
-                            {% endif %}
-                            {% for cat in blog_categories %}
-                            <li class="cat-item">
-                                <a href="{% url 'pages:blog-post-list' %}?cat={{ cat.slug }}">{{ cat.title }}</a>
-                                ({{ cat.total_posts }})
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-
-                    <div class="widget widget_tag_cloud">
-                        <h4 class="widget-title">{% trans 'Tags' %}</h4>
-
-                        {% if request.GET %}
-                        <a href="{% url 'pages:blog-post-list' %}"
-                            class="btn btn-sm btn-light text-gray-800 pb-2 fw-normal">
-                            {% trans "Clear Filter" %}
-                        </a>
-                        {% endif %}
-
-                        {% for tag in blog_trend_tags %}
-                        <a href="{% url 'pages:blog-post-list' %}?tag={{ tag.slug }}">
-                            {{ tag.title }} ({{ tag.total_posts }})
-                        </a>
                         {% endfor %}
                     </div>
-
                 </div>
+
+
+                <div class="widget widget_categories">
+                    <h4 class="widget-title">{% trans 'Categories' %}</h4>
+                    <ul>
+                        {% if request.GET %}
+                        <li class="cat-item">
+                            <a href="{% url 'pages:blog-post-list' %}">{% trans "Clear Filter" %}</a>
+                        </li>
+                        {% endif %}
+                        {% for cat in blog_categories %}
+                        <li class="cat-item">
+                            <a href="{% url 'pages:blog-post-list' %}?cat={{ cat.slug }}">{{ cat.title }}</a>
+                            ({{ cat.total_posts }})
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="widget widget_tag_cloud">
+                    <h4 class="widget-title">{% trans 'Tags' %}</h4>
+
+                    {% if request.GET %}
+                    <a href="{% url 'pages:blog-post-list' %}"
+                        class="btn btn-sm btn-light text-gray-800 pb-2 fw-normal">
+                        {% trans "Clear Filter" %}
+                    </a>
+                    {% endif %}
+
+                    {% for tag in blog_trend_tags %}
+                    <a href="{% url 'pages:blog-post-list' %}?tag={{ tag.slug }}">
+                        {{ tag.title }} ({{ tag.total_posts }})
+                    </a>
+                    {% endfor %}
+                </div>
+
             </div>
         </div>
     </div>
