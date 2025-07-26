@@ -163,6 +163,10 @@
 }
 
 @media (max-width: 768px) {
+
+  .blog-container {
+    margin-top: 80px;
+  }
   .banner-carousel-style {
     font-size: 10px;
     flex-direction: column;

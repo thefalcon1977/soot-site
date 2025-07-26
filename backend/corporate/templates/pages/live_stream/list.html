@@ -2,46 +2,47 @@
 {% load thumbnail theme static i18n %}
 
 {% block body %}
-<section class="section-padding page" aria-labelledby="live-streams-heading">
-    <div class="container">
-        <h2 id="live-streams-heading" class="sr-only">{% trans "Live Streams" %}</h2>
-        
-        {% if liveStreams %}
-            <div class="row justify-content-lg-center">
-                {% for liveStream in liveStreams %}
-
-                    <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
-                        <article class="course-grid bg-shadow tooltip-style" aria-labelledby="live-stream-{{ liveStream.id }}-title">
-                            <div class="course-header">
-                                {% if liveStream.image %}
-                                    {% thumbnail liveStream.image "340x323" crop="center" format="WEBP" as im %}
-                                        <img src="{{ im.url }}" alt="{{ liveStream.alternate_text|default:liveStream.title }}" class="img-fluid">
-                                    {% endthumbnail %}
-                                {% else %}
-                                    <img src="{% static 'images/placeholder-stream.jpg' %}" alt="{% trans 'Placeholder image for' %} {{ liveStream.title }}" class="img-fluid">
-                                {% endif %}
-                                {% if liveStream.status == 'Active' %}
-                                    <span class="badge bg-success position-absolute top-10 end-10">{% trans "w" %}</span>
-                                {% elif liveStream.status == 'Scheduled' %}
-                                    <span class="badge bg-info position-absolute top-10 end-10">{% trans "Scheduled" %}</span>
-                                {% endif %}
-                            </div>
-                            <div class="course-content">
-                                <h3 id="live-stream-{{ liveStream.id }}-title" class="course-title mb-20">
-                                    <a href="{% url 'pages:live-stream-detail' liveStream.slug %}" class="text-decoration-none">
-                                        {{ liveStream.title }}
-                                    </a>
-                                </h3>
-                            </div>
-                        </article>
-                    </div>
-                {% endfor %}
-            </div>
-        {% else %}
-            <div class="text-center py-5">
-                <p class="lead">{% trans "No live streams available at the moment." %}</p>
-            </div>
-        {% endif %}
-    </div>
-</section>
+  <section class="blog-container">
+    {% if liveStreams %}
+      <div class="row justify-content-right">
+        <div class="col-xl-8">
+          <div class="heading mb-80 text-right">
+            <h3><a href="{% url 'pages:blog-post-list' %}">{% trans 'Live Streams' %}</a></h3>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-lg-right">
+        {% for liveStream in liveStreams %}
+          <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
+            <article class="course-grid bg-shadow tooltip-style" aria-labelledby="live-stream-{{ liveStream.id }}-title">
+              <div class="course-header">
+                {% if liveStream.image %}
+                  {% thumbnail liveStream.image '340x323' crop='center' format='WEBP' as im %}
+                  <img src="{{ im.url }}" alt="{{ liveStream.alternate_text|default:liveStream.title }}" class="img-fluid" />
+                  {% endthumbnail %}
+                {% else %}
+                  <img src="{% static 'images/placeholder-stream.jpg' %}" alt="{% trans 'Placeholder image for' %} {{ liveStream.title }}" class="img-fluid" />
+                {% endif %}
+                {% if liveStream.status == 'Active' %}
+                  <span class="badge bg-success position-absolute top-10 end-10">{% trans 'w' %}</span>
+                {% elif liveStream.status == 'Scheduled' %}
+                  <span class="badge bg-info position-absolute top-10 end-10">{% trans 'Scheduled' %}</span>
+                {% endif %}
+              </div>
+              <div class="course-content">
+                <h3 id="live-stream-{{ liveStream.id }}-title" class="course-title mb-20"><a href="{% url 'pages:live-stream-detail' liveStream.slug %}" class="text-decoration-none">{{ liveStream.title }}</a></h3>
+              </div>
+            </article>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="text-center py-5">
+        <img src="{% static 'assets/images/no-data.svg' %}" alt="{% trans 'No data available' %}" class="mb-4" style="max-width: 350px;" />
+        <p class="lead">
+          {% trans 'No live streams available at the moment' %}
+        </p>
+      </div>
+    {% endif %}
+  </section>
 {% endblock %}
