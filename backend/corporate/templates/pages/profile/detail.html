@@ -1,0 +1,146 @@
+{% extends 'shared/_site.html' %}
+{% load thumbnail static i18n %}
+
+{% block title %}
+  {{ page_title }}
+{% endblock %}
+
+{% block meta %}
+  <meta name="description" content="{{ meta_description }}" />
+{% endblock %}
+
+{% block body %}
+  <section class="section-padding page-wrapper fade-in" aria-labelledby="profile-title">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-10">
+          <div class="profile-container">
+            
+            <!-- Profile Header -->
+            <div class="profile-header">
+              <div class="profile-avatar">
+                {% if profile.picture %}
+                  {% thumbnail profile.picture "200x200" crop="center" format='WEBP' as im %}
+                  <img src="{{ im.url }}" alt="{{ profile.user.get_full_name|default:profile.user.username }}" 
+                       class="rounded-circle img-fluid profile-image" style="width: 150px; height: 150px; object-fit: cover;" />
+                  {% endthumbnail %}
+                {% else %}
+                  <div class="default-avatar rounded-circle d-flex align-items-center justify-content-center mx-auto" 
+                       style="width: 150px; height: 150px;">
+                    <i class="fas fa-user fa-4x text-muted"></i>
+                  </div>
+                {% endif %}
+              </div>
+              
+              <h1 id="profile-title" class="profile-name">
+                {{ profile.user.get_full_name|default:profile.user.username }}
+              </h1>
+              
+              <p class="profile-username">
+                <i class="fas fa-at me-1"></i>{{ profile.user.username }}
+              </p>
+              
+              <!-- User Status Badge -->
+              <div class="mb-3">
+                {% if profile.user.is_active %}
+                  <span class="profile-badge active">
+                    <i class="fas fa-check-circle me-1"></i>{% trans 'Active' %}
+                  </span>
+                {% else %}
+                  <span class="profile-badge inactive">
+                    <i class="fas fa-times-circle me-1"></i>{% trans 'Inactive' %}
+                  </span>
+                {% endif %}
+              </div>
+              
+              {% if user.is_authenticated and user == profile.user %}
+                <div class="profile-actions">
+                  <a href="{% url 'pages:profile-edit' %}" class="btn btn-primary">
+                    <i class="fas fa-edit me-1"></i>{% trans 'Edit Profile' %}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+            
+            <!-- Profile Information -->
+            <div class="profile-info slide-in-right">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="info-item">
+                    <h5 class="info-label">
+                      <i class="fas fa-calendar-alt me-1"></i>{% trans 'Member Since' %}
+                    </h5>
+                    <p class="info-value">{{ profile.user.date_joined|date:'F Y' }}</p>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="info-item">
+                    <h5 class="info-label">
+                      <i class="fas fa-clock me-1"></i>{% trans 'Last Active' %}
+                    </h5>
+                    <p class="info-value">
+                      {% if profile.user.last_login %}
+                        {{ profile.user.last_login|date:'M d, Y' }}
+                      {% else %}
+                        {% trans 'Never' %}
+                      {% endif %}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {% if profile.user.email and user.is_authenticated and user == profile.user %}
+                <div class="info-item">
+                  <h5 class="info-label">
+                    <i class="fas fa-envelope me-1"></i>{% trans 'Email' %}
+                  </h5>
+                  <p class="info-value">{{ profile.user.email }}</p>
+                </div>
+              {% endif %}
+              
+              {% if profile.description %}
+                <div class="info-item">
+                  <h5 class="info-label">
+                    <i class="fas fa-info-circle me-1"></i>{% trans 'About' %}
+                  </h5>
+                  <div class="info-value">{{ profile.description|safe }}</div>
+                </div>
+              {% endif %}
+            </div>
+            
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+              <div class="row">
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h6 class="stat-number">{{ profile.created_at|date:'Y' }}</h6>
+                    <small class="stat-label">{% trans 'Joined' %}</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h6 class="stat-number">{{ profile.modified_at|timesince }}</h6>
+                    <small class="stat-label">{% trans 'Last Updated' %}</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="stat-item">
+                    <h6 class="stat-number">
+                      {% if profile.user.is_active %}
+                        <i class="fas fa-check text-success"></i>
+                      {% else %}
+                        <i class="fas fa-times text-danger"></i>
+                      {% endif %}
+                    </h6>
+                    <small class="stat-label">{% trans 'Status' %}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

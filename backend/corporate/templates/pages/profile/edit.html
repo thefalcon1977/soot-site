@@ -1,0 +1,221 @@
+{% extends 'shared/_site.html' %}
+{% load thumbnail static i18n %}
+
+{% block title %}
+  {{ page_title }}
+{% endblock %}
+
+{% block meta %}
+  <meta name="description" content="{{ meta_description }}" />
+{% endblock %}
+
+{% block body %}
+  <section class="section-padding page-wrapper fade-in" aria-labelledby="edit-profile-title">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-10">
+          <div class="profile-edit-container">
+        
+            
+            <!-- Messages -->
+            {% if messages %}
+              <div class="messages">
+                {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>{{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            
+            <!-- Current Profile Preview -->
+            <div class="current-profile">
+              <h5 class="mb-3">
+                <i class="fas fa-eye me-2"></i>{% trans 'Current Profile Preview' %}
+              </h5>
+              <div class="d-flex align-items-center">
+                <div class="profile-avatar me-3">
+                  {% if profile.picture %}
+                    {% thumbnail profile.picture "120x120" crop="center" format='WEBP' as im %}
+                    <img src="{{ im.url }}" alt="{{ profile.user.get_full_name|default:profile.user.username }}" 
+                         class="rounded-circle img-fluid" style="width: 80px; height: 80px; object-fit: cover;" />
+                    {% endthumbnail %}
+                  {% else %}
+                    <div class="default-avatar rounded-circle d-flex align-items-center justify-content-center" 
+                         style="width: 80px; height: 80px;">
+                      <i class="fas fa-user fa-2x text-muted"></i>
+                    </div>
+                  {% endif %}
+                </div>
+                <div>
+                  <h5 class="mb-1">{{ profile.user.get_full_name|default:profile.user.username }}</h5>
+                  <small class="text-muted">@{{ profile.user.username }}</small>
+                  <div class="mt-1">
+                    {% if profile.user.is_active %}
+                      <span class="profile-badge active">
+                        <i class="fas fa-check-circle me-1"></i>{% trans 'Active' %}
+                      </span>
+                    {% else %}
+                      <span class="profile-badge inactive">
+                        <i class="fas fa-times-circle me-1"></i>{% trans 'Inactive' %}
+                      </span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Edit Form -->
+            <div class="profile-form">
+              <form method="post" enctype="multipart/form-data" id="profile-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                  <label for="{{ form.picture.id_for_label }}" class="form-label">
+                    <i class="fas fa-camera"></i>{{ form.picture.label }}
+                  </label>
+                  {{ form.picture }}
+                  {% if form.picture.help_text %}
+                    <small class="form-text">{{ form.picture.help_text }}</small>
+                  {% endif %}
+                  {% if form.picture.errors %}
+                    <div class="invalid-feedback">
+                      {% for error in form.picture.errors %}
+                        <i class="fas fa-exclamation-triangle me-1"></i>{{ error }}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                  
+                  <!-- Image Preview Container -->
+                  <div id="image-preview-container" class="image-preview" style="display: none;">
+                    <img id="image-preview" src="" alt="Preview" style="max-width: 200px; max-height: 200px;" />
+                    <button type="button" class="remove-image" onclick="removeImagePreview()">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="{{ form.description.id_for_label }}" class="form-label">
+                    <i class="fas fa-info-circle"></i>{{ form.description.label }}
+                  </label>
+                  {{ form.description }}
+                  {% if form.description.help_text %}
+                    <small class="form-text">{{ form.description.help_text }}</small>
+                  {% endif %}
+                  {% if form.description.errors %}
+                    <div class="invalid-feedback">
+                      {% for error in form.description.errors %}
+                        <i class="fas fa-exclamation-triangle me-1"></i>{{ error }}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+                
+                <!-- Form Actions -->
+                <div class="form-actions">
+                  <div class="d-flex justify-content-between flex-wrap gap-2">
+                    <a href="{% url 'pages:profile-detail' username=user.username %}" class="btn btn-secondary">
+                      <i class="fas fa-arrow-left me-1"></i>{% trans 'Cancel' %}
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fas fa-save me-1"></i>{% trans 'Save Changes' %}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    // Enhanced image preview functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const imageInput = document.querySelector('input[type="file"]');
+      const imagePreview = document.getElementById('image-preview');
+      const imagePreviewContainer = document.getElementById('image-preview-container');
+      const currentProfileImg = document.querySelector('.current-profile img, .current-profile .default-avatar');
+      
+      if (imageInput) {
+        imageInput.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+              alert('{% trans "Please select a valid image file." %}');
+              return;
+            }
+            
+            // Validate file size (5MB limit)
+            if (file.size > 5 * 1024 * 1024) {
+              alert('{% trans "File size must be less than 5MB." %}');
+              return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              // Show preview
+              imagePreview.src = e.target.result;
+              imagePreviewContainer.style.display = 'block';
+              
+              // Update current profile preview
+              if (currentProfileImg) {
+                if (currentProfileImg.tagName === 'IMG') {
+                  currentProfileImg.src = e.target.result;
+                } else {
+                  // Replace default avatar with image
+                  const img = document.createElement('img');
+                  img.src = e.target.result;
+                  img.className = 'rounded-circle img-fluid';
+                  img.style.width = '80px';
+                  img.style.height = '80px';
+                  img.style.objectFit = 'cover';
+                  currentProfileImg.parentNode.replaceChild(img, currentProfileImg);
+                }
+              }
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+    });
+    
+    // Remove image preview function
+    function removeImagePreview() {
+      const imageInput = document.querySelector('input[type="file"]');
+      const imagePreviewContainer = document.getElementById('image-preview-container');
+      
+      imageInput.value = '';
+      imagePreviewContainer.style.display = 'none';
+      
+      // Reset current profile preview to original or default
+      location.reload(); // Simple solution to reset preview
+    }
+    
+    // Form validation
+    document.getElementById('profile-form').addEventListener('submit', function(e) {
+      const description = document.querySelector('textarea[name="description"]');
+      
+      if (description && description.value.length > 1000) {
+        e.preventDefault();
+        alert('{% trans "Description must be less than 1000 characters." %}');
+        description.focus();
+      }
+    });
+    
+    // Auto-resize textarea
+    const textarea = document.querySelector('textarea[name="description"]');
+    if (textarea) {
+      textarea.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+      });
+    }
+  </script>
+{% endblock %}

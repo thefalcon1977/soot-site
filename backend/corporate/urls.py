@@ -13,6 +13,10 @@ urlpatterns = [
     path("register/", views.RegisterView.as_view(), name="register"),
     path("logout/", LogoutView.as_view(), name="logout"),
     
+    # Profile
+    path("profile/<str:username>/", views.ProfileDetailView.as_view(), name="profile-detail"),
+    path("profile-edit", views.ProfileUpdateView.as_view(), name="profile-edit"),
+    
     # Blog
     path("blog/", views.PostListView.as_view(), name="blog-post-list"),
     path("blog/<slug:slug>/", views.PostDetailView.as_view(), name="blog-post-detail"),
