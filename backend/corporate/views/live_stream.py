@@ -1,6 +1,6 @@
 from django.views.generic import DetailView, ListView
 from django.utils.translation import gettext_lazy as _
-from django.db.models import Q
+from django.db.models import Q, F
 from django.utils import timezone
 from corporate.models import LiveStream
 
@@ -41,9 +41,21 @@ class LiveStreamDetailView(DetailView):
     template_name = "pages/live_stream/detail.html"
     context_object_name = "liveStream"
 
+    def get_object(self, queryset=None):
+        """
+        Override get_object to increment visit count when live stream is viewed.
+        """
+        obj = super().get_object(queryset)
+        # Increment visit count using F() expression to avoid race conditions
+        LiveStream.objects.filter(pk=obj.pk).update(visit=F('visit') + 1)
+        # Refresh the object to get the updated visit count
+        obj.refresh_from_db(fields=['visit'])
+        return obj
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        live_stream = self.get_object()
+        # Use self.object instead of calling get_object() again
+        live_stream = self.object
         context['page_title'] = f"{live_stream.title} - {_('Live Stream')}"
         context['meta_description'] = (
             live_stream.description.plain_text()[:160]

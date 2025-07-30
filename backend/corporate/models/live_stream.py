@@ -55,6 +55,15 @@ class LiveStream(TitleSlugDescriptionMixin, PictureOperationAbstract, TimeStampM
         db_comment="URL where the live stream can be accessed."
     )
 
+    visit = models.PositiveIntegerField(
+        _("Visit"),
+        default=0,
+        db_comment="Number of times the live stream has been visited.",
+        blank=True,
+        null=True,
+        help_text=_("Number of times the live stream has been visited.")
+    )
+
     is_active = models.BooleanField(
         verbose_name=_("Is Active"),
         default=False,
