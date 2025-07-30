@@ -11,7 +11,17 @@
                 <div class="banner-carousel-style">
                     <div class="banner-content">
                         <p>{{ banner.title }}</p>
-                        <button type="button" class="btn btn-success">ورود به استریم</button>
+                        {% if banner.button and banner.button_text %}
+                            {% if banner.button_link %}
+                                <a href="{{ banner.button_link }}" class="btn btn-success" target="_blank" rel="noopener noreferrer">
+                                    {{ banner.button_text }}
+                                </a>
+                            {% else %}
+                                <button type="button" class="btn btn-success">
+                                    {{ banner.button_text }}
+                                </button>
+                            {% endif %}
+                        {% endif %}
                     </div>
                     <div class="banner-cover-image">
                         <img src="{{ im.url }}" alt="کارتون‌ها" />

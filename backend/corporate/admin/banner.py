@@ -16,17 +16,20 @@ class BannerAdmin(admin.ModelAdmin, AdminImageMixin):
 
     fieldsets = (
         (
-            _( "Banner Information"),
+            _("Banner Information"),
             {
                 "fields": (
                     "title",
                     "picture",
+                    "button",
+                    "button_text",
+                    "button_link",
                     "alternate_text",
                 )
             },
         ),
         (
-            _( "Meta Information"),
+            _("Meta Information"),
             {
                 "classes": ("collapse",),
                 "fields": ("created_at", "modified_at"),

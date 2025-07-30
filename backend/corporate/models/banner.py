@@ -34,6 +34,37 @@ class Banner(TimeStampMixin, PictureOperationAbstract):
         db_comment="Path to the banner image file, with details on dimensions.",
     )
 
+    button = models.BooleanField(
+        _("Button"),
+        default=False,
+        help_text=_(
+            "Check this box if the banner should include a call-to-action button."
+        ),
+        db_comment="Indicates whether the banner includes a call-to-action button.",
+    )
+
+    button_text = models.CharField(
+        _("Button Text"),
+        max_length=30,
+        null=True,
+        blank=True,
+        help_text=_(
+            "Enter the text for the call-to-action button. Keep it concise and informative. (Max 30 characters)"
+        ),
+        db_comment="The text on the call-to-action button; optional, max 30 characters.",
+    )
+
+    button_link = models.URLField(
+        _("Button Link"),
+        max_length=255,
+        null=True,
+        blank=True,
+        help_text=_(
+            "Enter the URL for the call-to-action button. Make sure it's a valid URL starting with http:// or https://."
+        ),
+        db_comment="The URL for the call-to-action button; optional, max 255 characters.",
+    )
+
     objects = models.Manager()
 
     class Meta:

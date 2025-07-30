@@ -5748,10 +5748,19 @@ Fixed top top bottom
   direction: rtl;
 }
 
-.banner-carousel-style .banner-content button {
+.banner-carousel-style .banner-content a {
   border-radius: 15px;
   background-color: #28a745;
   padding: 8px 20px;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.banner-carousel-style .banner-content a:hover {
+  border-radius: 15px;
+  background-color: #28a7467a;
+  padding: 8px 22px;
   font-weight: bold;
   border: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
