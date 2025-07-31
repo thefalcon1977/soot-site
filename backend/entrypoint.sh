@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # if any of the commands in your code fails the entire scripts fails.
 set -o errexit
