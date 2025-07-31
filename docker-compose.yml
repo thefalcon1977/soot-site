@@ -7,9 +7,7 @@ networks:
 services:
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: soot-site-backend:latest
     hostname: soot-api
     restart: always
     container_name: soot-api
@@ -19,9 +17,7 @@ services:
       - soot_site
 
   nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
+    image: soot-site-nginx:latest
     container_name: soot-nginx
     restart: always
     ports:
