@@ -7,7 +7,9 @@ networks:
 services:
 
   database:
-    image: soot-site-database:latest
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
     container_name: database
     hostname: database
     command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
