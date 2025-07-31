@@ -1,7 +1,9 @@
+from email.policy import default
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import URLValidator
 from django_ckeditor_5.fields import CKEditor5Field
+from django.conf import settings
 
 try:
     from sorl.thumbnail.fields import ImageField
@@ -11,13 +13,22 @@ except ImportError:
     )
 
 from sage_tools.mixins.models.abstract import PictureOperationAbstract
-from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugDescriptionMixin
+from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugMixin
 
 
-class LiveStream(TitleSlugDescriptionMixin, PictureOperationAbstract, TimeStampMixin):
+class LiveStream(TitleSlugMixin, PictureOperationAbstract, TimeStampMixin):
     """
     Model representing a live stream event with metadata and scheduling.
     """
+    card_title = models.CharField(
+        _("Card Title"),
+        max_length=255,
+        unique=False,
+        default="",
+        help_text=_("Enter a title."),
+        db_comment="Stores the title of the instance.",
+    )
+
     description = CKEditor5Field(
         verbose_name=_("Description"),
         help_text=_("Detailed description of the live stream."),
@@ -50,9 +61,10 @@ class LiveStream(TitleSlugDescriptionMixin, PictureOperationAbstract, TimeStampM
         verbose_name=_("Stream URL"),
         max_length=255,
         validators=[URLValidator()],
-        help_text=_("URL for accessing the live stream (e.g., YouTube, Twitch, or custom platform)."),
+        help_text=_("Auto-generated URL for accessing the live stream. Format: http://127.0.0.1/hls/{slug}.m3u8"),
         blank=True,
-        db_comment="URL where the live stream can be accessed."
+        editable=False,  # Make it read-only in admin
+        db_comment="Auto-generated URL where the live stream can be accessed."
     )
 
     visit = models.PositiveIntegerField(
@@ -115,4 +127,28 @@ class LiveStream(TitleSlugDescriptionMixin, PictureOperationAbstract, TimeStampM
         if self.is_scheduled():
             return "Scheduled"
         return "Inactive"
+
+    def generate_stream_url(self) -> str:
+        """
+        Generate the stream URL based on the slug.
+        Format: http://127.0.0.1/hls/{slug}.m3u8
+        """
+        if self.slug:
+            # You can make this configurable via settings
+            base_url = getattr(settings, 'STREAM_BASE_URL', 'http://127.0.0.1')
+            return f"{base_url}/hls/{self.slug}.m3u8"
+        return ""
+
+    def save(self, *args, **kwargs):
+        """
+        Override save method to auto-generate stream URL.
+        """
+        # First save to ensure slug is generated (from TitleSlugMixin)
+        super().save(*args, **kwargs)
+        
+        # Generate stream URL if slug exists and URL is not already set
+        if self.slug and not self.stream_url:
+            self.stream_url = self.generate_stream_url()
+            # Save again with the generated URL
+            super().save(update_fields=['stream_url'])
         

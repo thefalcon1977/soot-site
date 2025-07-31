@@ -8,15 +8,15 @@ class LiveStreamAdmin(admin.ModelAdmin):
     """
     Admin configuration for the LiveStream model.
     """
-    list_display = ('title', 'slug', 'is_active', 'scheduled_at', 'status', 'thumbnail')
+    list_display = ('card_title', 'slug', 'is_active', 'scheduled_at', 'status', 'thumbnail')
     list_filter = ('is_active', 'scheduled_at')
-    search_fields = ('title', 'slug', 'description')
+    search_fields = ('card_title', 'slug', 'description')
     date_hierarchy = 'scheduled_at'
     ordering = ('-is_active', '-scheduled_at', 'title')
-    readonly_fields = ('status', 'created_at', 'modified_at')
+    readonly_fields = ('stream_url', 'status', 'created_at', 'modified_at')
     fieldsets = (
         (None, {
-            'fields': ('title', 'description')
+            'fields': ('card_title', 'title', 'description')
         }),
         (_('Image'), {
             'fields': ('image',)
