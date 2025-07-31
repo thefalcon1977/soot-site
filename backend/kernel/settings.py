@@ -36,10 +36,12 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'varleague.ir'
+    'admin.varleague.ir'
     ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
+    'http://admin.varleague.ir',
     'http://localhost',
     "http://varleague.ir",
     "https://varleague.ir",
