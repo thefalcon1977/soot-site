@@ -3,9 +3,7 @@ version: '3'
 networks:
   soot_site:
 
-
 services:
-
   database:
     build:
       context: ./postgres
@@ -27,7 +25,9 @@ services:
       - soot_site
 
   backend:
-    image: soot-site-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
     hostname: soot-api
     restart: always
     container_name: soot-api
@@ -37,7 +37,9 @@ services:
       - soot_site
 
   nginx:
-    image: soot-site-nginx:latest
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
     container_name: soot-nginx
     restart: always
     ports:
