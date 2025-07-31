@@ -275,3 +275,5 @@ SLUG_TYPE_MAPPING = {
     "blog": "sage_blog.models.Post",
     "page": "corporate.models.Page",
 }
+
+STREAM_BASE_URL = 'https://varleague.ir/' 

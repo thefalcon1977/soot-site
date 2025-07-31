@@ -55,9 +55,15 @@
               
               {% if user.is_authenticated and user == profile.user %}
                 <div class="profile-actions">
-                  <a href="{% url 'pages:profile-edit' %}" class="btn btn-primary">
+                  <a href="{% url 'pages:profile-edit' %}" class="btn btn-primary me-2">
                     <i class="fas fa-edit me-1"></i>{% trans 'Edit Profile' %}
                   </a>
+                  <form method="post" action="{% url 'pages:logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">
+                      <i class="fas fa-sign-out-alt me-1"></i>{% trans 'Logout' %}
+                    </button>
+                  </form>
                 </div>
               {% endif %}
             </div>
@@ -81,7 +87,7 @@
                     </h5>
                     <p class="info-value">
                       {% if profile.user.last_login %}
-                        {{ profile.user.last_login|date:'M d, Y' }}
+                        {{ profile.user.last_login|date:'M d, Y' %}
                       {% else %}
                         {% trans 'Never' %}
                       {% endif %}
