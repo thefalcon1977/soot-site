@@ -39,3 +39,5 @@ tablib==3.8.0
 tqdm==4.67.1
 typing_extensions==4.13.2
 gunicorn==23.0.0
+gevent==24.10.2
+psycopg2-binary==2.9.9

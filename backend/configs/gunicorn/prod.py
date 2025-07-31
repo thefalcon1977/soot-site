@@ -2,8 +2,8 @@ import multiprocessing
 
 bind = "0.0.0.0:8000"
 workers = multiprocessing.cpu_count() * 2 + 1
-worker_class = 'gevent'
-worker_connections = 1000
+worker_class = 'sync'  # Changed from 'gevent' to 'sync'
+# worker_connections = 1000  # Not needed for sync workers
 max_requests = 1000
 timeout = 60
 graceful_timeout = 65

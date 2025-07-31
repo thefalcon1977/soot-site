@@ -3,8 +3,26 @@ version: '3'
 networks:
   soot_site:
 
-
 services:
+  database:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    container_name: database
+    hostname: database
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+    volumes:
+      - ./volumes/db:/var/lib/postgresql/data
+      - ./postgres/configs/:/configs/
+    env_file:
+      - ./postgres/configs/postgres.env
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-p", "5438"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - soot_site
 
   backend:
     build:

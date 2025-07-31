@@ -180,3 +180,5 @@ media/uploads/**
 
 media/collectstatic/
 media/uploads/
+
+volumes/
