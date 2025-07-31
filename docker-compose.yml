@@ -21,7 +21,7 @@ services:
     container_name: soot-nginx
     restart: always
     ports:
-      - "8080:8080" # HTTP port
+      - "80:8080" # HTTP port
       - "1935:1935"  # RTMP port
     volumes:
       - ./nginx/configs/nginx-dev.conf:/etc/nginx/nginx.conf:ro
