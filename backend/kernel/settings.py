@@ -35,13 +35,14 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'soot.tebgeram.com'
+    'varleague.ir'
     ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
     'http://localhost',
-    "http://soot.tebgeram.com:8080",
+    "http://varleague.ir",
+    "https://varleague.ir",
     "http://localhost:8080"
 ]
 
