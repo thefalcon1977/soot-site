@@ -19,11 +19,11 @@ urlpatterns = [
     
     # Blog
     path("blog/", views.PostListView.as_view(), name="blog-post-list"),
-    path("blog/<slug:slug>/", views.PostDetailView.as_view(), name="blog-post-detail"),
+    path("blog/<path:slug>/", views.PostDetailView.as_view(), name="blog-post-detail"),
     
     # Live Streams
     path("live-streams/", views.LiveStreamListView.as_view(), name="live-stream-list"),
-    path("live-streams/<slug:slug>/", views.LiveStreamDetailView.as_view(), name="live-stream-detail"),
+    path("live-streams/<path:slug>/", views.LiveStreamDetailView.as_view(), name="live-stream-detail"),
     
     # Gallery
     path("gallery/", views.GalleryListView.as_view(), name="gallery-list"),

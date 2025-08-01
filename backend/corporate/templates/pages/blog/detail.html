@@ -12,7 +12,7 @@
                     <!-- Post Thumbnail -->
                     <div class="post-thumb">
                         {% thumbnail post.picture "1170x600" crop="center" format='WEBP' as im %}
-                        <img src="{{ im.url }}" class="img-fluid" alt="{{ post.alternate_text }}">
+                            <img src="{{ im.url }}" class="img-fluid" alt="{{ post.alternate_text }}">
                         {% endthumbnail %}
                     </div>
 
