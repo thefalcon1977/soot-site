@@ -12,6 +12,8 @@ class Contact(models.Model):
     )
     email = models.EmailField(
         verbose_name=_("Email Address"),
+        null=True,
+        blank=True,
         help_text=_("Please enter a valid email address."),
         db_comment=_("The email address of the person submitting the contact form."),
     )
