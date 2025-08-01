@@ -40,6 +40,7 @@ class LiveStreamDetailView(DetailView):
     model = LiveStream
     template_name = "pages/live_stream/detail.html"
     context_object_name = "liveStream"
+    page_title = "live stream"
 
     def get_object(self, queryset=None):
         """
