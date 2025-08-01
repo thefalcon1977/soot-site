@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-01 11:11+0000\n"
+"POT-Creation-Date: 2025-08-01 11:35+0000\n"
 "PO-Revision-Date: 2025-02-09 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Persian <FA@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "اطلاعات کلی"
 msgid "Footer Information"
 msgstr "اطلاعات پابرگ"
 
-#: corporate/forms/contact.py:13 corporate/models/contact.py:26
+#: corporate/forms/contact.py:13 corporate/models/contact.py:28
 msgid "Subject"
 msgstr "موضوع"
 
@@ -93,7 +93,7 @@ msgstr "موضوع"
 msgid "Email Address"
 msgstr "آدرس ایمیل"
 
-#: corporate/forms/contact.py:22 corporate/models/contact.py:19
+#: corporate/forms/contact.py:22 corporate/models/contact.py:21
 #: corporate/models/site.py:23
 msgid "Phone Number"
 msgstr "شماره تلفن"
@@ -124,15 +124,15 @@ msgstr ""
 
 #: corporate/models/banner.py:38
 msgid "Button"
-msgstr ""
+msgstr "دکمه"
 
 #: corporate/models/banner.py:41
 msgid "Check this box if the banner should include a call-to-action button."
-msgstr ""
+msgstr "اگر بنر باید شامل دکمه فراخوان عمل باشد، این کادر را علامت بزنید."
 
 #: corporate/models/banner.py:47
 msgid "Button Text"
-msgstr ""
+msgstr "متن دکمه"
 
 #: corporate/models/banner.py:52
 #, fuzzy
@@ -171,64 +171,64 @@ msgstr "لطفاً نام کامل خود را وارد کنید."
 msgid "The full name of the person submitting the contact form."
 msgstr "نام کامل شخصی که فرم تماس را ارسال می‌کند."
 
-#: corporate/models/contact.py:15
+#: corporate/models/contact.py:17
 msgid "Please enter a valid email address."
 msgstr "لطفاً یک آدرس ایمیل معتبر وارد کنید."
 
-#: corporate/models/contact.py:16
+#: corporate/models/contact.py:18
 msgid "The email address of the person submitting the contact form."
 msgstr "آدرس ایمیل شخصی که فرم تماس را ارسال می‌کند."
 
-#: corporate/models/contact.py:22
+#: corporate/models/contact.py:24
 msgid "Please enter a valid phone number."
 msgstr "لطفاً یک شماره تلفن معتبر وارد کنید."
 
-#: corporate/models/contact.py:23
+#: corporate/models/contact.py:25
 msgid "The phone number of the person submitting the contact form."
 msgstr "شماره تلفن شخصی که فرم تماس را ارسال می‌کند."
 
-#: corporate/models/contact.py:28
+#: corporate/models/contact.py:30
 msgid "Please enter the subject of your message."
 msgstr "لطفاً موضوع پیام خود را وارد کنید."
 
-#: corporate/models/contact.py:29
+#: corporate/models/contact.py:31
 msgid "The subject of the contact request."
 msgstr "موضوع درخواست تماس."
 
-#: corporate/models/contact.py:32
+#: corporate/models/contact.py:34
 msgid "Message"
 msgstr "پیام"
 
-#: corporate/models/contact.py:33
+#: corporate/models/contact.py:35
 msgid "Please enter your message."
 msgstr "لطفاً پیام خود را وارد کنید."
 
-#: corporate/models/contact.py:34
+#: corporate/models/contact.py:36
 msgid "The main body of the contact request."
 msgstr "متن اصلی درخواست تماس."
 
-#: corporate/models/contact.py:37
+#: corporate/models/contact.py:39
 msgid "Date Created"
 msgstr "تاریخ ایجاد"
 
-#: corporate/models/contact.py:39
+#: corporate/models/contact.py:41
 msgid "The date and time when the contact form was submitted."
 msgstr "تاریخ و زمان ارسال فرم تماس."
 
-#: corporate/models/contact.py:40
+#: corporate/models/contact.py:42
 msgid "Timestamp when the contact form was submitted."
 msgstr "برچسب زمانی هنگام ارسال فرم تماس."
 
-#: corporate/models/contact.py:44
+#: corporate/models/contact.py:46
 #: corporate/templates/pages/partials/header.html:116
 msgid "Contact"
 msgstr "تماس"
 
-#: corporate/models/contact.py:45
+#: corporate/models/contact.py:47
 msgid "Contacts"
 msgstr "تماس‌ها"
 
-#: corporate/models/contact.py:49
+#: corporate/models/contact.py:51
 msgid "Table storing contact messages submitted via the website."
 msgstr "جدولی که پیام‌های ارسال‌شده از طریق وب‌سایت را ذخیره می‌کند."
 
@@ -293,11 +293,11 @@ msgstr ""
 
 #: corporate/models/live_stream.py:71
 msgid "Visit"
-msgstr ""
+msgstr "بازدید"
 
 #: corporate/models/live_stream.py:76
 msgid "Number of times the live stream has been visited."
-msgstr ""
+msgstr "تعداد بارهایی که پخش زنده بازدید شده است."
 
 #: corporate/models/live_stream.py:80
 msgid "Is Active"
@@ -317,11 +317,11 @@ msgstr "زمان شروع برنامه‌ریزی‌شده اختیاری برا
 
 #: corporate/models/live_stream.py:95
 msgid "Alternate Text"
-msgstr ""
+msgstr "متن جایگزین"
 
 #: corporate/models/live_stream.py:98
 msgid "Alternative text for the live stream image, used for accessibility."
-msgstr ""
+msgstr "متن جایگزین برای تصویر پخش زنده، که برای دسترسی‌پذیری استفاده می‌شود."
 
 #: corporate/models/live_stream.py:103
 msgid "live stream"
@@ -475,21 +475,22 @@ msgstr ""
 
 #: corporate/models/socialmedia.py:56
 msgid "Criteria Link"
-msgstr ""
+msgstr "پیوند"
 
 #: corporate/models/socialmedia.py:61
 msgid ""
 "Enter an optional URL for detailed badge earning criteria. Must start with "
 "http:// or https://."
 msgstr ""
+"برای مشاهده‌ی جزئیات معیارهای کسب نشان، یک نشانی اینترنتی اختیاری وارد کنید"
 
 #: corporate/models/socialmedia.py:72
 msgid "Social Media Badge"
-msgstr ""
+msgstr "نشان رسانه‌های اجتماعی"
 
 #: corporate/models/socialmedia.py:73
 msgid "Social Media Badges"
-msgstr ""
+msgstr "نشان رسانه‌های اجتماعی"
 
 #: corporate/templates/pages/blog/detail.html:48
 msgid "Related Posts"
@@ -552,7 +553,7 @@ msgstr ""
 
 #: corporate/templates/pages/live_stream/detail.html:57
 msgid "This stream is scheduled and will be available on"
-msgstr ""
+msgstr "مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند."
 
 #: corporate/templates/pages/live_stream/detail.html:61
 #, fuzzy
@@ -567,7 +568,7 @@ msgstr "درباره این پخش"
 
 #: corporate/templates/pages/live_stream/list.html:12
 msgid "Showing"
-msgstr ""
+msgstr "نمایش"
 
 #: corporate/templates/pages/live_stream/list.html:14
 msgid "Sort by latest"
@@ -629,7 +630,7 @@ msgstr "تلفن"
 
 #: corporate/templates/pages/partials/footer.html:48
 msgid "Social"
-msgstr ""
+msgstr "شبکه‌های اجتماعی"
 
 #: corporate/templates/pages/partials/header.html:18
 msgid "جستجو "
@@ -662,7 +663,7 @@ msgstr "خروج"
 
 #: corporate/templates/pages/profile/detail.html:77
 msgid "Member Since"
-msgstr ""
+msgstr "عضو از"
 
 #: corporate/templates/pages/profile/detail.html:86
 #, fuzzy
@@ -672,45 +673,45 @@ msgstr "فعال"
 
 #: corporate/templates/pages/profile/detail.html:92
 msgid "Never"
-msgstr ""
+msgstr "هرگز"
 
 #: corporate/templates/pages/profile/detail.html:124
 msgid "Joined"
-msgstr ""
+msgstr "عضو شد"
 
 #: corporate/templates/pages/profile/detail.html:130
 msgid "Last Updated"
-msgstr ""
+msgstr "آخرین به‌روزرسانی"
 
 #: corporate/templates/pages/profile/detail.html:142
 msgid "Status"
-msgstr ""
+msgstr "وضعیت"
 
 #: corporate/templates/pages/profile/edit.html:35
 msgid "Current Profile Preview"
-msgstr ""
+msgstr "پیش‌نمایش پروفایل فعلی"
 
 #: corporate/templates/pages/profile/edit.html:120
 msgid "Cancel"
-msgstr ""
+msgstr "لغو"
 
 #: corporate/templates/pages/profile/edit.html:123
 msgid "Save Changes"
-msgstr ""
+msgstr " ذخیره تغییرات"
 
 #: corporate/templates/pages/profile/edit.html:151
 #, fuzzy
 #| msgid "Please enter a valid email address."
 msgid "Please select a valid image file."
-msgstr "لطفاً یک آدرس ایمیل معتبر وارد کنید."
+msgstr "لطفاً یک فایل تصویری معتبر انتخاب کنید."
 
 #: corporate/templates/pages/profile/edit.html:157
 msgid "File size must be less than 5MB."
-msgstr ""
+msgstr "حجم فایل باید کمتر از ۵ مگابایت باشد."
 
 #: corporate/templates/pages/profile/edit.html:207
 msgid "Description must be less than 1000 characters."
-msgstr ""
+msgstr "توضیحات باید کمتر از ۱۰۰۰ کاراکتر باشد."
 
 #: corporate/views/live_stream.py:16
 msgid "Live Streams"
