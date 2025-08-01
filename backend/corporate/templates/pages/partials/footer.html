@@ -2,58 +2,72 @@
 
 <!-- Footer section start -->
 <section class="footer-continer mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6 col-sm-12">
+        <div>
+          {% thumbnail site_content.site_logo '150x70' crop='center' format='WEBP' as logo %}
+          <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid" />
+          {% endthumbnail %}
+        </div>
+        <div>
+          <p>{{ site_content.footer_description|safe }}</p>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6 col-xm-6">
+        <div class="footer-widget">
+          <h5 class="widget-title">{% trans 'Explore' %}</h5>
+          <ul class="list-unstyled footer-links">
+            <li>
+              <a href="{% url 'pages:blog-post-list' %}">{% trans 'Blog' %}</a>
+            </li>
+            <li>
+              <a href="{% url 'pages:gallery-list' %}">{% trans 'Gallery' %}</a>
+            </li>
+            <li>
+              <a href="{% url 'pages:contact' %}">{% trans 'Contact Us' %}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6 col-xm-6">
+        <div class="footer-widget">
+          <h5 class="widget-title">{% trans 'Address' %}</h5>
+          <ul class="list-unstyled footer-links">
+            <li>
+              <h6 class="text-white">{% trans 'Phone' %}</h6>
+              <a href="tel:{{ site_content.phone_number }}">{{ site_content.phone_number }}</a>
+            </li>
+            <li>
+              <h6 class="text-white">{% trans 'Email' %}</h6>
+              <a href="mailto:{{ site_content.email }}">{{ site_content.email }}</a>
+            </li>
+            <li>
+              <h6 class="text-white">{% trans 'Social' %}</h6>
+              {% for badge in socialmedia_badges %}
+                <a class="mt-2" href="{{ badge.criteria_link }}" target="_blank" aria-label="{{ badge.name }}">
+                  {% thumbnail badge.image '28x28' crop='center' format='WEBP' as logo %}
+                  <img src="{{ logo.url }}" alt="{{ badge.name }}" />
+                </a>
+                {% endthumbnail %}
+              {% endfor %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-btm">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-6 col-sm-12">
-                <div>
-                    {% thumbnail site_content.site_logo "150x70" crop="center" format='WEBP' as logo %}
-                        <img src="{{ logo.url }}" alt="{{ site_content.brand_name }}" class="img-fluid">
-                    {% endthumbnail %}
-                </div>
-                <div>
-                    <p>{{ site_content.footer_description|safe }}</p>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-sm-6 col-xm-6">
-                <div class="footer-widget">
-                    <h5 class="widget-title">{% trans 'Explore' %}</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="{% url 'pages:blog-post-list' %}">{% trans 'Blog' %}</a></li>
-                        <li><a href="{% url 'pages:gallery-list' %}">{% trans 'Gallery' %}</a></li>
-                        <li><a href="{% url 'pages:contact' %}">{% trans "Contact Us" %}</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-sm-6 col-xm-6">
-                <div class="footer-widget">
-                    <h5 class="widget-title">{% trans 'Address' %}</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><h6 class="text-white">{% trans 'Phone' %}</h6>
-                            <a href="tel:{{ site_content.phone_number }}">{{ site_content.phone_number }}</a>
-                        </li>
-                        <li><h6 class="text-white">{% trans 'Email' %}</h6>
-                            <a href="mailto:{{ site_content.email }}">{{ site_content.email }}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+      <div class="row align-items-center">
+        <div class="col-xl-6 col-sm-12 col-lg-6">
+          <p class="mb-0 copyright text-sm-center text-lg-start">&copy; {{ site_content.footer_copyright }}</p>
         </div>
+      </div>
     </div>
-
-    <div class="footer-btm">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-6 col-sm-12 col-lg-6">
-                    <p class="mb-0 copyright text-sm-center text-lg-start">
-                        &copy; {{ site_content.footer_copyright }}
-                    </p>
-                </div>
-                <div class="col-xl-6 col-sm-12 col-lg-6">
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 <!-- Footer section End -->

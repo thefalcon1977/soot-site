@@ -1,7 +1,8 @@
+from corporate.admin import socialmedia
 from corporate.models.site import SiteContent
 from django.utils import timezone
 from django.db.models import Q
-from corporate.models import LiveStream
+from corporate.models import LiveStream, SocialMediaBadge
 
 
 def site_content(request):
@@ -11,12 +12,14 @@ def site_content(request):
     try:
         # Fetch the first (or only) site content entry
         site_content = SiteContent.objects.first()
+        socialmedia_badges = SocialMediaBadge.objects.filter(is_active=True)
     except SiteContent.DoesNotExist:
         site_content = None  # If no site content exists, return None
 
     return {
         "site_content": site_content,
-        "favicon_url": site_content.site_logo.url if site_content and site_content.site_logo else "/static/assets/images/icon/logo.png"
+        "favicon_url": site_content.site_logo.url if site_content and site_content.site_logo else "/static/assets/images/icon/logo.png",
+        "socialmedia_badges": socialmedia_badges,
     }
 
 
