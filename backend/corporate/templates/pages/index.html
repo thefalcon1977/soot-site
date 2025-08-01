@@ -7,7 +7,7 @@
     <!-- Banner Section Start -->
     <div class="banner-carousel owl-carousel owl-theme">
         {% for banner in banners %}
-            {% thumbnail banner.picture "1440x961" crop="center" format='WEBP' as im %}
+            {% thumbnail banner.picture "1334x180" crop="center" format='WEBP' as im %}
                 <div class="banner-carousel-style">
                     <div class="banner-content">
                         <p>{{ banner.title }}</p>
