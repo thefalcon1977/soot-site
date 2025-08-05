@@ -23,6 +23,17 @@ class Banner(TimeStampMixin, PictureOperationAbstract):
         ),
         db_comment="The title of the banner; optional, max 110 characters.",
     )
+
+    description = models.TextField(
+        _("Description"),
+        null=True,
+        blank=True,
+        help_text=_(
+            "Enter a detailed description of the banner. This can include HTML tags."
+        ),
+        db_comment="A detailed description of the banner; optional, max 255 characters.",
+    )
+
     picture = ImageField(
         _("Picture"),
         max_length=110,

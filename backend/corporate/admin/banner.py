@@ -20,6 +20,7 @@ class BannerAdmin(admin.ModelAdmin, AdminImageMixin):
             {
                 "fields": (
                     "title",
+                    "description",
                     "picture",
                     "button",
                     "button_text",

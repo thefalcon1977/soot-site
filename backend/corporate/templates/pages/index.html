@@ -7,11 +7,14 @@
     <!-- Banner Section Start -->
     <div class="banner-carousel owl-carousel owl-theme">
         {% for banner in banners %}
-            {% thumbnail banner.picture "1334x180" crop="center" format='WEBP' as im %}
+            {% thumbnail banner.picture "720x180" crop="center" format='WEBP' as im %}
                 <div class="banner-carousel-style">
                     <div class="banner-content">
-                        <p>{{ banner.title }}</p>
-                        {% if banner.button and banner.button_text %}
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <h1>{{ banner.title }}</h1>
+                                <p>{{ banner.description }}</p>
+                                {% if banner.button and banner.button_text %}
                             {% if banner.button_link %}
                                 <a href="{{ banner.button_link }}" class="btn btn-success" target="_blank" rel="noopener noreferrer">
                                     {{ banner.button_text }}
@@ -22,6 +25,9 @@
                                 </button>
                             {% endif %}
                         {% endif %}
+                            </div>
+                        </div>
+
                     </div>
                     <div class="banner-cover-image">
                         <img src="{{ im.url }}" alt="کارتون‌ها" />
