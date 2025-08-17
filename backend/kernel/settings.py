@@ -276,4 +276,4 @@ SLUG_TYPE_MAPPING = {
     "page": "corporate.models.Page",
 }
 
-STREAM_BASE_URL = 'https://varleague.ir/' 
+STREAM_BASE_URL = 'https://varleague.ir' 
