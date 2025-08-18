@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-01 11:35+0000\n"
+"POT-Creation-Date: 2025-08-18 07:37+0000\n"
 "PO-Revision-Date: 2025-02-09 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Persian <FA@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Banner Information"
 msgstr "اطلاعات بنر"
 
-#: corporate/admin/banner.py:32 corporate/admin/site.py:38
+#: corporate/admin/banner.py:33 corporate/admin/site.py:38
 #, fuzzy
 #| msgid "User Information"
 msgid "Meta Information"
@@ -113,28 +113,40 @@ msgid ""
 msgstr ""
 "عنوان بنر را وارد کنید. آن را مختصر و مفید نگه دارید. (حداکثر ۳۰ نویسه)"
 
-#: corporate/models/banner.py:27
+#: corporate/models/banner.py:28 corporate/models/live_stream.py:33
+#: corporate/models/profile.py:32 corporate/models/socialmedia.py:36
+msgid "Description"
+msgstr "توضیحات"
+
+#: corporate/models/banner.py:32
+msgid "Enter a detailed description of the banner. This can include HTML tags."
+msgstr ""
+
+#: corporate/models/banner.py:38
 msgid "Picture"
 msgstr "تصویر"
 
-#: corporate/models/banner.py:32
-msgid "Upload the banner image. Supported formats include JPG, PNG, etc."
+#: corporate/models/banner.py:43
+#, fuzzy
+#| msgid "Upload the banner image. Supported formats include JPG, PNG, etc."
+msgid ""
+"Upload the banner 720x180 image. Supported formats include JPG, PNG, etc."
 msgstr ""
 "تصویر بنر را بارگذاری کنید. فرمت‌های پشتیبانی‌شده شامل JPG، PNG و ... هستند."
 
-#: corporate/models/banner.py:38
+#: corporate/models/banner.py:49
 msgid "Button"
 msgstr "دکمه"
 
-#: corporate/models/banner.py:41
+#: corporate/models/banner.py:52
 msgid "Check this box if the banner should include a call-to-action button."
 msgstr "اگر بنر باید شامل دکمه فراخوان عمل باشد، این کادر را علامت بزنید."
 
-#: corporate/models/banner.py:47
+#: corporate/models/banner.py:58
 msgid "Button Text"
 msgstr "متن دکمه"
 
-#: corporate/models/banner.py:52
+#: corporate/models/banner.py:63
 #, fuzzy
 #| msgid ""
 #| "Enter the title of the banner. Keep it concise and informative. (Max 30 "
@@ -145,21 +157,21 @@ msgid ""
 msgstr ""
 "عنوان بنر را وارد کنید. آن را مختصر و مفید نگه دارید. (حداکثر ۳۰ نویسه)"
 
-#: corporate/models/banner.py:58
+#: corporate/models/banner.py:69
 msgid "Button Link"
 msgstr ""
 
-#: corporate/models/banner.py:63
+#: corporate/models/banner.py:74
 msgid ""
 "Enter the URL for the call-to-action button. Make sure it's a valid URL "
 "starting with http:// or https://."
 msgstr ""
 
-#: corporate/models/banner.py:75
+#: corporate/models/banner.py:86
 msgid "Banner"
 msgstr "بنر"
 
-#: corporate/models/banner.py:76
+#: corporate/models/banner.py:87
 msgid "Banners"
 msgstr "بنرها"
 
@@ -243,7 +255,7 @@ msgstr "یک تصویر برای گالری بارگذاری کنید."
 msgid "Gallery"
 msgstr "گالری"
 
-#: corporate/models/gallery.py:45 corporate/templates/pages/index.html:87
+#: corporate/models/gallery.py:45 corporate/templates/pages/index.html:93
 msgid "Galleries"
 msgstr "گالری‌ها"
 
@@ -251,16 +263,11 @@ msgstr "گالری‌ها"
 #, fuzzy
 #| msgid "Title"
 msgid "Card Title"
-msgstr "عنوان"
+msgstr "عنوان کارت"
 
 #: corporate/models/live_stream.py:28
 msgid "Enter a title."
-msgstr ""
-
-#: corporate/models/live_stream.py:33 corporate/models/profile.py:32
-#: corporate/models/socialmedia.py:36
-msgid "Description"
-msgstr "توضیحات"
+msgstr "عنوان را وارد کنید."
 
 #: corporate/models/live_stream.py:34
 #, fuzzy
@@ -268,13 +275,13 @@ msgstr "توضیحات"
 #| "Provide a detailed description of the musical instrument, including "
 #| "features and specifications."
 msgid "Detailed description of the live stream."
-msgstr "یک توضیح کامل از ساز موسیقی، شامل ویژگی‌ها و مشخصات ارائه دهید."
+msgstr "توضیح کاملی از پخش زنده."
 
 #: corporate/models/live_stream.py:42 corporate/models/live_stream.py:52
 #, fuzzy
 #| msgid "Instrument Image"
 msgid "Stream Image"
-msgstr "تصویر ساز"
+msgstr "تصویر پخش زنده"
 
 #: corporate/models/live_stream.py:44 corporate/models/live_stream.py:54
 msgid "Upload a representative image or thumbnail for the live stream."
@@ -290,6 +297,7 @@ msgid ""
 "Auto-generated URL for accessing the live stream. Format: http://127.0.0.1/"
 "hls/{slug}.m3u8"
 msgstr ""
+"آدرس URL تولید شده خودکار برای دسترسی به پخش زنده. فرمت: http://127.0.0.1/hls/{slug}.m3u8"
 
 #: corporate/models/live_stream.py:71
 msgid "Visit"
@@ -364,7 +372,7 @@ msgstr "پروفایل‌ها"
 #, fuzzy
 #| msgid "Please enter a valid phone number."
 msgid "Enter the contact phone number."
-msgstr "لطفاً یک شماره تلفن معتبر وارد کنید."
+msgstr "شماره تلفن تماس را وارد کنید."
 
 #: corporate/models/site.py:29
 #: corporate/templates/pages/partials/footer.html:44
@@ -429,7 +437,7 @@ msgstr "محتواهای سایت"
 #, fuzzy
 #| msgid "Full Name"
 msgid "Name"
-msgstr "نام کامل"
+msgstr "نام"
 
 #: corporate/models/socialmedia.py:19
 #, fuzzy
@@ -440,26 +448,27 @@ msgid ""
 "Enter the name of the badge. Keep it concise and descriptive. (Max 50 "
 "characters)"
 msgstr ""
-"عنوان بنر را وارد کنید. آن را مختصر و مفید نگه دارید. (حداکثر ۳۰ نویسه)"
+"نام نشان را وارد کنید. آن را مختصر و توصیفی نگه دارید. (حداکثر ۵۰ نویسه)"
 
 #: corporate/models/socialmedia.py:25
 #, fuzzy
 #| msgid "Image"
 msgid "Badge Image"
-msgstr "تصویر"
+msgstr "تصویر نشان"
 
 #: corporate/models/socialmedia.py:30
 #, fuzzy
 #| msgid "Upload the banner image. Supported formats include JPG, PNG, etc."
 msgid "Upload the badge image. Supported formats include JPG, PNG, etc."
 msgstr ""
-"تصویر بنر را بارگذاری کنید. فرمت‌های پشتیبانی‌شده شامل JPG، PNG و ... هستند."
+"تصویر نشان را بارگذاری کنید. فرمت‌های پشتیبانی‌شده شامل JPG، PNG و ... هستند."
 
 #: corporate/models/socialmedia.py:41
 msgid ""
 "Provide a brief description of the badge and how it can be earned. (Max 200 "
 "characters)"
 msgstr ""
+"توضیح مختصری از نشان و نحوه کسب آن ارائه دهید. (حداکثر ۲۰۰ نویسه)"
 
 #: corporate/models/socialmedia.py:47
 #: corporate/templates/pages/profile/detail.html:47
@@ -471,18 +480,18 @@ msgstr "فعال"
 
 #: corporate/models/socialmedia.py:50
 msgid "Check this box if the badge is currently available for users to earn."
-msgstr ""
+msgstr "اگر نشان در حال حاضر برای کسب توسط کاربران در دسترس است، این کادر را علامت بزنید."
 
 #: corporate/models/socialmedia.py:56
 msgid "Criteria Link"
-msgstr "پیوند"
+msgstr "پیوند معیارها"
 
 #: corporate/models/socialmedia.py:61
 msgid ""
 "Enter an optional URL for detailed badge earning criteria. Must start with "
 "http:// or https://."
 msgstr ""
-"برای مشاهده‌ی جزئیات معیارهای کسب نشان، یک نشانی اینترنتی اختیاری وارد کنید"
+"برای مشاهده‌ی جزئیات معیارهای کسب نشان، یک نشانی اینترنتی اختیاری وارد کنید. باید با http:// یا https:// شروع شود."
 
 #: corporate/models/socialmedia.py:72
 msgid "Social Media Badge"
@@ -490,7 +499,7 @@ msgstr "نشان رسانه‌های اجتماعی"
 
 #: corporate/models/socialmedia.py:73
 msgid "Social Media Badges"
-msgstr "نشان رسانه‌های اجتماعی"
+msgstr "نشان‌های رسانه‌های اجتماعی"
 
 #: corporate/templates/pages/blog/detail.html:48
 msgid "Related Posts"
@@ -501,7 +510,7 @@ msgid "Search"
 msgstr "جستجو"
 
 #: corporate/templates/pages/blog/list.html:99
-#: corporate/templates/pages/index.html:42
+#: corporate/templates/pages/index.html:48
 msgid "Latest Posts"
 msgstr "آخرین پست‌ها"
 
@@ -540,7 +549,7 @@ msgstr "غیرفعال"
 #, fuzzy
 #| msgid "Date Created"
 msgid "Created"
-msgstr "تاریخ ایجاد"
+msgstr "ایجاد شده"
 
 #: corporate/templates/pages/live_stream/detail.html:42
 #: corporate/templates/pages/live_stream/list.html:51
@@ -549,22 +558,22 @@ msgstr "بازدید"
 
 #: corporate/templates/pages/live_stream/detail.html:52
 msgid "Your browser does not support the video tag."
-msgstr ""
+msgstr "مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند."
 
 #: corporate/templates/pages/live_stream/detail.html:57
 msgid "This stream is scheduled and will be available on"
-msgstr "مرورگر شما از تگ ویدیو پشتیبانی نمی‌کند."
+msgstr "این پخش برنامه‌ریزی شده و در تاریخ زیر در دسترس خواهد بود"
 
 #: corporate/templates/pages/live_stream/detail.html:61
 #, fuzzy
 #| msgid "Indicates whether the live stream is currently active."
 msgid "This stream is currently inactive."
-msgstr "مشخص می‌کند که آیا پخش زنده در حال حاضر فعال است."
+msgstr "این پخش در حال حاضر غیرفعال است."
 
 #: corporate/templates/pages/live_stream/detail.html:65
 #: corporate/templates/pages/profile/detail.html:111
 msgid "About"
-msgstr "درباره این پخش"
+msgstr "درباره"
 
 #: corporate/templates/pages/live_stream/list.html:12
 msgid "Showing"
@@ -588,13 +597,13 @@ msgstr "برنامه‌ریزی‌شده"
 
 #: corporate/templates/pages/live_stream/list.html:65
 msgid "No data available"
-msgstr ""
+msgstr "داده‌ای در دسترس نیست"
 
 #: corporate/templates/pages/live_stream/list.html:66
 #, fuzzy
 #| msgid "No live streams available at the moment."
 msgid "No Live Streams Available"
-msgstr "در حال حاضر هیچ پخش زنده‌ای در دسترس نیست."
+msgstr "هیچ پخش زنده‌ای در دسترس نیست"
 
 #: corporate/templates/pages/live_stream/list.html:68
 #, fuzzy
@@ -634,7 +643,7 @@ msgstr "شبکه‌های اجتماعی"
 
 #: corporate/templates/pages/partials/header.html:18
 msgid "جستجو "
-msgstr ""
+msgstr "جستجو"
 
 #: corporate/templates/pages/partials/header.html:66
 #: corporate/templates/pages/partials/header.html:97
@@ -646,14 +655,14 @@ msgstr "خانه"
 #, fuzzy
 #| msgid "Live Now"
 msgid "Live"
-msgstr "اکنون زنده"
+msgstr "زنده"
 
 #: corporate/templates/pages/profile/detail.html:59
 #: corporate/views/profile.py:73
 #, fuzzy
 #| msgid "Profile"
 msgid "Edit Profile"
-msgstr "پروفایل"
+msgstr "ویرایش پروفایل"
 
 #: corporate/templates/pages/profile/detail.html:64
 #, fuzzy
@@ -669,7 +678,7 @@ msgstr "عضو از"
 #, fuzzy
 #| msgid "Is Active"
 msgid "Last Active"
-msgstr "فعال"
+msgstr "آخرین فعالیت"
 
 #: corporate/templates/pages/profile/detail.html:92
 msgid "Never"
@@ -726,7 +735,7 @@ msgstr ""
 
 #: corporate/views/live_stream.py:60
 msgid "Live Stream"
-msgstr "پخش‌ زنده"
+msgstr "پخش زنده"
 
 #: corporate/views/live_stream.py:64
 msgid "Watch this live stream and stay updated with the latest content."
