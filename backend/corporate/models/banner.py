@@ -40,7 +40,7 @@ class Banner(TimeStampMixin, PictureOperationAbstract):
         width_field="width_field",
         height_field="height_field",
         help_text=_(
-            "Upload the banner image. Supported formats include JPG, PNG, etc."
+            "Upload the banner 720x180 image. Supported formats include JPG, PNG, etc."
         ),
         db_comment="Path to the banner image file, with details on dimensions.",
     )

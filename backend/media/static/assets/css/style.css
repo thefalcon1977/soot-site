@@ -5741,8 +5741,8 @@ Fixed top top bottom
 
 .banner-carousel-style {
   padding: 0;
-  margin: 20px;
-  background: linear-gradient(90deg, #000000bd 0%, #1d0c00 88%);
+  margin: 15px;
+  background: linear-gradient(90deg, #000000a8 0%, #000000 88%);
   background-color: #fff;
   border-radius: 20px;
   overflow: hidden;
@@ -5833,7 +5833,7 @@ Fixed top top bottom
   width: 100%;
   height: 100%;
   z-index: 1;
-  opacity: 0.35;
+  opacity: 0.45;
   pointer-events: none;
 }
 
