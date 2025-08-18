@@ -41,18 +41,26 @@
                   </div>
 
                   <div class="stream-content">
-                    <div class="stream-meta mb-2 d-flex justify-content-between align-items-center">
-                      <span class="stream-date">
-                        <i class="far fa-calendar-alt me-1"></i>
-                        {{ liveStream.created_at|date:'M d, Y' }}
-                      </span>
-                      <span class="stream-visits text-muted small">
-                        <i class="far fa-eye me-1"></i>
-                        {{ liveStream.visit|default:0 }} {% trans 'views' %}
-                      </span>
-                    </div>
-
                     <h3 id="live-stream-{{ liveStream.id }}-title" class="stream-title">{{ liveStream.card_title }}</h3>
+
+
+                    <div class="stream-meta mb-2">
+                      <div class="stream-meta-left">
+                        <span class="stream-date">
+                          <i class="far fa-calendar-alt me-1"></i>
+                          {{ liveStream.scheduled_at|jalali_date_format:'%d %B %Y' }}
+                        </span>
+                        <span class="stream-author">
+                          <i class="far fa-user me-1"></i>
+                          By {{ liveStream.created_by.username|default:'Admin' }}
+                        </span>
+
+                        <span class="stream-visits text-muted small">
+                          <i class="far fa-eye me-1"></i>
+                          {{ liveStream.visit|default:0 }} {% trans 'views' %}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </article>
               </a>
