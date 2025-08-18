@@ -8,35 +8,40 @@
         <div class="col-lg-8 col-xl-8">
             <div class="row">
                 {% for post in blog_posts %}
-                <div class="col-xl-6">
-                    <div class="blog-item mb-30">
-                        <!-- Post Thumbnail -->
-                        <div class="post-thumb">
-                            <a href="{% url 'pages:blog-post-detail' post.slug %}">
-                                {% thumbnail post.picture "752x390" crop="center" format='WEBP' as im %}
-                                    <img src="{{ im.url }}" alt="{{ post.alternate_text }}" class="img-fluid">
-                                {% endthumbnail %}
-                            </a>
-                        </div>
-
-                        <!-- Blog Content -->
-                        <div class="blog-content">
-                            <div class="post-meta">
-                                <span class="post-author">by {{ post.author.username|default:"Admin" }}</span>
-                                <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>
-                                    {{ post.created_at|date:"F d, Y" }}</span>
-                                <span class="post-comments"><i class="far fa-comments"></i>
-                                    {{ post.comments.count|default:0 }}</span>
+                    <div class="col-xl-6">
+                        <div class="blog-item mb-30">
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumb">
+                                <a href="{% url 'pages:blog-post-detail' post.slug %}">
+                                    {% thumbnail post.picture "752x390" crop="center" format='WEBP' as im %}
+                                        <img src="{{ im.url }}" alt="{{ post.alternate_text }}" class="img-fluid">
+                                    {% endthumbnail %}
+                                </a>
                             </div>
 
-                            <h3 class="post-title">
-                                <a href="{% url 'pages:blog-post-detail' post.slug %}">{{ post.title }}</a>
-                            </h3>
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                
+                                <h3 class="post-title">
+                                    <a href="{% url 'pages:blog-post-detail' post.slug %}">{{ post.title }}</a>
+                                </h3>
+                                
+                                <p>{{ post.summary }}</p>
 
-                            <p>{{ post.summary }}</p>
+                                <div class="post-meta">
+                                    <span class="post-author">
+                                        <i class="fa fa-user ml-3"></i>
+                                        by {{ post.author.username|default:"Admin" }}
+                                    </span>
+                                    <span class="post-date">
+                                        <i class="fa fa-calendar-alt"></i>
+                                        {{ post.created_at|jalali_date_format:'%d %B %Y'}}
+                                    </span>
+                                </div>
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
             <nav class="blog-page-navigation">
@@ -114,7 +119,7 @@
                                     </a>
                                 </h5>
                                 <span><i class="fa fa-calendar-times"></i>
-                                    {{ post.created_at|date:"F d, Y" }}</span>
+                                    {{ post.created_at|jalali_date_format:'%d %B %Y' }}</span>
                             </div>
                         </div>
                         {% endfor %}
