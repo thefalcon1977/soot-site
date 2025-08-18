@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-18 07:37+0000\n"
+"POT-Creation-Date: 2025-08-18 12:03+0000\n"
 "PO-Revision-Date: 2025-02-09 12:00+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Persian <FA@li.org>\n"
@@ -17,58 +17,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: corporate/admin/banner.py:19
+#: corporate/admin/banner.py:21
 #, fuzzy
 #| msgid "User Information"
 msgid "Banner Information"
 msgstr "اطلاعات بنر"
 
-#: corporate/admin/banner.py:33 corporate/admin/site.py:38
+#: corporate/admin/banner.py:35 corporate/admin/site.py:38
 #, fuzzy
 #| msgid "User Information"
 msgid "Meta Information"
 msgstr "اطلاعات متا"
 
-#: corporate/admin/contact.py:35
+#: corporate/admin/banner.py:80 corporate/admin/contact.py:67
+#: corporate/admin/gallery.py:63 corporate/admin/profile.py:78
+#: corporate/admin/socialmedia.py:75
+msgid "Created At (Jalali)"
+msgstr ""
+
+#: corporate/admin/banner.py:97 corporate/admin/gallery.py:80
+#: corporate/admin/profile.py:95 corporate/admin/socialmedia.py:92
+msgid "Modified At (Jalali)"
+msgstr ""
+
+#: corporate/admin/contact.py:37
 msgid "These are the primary details of the contact request."
 msgstr "اینها جزئیات اصلی درخواست تماس هستند."
 
-#: corporate/admin/contact.py:40 corporate/admin/gallery.py:38
-#: corporate/admin/live_stream.py:27 corporate/admin/profile.py:43
+#: corporate/admin/contact.py:42 corporate/admin/gallery.py:41
+#: corporate/admin/live_stream.py:30 corporate/admin/profile.py:46
 msgid "Timestamps"
 msgstr "برچسب‌های زمانی"
 
-#: corporate/admin/contact.py:43
+#: corporate/admin/contact.py:45
 msgid "Automatically generated timestamp for the message."
 msgstr "برچسب زمانی به‌طور خودکار برای پیام ایجاد شده است."
 
-#: corporate/admin/gallery.py:28
+#: corporate/admin/gallery.py:31
 msgid "Media"
 msgstr "رسانه"
 
-#: corporate/admin/live_stream.py:21 corporate/models/gallery.py:22
+#: corporate/admin/live_stream.py:24 corporate/models/gallery.py:22
 msgid "Image"
 msgstr "تصویر"
 
-#: corporate/admin/live_stream.py:24
+#: corporate/admin/live_stream.py:27
 #, fuzzy
 #| msgid "Profile Details"
 msgid "Stream Details"
 msgstr "جزئیات پروفایل"
 
-#: corporate/admin/live_stream.py:43
+#: corporate/admin/live_stream.py:50
 msgid "Thumbnail"
 msgstr ""
 
-#: corporate/admin/profile.py:29
+#: corporate/admin/live_stream.py:88
+#, fuzzy
+#| msgid "Scheduled Time"
+msgid "Scheduled Time (Jalali)"
+msgstr "زمان برنامه‌ریزی‌شده"
+
+#: corporate/admin/live_stream.py:106 corporate/models/live_stream.py:87
+msgid "Scheduled Time"
+msgstr "زمان برنامه‌ریزی‌شده"
+
+#: corporate/admin/profile.py:32
 msgid "User Information"
 msgstr "اطلاعات کاربر"
 
-#: corporate/admin/profile.py:33
+#: corporate/admin/profile.py:36
 msgid "Profile Details"
 msgstr "جزئیات پروفایل"
 
-#: corporate/admin/profile.py:52 corporate/forms/contact.py:12
+#: corporate/admin/profile.py:55 corporate/forms/contact.py:12
 #: corporate/models/contact.py:8
 msgid "Full Name"
 msgstr "نام کامل"
@@ -297,7 +318,8 @@ msgid ""
 "Auto-generated URL for accessing the live stream. Format: http://127.0.0.1/"
 "hls/{slug}.m3u8"
 msgstr ""
-"آدرس URL تولید شده خودکار برای دسترسی به پخش زنده. فرمت: http://127.0.0.1/hls/{slug}.m3u8"
+"آدرس URL تولید شده خودکار برای دسترسی به پخش زنده. فرمت: http://127.0.0.1/"
+"hls/{slug}.m3u8"
 
 #: corporate/models/live_stream.py:71
 msgid "Visit"
@@ -314,10 +336,6 @@ msgstr "فعال"
 #: corporate/models/live_stream.py:82
 msgid "Indicates whether the live stream is currently active."
 msgstr "مشخص می‌کند که آیا پخش زنده در حال حاضر فعال است."
-
-#: corporate/models/live_stream.py:87
-msgid "Scheduled Time"
-msgstr "زمان برنامه‌ریزی‌شده"
 
 #: corporate/models/live_stream.py:90
 msgid "Optional scheduled start time for the live stream."
@@ -467,8 +485,7 @@ msgstr ""
 msgid ""
 "Provide a brief description of the badge and how it can be earned. (Max 200 "
 "characters)"
-msgstr ""
-"توضیح مختصری از نشان و نحوه کسب آن ارائه دهید. (حداکثر ۲۰۰ نویسه)"
+msgstr "توضیح مختصری از نشان و نحوه کسب آن ارائه دهید. (حداکثر ۲۰۰ نویسه)"
 
 #: corporate/models/socialmedia.py:47
 #: corporate/templates/pages/profile/detail.html:47
@@ -480,7 +497,9 @@ msgstr "فعال"
 
 #: corporate/models/socialmedia.py:50
 msgid "Check this box if the badge is currently available for users to earn."
-msgstr "اگر نشان در حال حاضر برای کسب توسط کاربران در دسترس است، این کادر را علامت بزنید."
+msgstr ""
+"اگر نشان در حال حاضر برای کسب توسط کاربران در دسترس است، این کادر را علامت "
+"بزنید."
 
 #: corporate/models/socialmedia.py:56
 msgid "Criteria Link"
@@ -491,7 +510,8 @@ msgid ""
 "Enter an optional URL for detailed badge earning criteria. Must start with "
 "http:// or https://."
 msgstr ""
-"برای مشاهده‌ی جزئیات معیارهای کسب نشان، یک نشانی اینترنتی اختیاری وارد کنید. باید با http:// یا https:// شروع شود."
+"برای مشاهده‌ی جزئیات معیارهای کسب نشان، یک نشانی اینترنتی اختیاری وارد کنید. "
+"باید با http:// یا https:// شروع شود."
 
 #: corporate/models/socialmedia.py:72
 msgid "Social Media Badge"
@@ -501,29 +521,35 @@ msgstr "نشان رسانه‌های اجتماعی"
 msgid "Social Media Badges"
 msgstr "نشان‌های رسانه‌های اجتماعی"
 
-#: corporate/templates/pages/blog/detail.html:48
+#: corporate/templates/pages/blog/detail.html:114
 msgid "Related Posts"
 msgstr "پست‌های مرتبط"
 
-#: corporate/templates/pages/blog/list.html:92
+#: corporate/templates/pages/blog/detail.html:143
+#, fuzzy
+#| msgid "Related Posts"
+msgid "Recent Posts"
+msgstr "پست‌های مرتبط"
+
+#: corporate/templates/pages/blog/list.html:97
 msgid "Search"
 msgstr "جستجو"
 
-#: corporate/templates/pages/blog/list.html:99
+#: corporate/templates/pages/blog/list.html:104
 #: corporate/templates/pages/index.html:48
 msgid "Latest Posts"
 msgstr "آخرین پست‌ها"
 
-#: corporate/templates/pages/blog/list.html:126
+#: corporate/templates/pages/blog/list.html:131
 msgid "Categories"
 msgstr "دسته‌بندی‌ها"
 
-#: corporate/templates/pages/blog/list.html:130
-#: corporate/templates/pages/blog/list.html:148
+#: corporate/templates/pages/blog/list.html:135
+#: corporate/templates/pages/blog/list.html:153
 msgid "Clear Filter"
 msgstr "پاک کردن فیلتر"
 
-#: corporate/templates/pages/blog/list.html:143
+#: corporate/templates/pages/blog/list.html:148
 msgid "Tags"
 msgstr "برچسب‌ها"
 
@@ -552,7 +578,7 @@ msgid "Created"
 msgstr "ایجاد شده"
 
 #: corporate/templates/pages/live_stream/detail.html:42
-#: corporate/templates/pages/live_stream/list.html:51
+#: corporate/templates/pages/live_stream/list.html:60
 msgid "views"
 msgstr "بازدید"
 
@@ -575,6 +601,14 @@ msgstr "این پخش در حال حاضر غیرفعال است."
 msgid "About"
 msgstr "درباره"
 
+#: corporate/templates/pages/live_stream/detail.html:377
+msgid "Network issue detected. Quality automatically reduced."
+msgstr "مشکل شبکه تشخیص داده شد. کیفیت به طور خودکار کاهش یافت."
+
+#: corporate/templates/pages/live_stream/detail.html:379
+msgid "Stream temporarily unavailable. Please try again later."
+msgstr "پخش زنده موقتاً در دسترس نیست. لطفاً بعداً دوباره تلاش کنید."
+
 #: corporate/templates/pages/live_stream/list.html:12
 msgid "Showing"
 msgstr "نمایش"
@@ -595,17 +629,17 @@ msgstr "زنده"
 msgid "Scheduled"
 msgstr "برنامه‌ریزی‌شده"
 
-#: corporate/templates/pages/live_stream/list.html:65
+#: corporate/templates/pages/live_stream/list.html:73
 msgid "No data available"
 msgstr "داده‌ای در دسترس نیست"
 
-#: corporate/templates/pages/live_stream/list.html:66
+#: corporate/templates/pages/live_stream/list.html:74
 #, fuzzy
 #| msgid "No live streams available at the moment."
 msgid "No Live Streams Available"
 msgstr "هیچ پخش زنده‌ای در دسترس نیست"
 
-#: corporate/templates/pages/live_stream/list.html:68
+#: corporate/templates/pages/live_stream/list.html:76
 #, fuzzy
 #| msgid "No live streams available at the moment."
 msgid ""

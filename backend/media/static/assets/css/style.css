@@ -5278,13 +5278,13 @@ Fixed top top bottom
 }
 
 .stream-container .stream-meta {
-  margin-bottom: 15px;
+  margin-top: 15px;
   font-size: 13px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .stream-container .stream-meta-left {
@@ -5931,7 +5931,7 @@ Fixed top top bottom
 
 /* Quality notification styling */
 .vjs-modal-dialog-content {
-  background: rgba(0, 123, 255, 0.9);
+  background: rgba(0, 123, 255, 0.18);
   color: white;
   padding: 15px 25px;
   border-radius: 8px;
