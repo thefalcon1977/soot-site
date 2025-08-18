@@ -1,5 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import format_html
+from django.utils import translation
+import jdatetime
 from corporate.models import LiveStream
 
 
@@ -8,7 +11,7 @@ class LiveStreamAdmin(admin.ModelAdmin):
     """
     Admin configuration for the LiveStream model.
     """
-    list_display = ('card_title', 'slug', 'is_active', 'scheduled_at', 'status', 'thumbnail')
+    list_display = ('card_title', 'slug', 'is_active', 'scheduled_at_jalali', 'status', 'thumbnail')
     list_filter = ('is_active', 'scheduled_at')
     search_fields = ('card_title', 'slug', 'description')
     date_hierarchy = 'scheduled_at'
@@ -36,10 +39,14 @@ class LiveStreamAdmin(admin.ModelAdmin):
         """
         if obj.image:
             from sorl.thumbnail import get_thumbnail
-            thumb = get_thumbnail(obj.image, '100x100', crop='center', format='WEBP')
-            return f'<img src="{thumb.url}" alt="{obj.alternate_text or obj.title}" style="max-width: 100px; max-height: 100px;">'
+            thumb = get_thumbnail(obj.image, '75x50', crop='center', format='WEBP')
+            return format_html(
+                '<img src="{}" alt="{}" style="max-width: 75px; max-height: 50px;">',
+                thumb.url,
+                obj.alternate_text or obj.title or 'Thumbnail'
+            )
         return 'No Image'
-    thumbnail.allow_tags = True
+    
     thumbnail.short_description = _('Thumbnail')
 
     def get_queryset(self, request):
@@ -63,3 +70,38 @@ class LiveStreamAdmin(admin.ModelAdmin):
         if obj:  # Editing an existing object
             return {}
         return {'slug': ('title',)} if 'slug' in self.model._meta.get_fields() and self.model._meta.get_field('slug').editable else {}
+    
+    def scheduled_at_jalali(self, obj):
+        """
+        Display scheduled_at in Jalali format for Persian locale.
+        """
+        if obj.scheduled_at:
+            if translation.get_language() == 'fa':
+                # Convert to Jalali date
+                jalali_datetime = jdatetime.datetime.fromgregorian(datetime=obj.scheduled_at)
+                return jalali_datetime.strftime('%Y/%m/%d %H:%M')
+            else:
+                # Return Gregorian format for other languages
+                return obj.scheduled_at.strftime('%Y-%m-%d %H:%M')
+        return '-'
+    
+    scheduled_at_jalali.short_description = _('Scheduled Time (Jalali)')
+    scheduled_at_jalali.admin_order_field = 'scheduled_at'  # Allows column sorting
+
+    def scheduled_at_display(self, obj):
+        """
+        Display both Gregorian and Jalali dates.
+        """
+        if obj.scheduled_at:
+            gregorian = obj.scheduled_at.strftime('%Y-%m-%d %H:%M')
+            jalali_datetime = jdatetime.datetime.fromgregorian(datetime=obj.scheduled_at)
+            jalali = jalali_datetime.strftime('%Y/%m/%d %H:%M')
+            return format_html(
+                '<div>🗓️ {}<br/>📅 {}</div>',
+                gregorian,
+                jalali
+            )
+        return '-'
+    
+    scheduled_at_display.short_description = _('Scheduled Time')
+    scheduled_at_display.admin_order_field = 'scheduled_at'
