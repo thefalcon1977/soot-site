@@ -5,16 +5,80 @@
   <section class="page-wrapper">
     <div class="container">
       <div class="row">
-        {{ post }}
         <!-- Post Content -->
+
         <div class="col-lg-8 col-xl-8">
           <div class="post-single">
             <!-- Post Thumbnail -->
-            <div class="post-thumb">
-              {% thumbnail post.picture '1170x600' crop='center' format='WEBP' as im %}
-              <img src="{{ im.url }}" class="img-fluid" alt="{{ post.alternate_text }}" />
-              {% endthumbnail %}
+            <div class="post-thumb position-relative">
+              {% if post.video %}
+                <!-- Video Player with percentage width -->
+                <video id="postVideo" class="d-none" controls preload="metadata" style="width: 800px; height: 450px; max-width: 100%;">
+                  <source src="{{ post.video.url }}" type="video/mp4" />
+                  <source src="{{ post.video.url }}" type="video/webm" />
+                  <source src="{{ post.video.url }}" type="video/ogg" />Your browser does not support the video tag.
+                </video>
+
+                <!-- Banner Image with Play Button Overlay -->
+                <div id="bannerContainer" class="position-relative" style="cursor: pointer;">
+                  {% thumbnail post.banner '1170x600' crop='center' format='WEBP' as im %}
+                  <img src="{{ im.url }}" class="img-fluid" alt="{{ post.alternate_text }}" />
+                  {% endthumbnail %}
+
+                  <!-- Play Button Overlay -->
+                  <div class="play-button-overlay position-absolute d-flex align-items-center justify-content-center" style="top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); transition: all 0.3s ease;">
+                    <div class="play-button bg-white rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 24px; color: #333; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                      <i class="fa fa-play" style="margin-left: 4px;"></i>
+                    </div>
+                  </div>
+                </div>
+              {% else %}
+                <!-- Regular Banner Image (no video) -->
+                {% thumbnail post.banner '1170x600' crop='center' format='WEBP' as im %}
+                <img src="{{ im.url }}" class="img-fluid" alt="{{ post.alternate_text }}" />
+                {% endthumbnail %}
+              {% endif %}
             </div>
+
+            {% if post.video %}
+              <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                  const bannerContainer = document.getElementById('bannerContainer')
+                  const video = document.getElementById('postVideo')
+                  const playOverlay = document.querySelector('.play-button-overlay')
+                
+                  // Handle banner click to play video
+                  bannerContainer.addEventListener('click', function () {
+                    bannerContainer.style.display = 'none'
+                    video.classList.remove('d-none')
+                    video.play()
+                  })
+                
+                  // Handle video end to show banner again
+                  video.addEventListener('ended', function () {
+                    video.classList.add('d-none')
+                    bannerContainer.style.display = 'block'
+                  })
+                
+                  // Optional: Handle video pause to show banner again
+                  video.addEventListener('pause', function () {
+                    if (video.currentTime === 0) {
+                      video.classList.add('d-none')
+                      bannerContainer.style.display = 'block'
+                    }
+                  })
+                
+                  // Hover effects for play button
+                  bannerContainer.addEventListener('mouseenter', function () {
+                    playOverlay.style.background = 'rgba(0,0,0,0.5)'
+                  })
+                
+                  bannerContainer.addEventListener('mouseleave', function () {
+                    playOverlay.style.background = 'rgba(0,0,0,0.3)'
+                  })
+                })
+              </script>
+            {% endif %}
 
             <!-- Post Metadata -->
             <div class="single-post-content">
@@ -26,6 +90,8 @@
               </div>
               <h3 class="post-title">{{ post.title }}</h3>
               <p>{{ post.summary }}</p>
+
+              {{ post }}
 
               <!-- Post Description -->
               <div class="post-content">{{ post.description|safe }}</div>
