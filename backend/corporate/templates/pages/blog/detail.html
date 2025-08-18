@@ -2,76 +2,104 @@
 {% load thumbnail %}
 
 {% block body %}
-
-<section class="page-wrapper">
+  <section class="page-wrapper">
     <div class="container">
-        <div class="row">
-            <!-- Post Content -->
-            <div class="col-lg-8 col-xl-8">
-                <div class="post-single">
-                    <!-- Post Thumbnail -->
-                    <div class="post-thumb">
-                        {% thumbnail post.picture "1170x600" crop="center" format='WEBP' as im %}
-                            <img src="{{ im.url }}" class="img-fluid" alt="{{ post.alternate_text }}">
-                        {% endthumbnail %}
-                    </div>
-
-                    <!-- Post Metadata -->
-                    <div class="single-post-content">
-                        <div class="post-meta">
-                            <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>
-                                {{ post.created_at|date:"F d, Y" }}</span>
-                        </div>
-                        <h3 class="post-title">{{ post.title }}</h3>
-                        <p>{{ post.summary }}</p>
-
-                        <!-- Post Description -->
-                        <div class="post-content">
-                            {{ post.description|safe }}
-                        </div>
-                    </div>
-
-                    <!-- Post Tags & Share -->
-                    <div class="blog-footer-meta d-md-flex justify-content-between align-items-center">
-                        <div class="post-tags mb-4 mb-md-0">
-                            {% for tag in post.tags.all %}
-                            <a href="{% url 'pages:blog-post-list' %}?tag={{ tag.slug }}">{{ tag.title }}</a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+      <div class="row">
+        {{ post }}
+        <!-- Post Content -->
+        <div class="col-lg-8 col-xl-8">
+          <div class="post-single">
+            <!-- Post Thumbnail -->
+            <div class="post-thumb">
+              {% thumbnail post.picture '1170x600' crop='center' format='WEBP' as im %}
+              <img src="{{ im.url }}" class="img-fluid" alt="{{ post.alternate_text }}" />
+              {% endthumbnail %}
             </div>
 
-            <!-- Related Posts Section -->
-            {% if post.related_posts.exists %}
-            <div class="col-lg-12 mt-5">
-                <h2 class="mb-3">{% trans "Related Posts" %}</h2>
-                <div class="row">
-                    {% for related_post in post.related_posts.all %}
-                    <div class="col-md-4">
-                        <div class="blog-item">
-                            <div class="post-thumb">
-                                <a href="{% url 'pages:blog-post-detail' related_post.slug %}">
-                                    {% thumbnail related_post.picture "352x252" crop="center" format='WEBP' as im %}
-                                    <img src="{{ im.url }}" class="img-fluid" alt="{{ related_post.alternate_text }}">
-                                    {% endthumbnail %}
-                                </a>
-                            </div>
-                            <div class="blog-content">
-                                <h5 class="post-title">
-                                    <a href="{% url 'pages:blog-post-detail' related_post.slug %}">{{ related_post.title }}</a>
-                                </h5>
-                                <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>
-                                    {{ related_post.created_at|date:"F d, Y" }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
+            <!-- Post Metadata -->
+            <div class="single-post-content">
+              <div class="post-meta">
+                <span class="post-date">
+                  <i class="fa fa-calendar-alt mr-2"></i>
+                  {{ post.created_at|date:'F d, Y' }}
+                </span>
+              </div>
+              <h3 class="post-title">{{ post.title }}</h3>
+              <p>{{ post.summary }}</p>
+
+              <!-- Post Description -->
+              <div class="post-content">{{ post.description|safe }}</div>
             </div>
-            {% endif %}
+
+            <!-- Post Tags & Share -->
+            <div class="blog-footer-meta d-md-flex justify-content-between align-items-center">
+              <div class="post-tags mb-4 mb-md-0">
+                {% for tag in post.tags.all %}
+                  <a href="{% url 'pages:blog-post-list' %}?tag={{ tag.slug }}">{{ tag.title }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-</section>
 
+        <!-- Related Posts Section -->
+        {% if post.related_posts.exists %}
+          <div class="col-lg-12 mt-5">
+            <h2 class="mb-3">{% trans 'Related Posts' %}</h2>
+            <div class="row">
+              {% for related_post in post.related_posts.all %}
+                <div class="col-md-4">
+                  <div class="blog-item">
+                    <div class="post-thumb">
+                      <a href="{% url 'pages:blog-post-detail' related_post.slug %}">
+                        {% thumbnail related_post.picture '352x252' crop='center' format='WEBP' as im %}
+                        <img src="{{ im.url }}" class="img-fluid" alt="{{ related_post.alternate_text }}" />
+                        {% endthumbnail %}
+                      </a>
+                    </div>
+                    <div class="blog-content">
+                      <h5 class="post-title"><a href="{% url 'pages:blog-post-detail' related_post.slug %}">{{ related_post.title }}</a></h5>
+                      <span class="post-date">
+                        <i class="fa fa-calendar-alt mr-2"></i>
+                        {{ related_post.created_at|date:'F d, Y' }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Recent Posts Section -->
+        {% if blog_recent_posts %}
+          <div class="col-lg-12 mt-5">
+            <h2 class="mb-3">{% trans 'Recent Posts' %}</h2>
+            <div class="row">
+              {% for recent_post in blog_recent_posts %}
+                <div class="col-md-4">
+                  <div class="blog-item">
+                    <div class="post-thumb">
+                      <a href="{% url 'pages:blog-post-detail' recent_post.slug %}">
+                        {% thumbnail recent_post.picture '352x252' crop='center' format='WEBP' as im %}
+                        <img src="{{ im.url }}" class="img-fluid" alt="{{ recent_post.alternate_text }}" />
+                        {% endthumbnail %}
+                      </a>
+                    </div>
+                    <div class="blog-content">
+                      <h5 class="post-title"><a href="{% url 'pages:blog-post-detail' recent_post.slug %}">{{ recent_post.title }}</a></h5>
+                      <span class="post-date">
+                        <i class="fa fa-calendar-alt mr-2"></i>
+                        {{ recent_post.created_at|date:'F d, Y' }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
 {% endblock %}

@@ -57,7 +57,7 @@ class PostDetailView(SageBlogContextMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["blog_recent_posts"] = Post.objects.filter_actives().filter_recent_posts()
+        context["blog_recent_posts"] = Post.objects.filter_actives().filter_recent_posts(num_posts=3)
         context["blog_categories"] = PostCategory.objects.filter(is_published=True).annotate_total_posts()
         context["page_title"] = self.page_title
         context["blog_trend_tags"] = PostTag.objects.filter_trend_tags(
