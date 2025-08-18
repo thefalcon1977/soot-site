@@ -251,3 +251,28 @@ def bytes_to_mb(value):
         return f"{value / (1024 * 1024):.2f} MB"
     except (ValueError, TypeError):
         return "0.00 MB"
+
+
+@register.filter
+def jalali_date_format(value, format_string='%Y/%m/%d'):
+    """
+    Format date in Jalali calendar with custom format
+    """
+    if translation.get_language() == 'fa':
+        # Set Persian locale for month names
+        jdatetime.set_locale(jdatetime.FA_LOCALE)
+        
+        # Convert to Jalali date
+        if hasattr(value, 'date'):
+            # If it's a datetime object, extract the date
+            jalali_date = jdatetime.date.fromgregorian(date=value.date())
+        else:
+            # If it's already a date object
+            jalali_date = jdatetime.date.fromgregorian(date=value)
+        return jalali_date.strftime(format_string)
+    else:
+        # Return Gregorian format for other languages
+        if hasattr(value, 'date'):
+            return value.strftime(format_string.replace('%B', '%b'))  # Handle month names
+        else:
+            return value.strftime(format_string.replace('%B', '%b'))
